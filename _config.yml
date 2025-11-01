@@ -37,6 +37,18 @@ youtube_username                          :
 # Feature List                            Edit, add or remove features to be presented.
 features                                  :
 
+  - title                                 : Autofill Job Applications
+    description                           : Complete any job application with one tap. Save time by automatically filling in your information.
+    fontawesome_icon_name                 : keyboard
+
+  - title                                 : Generate Cover Letters
+    description                           : Create personalized cover letters instantly for each position. AI-powered content tailored to the job requirements.
+    fontawesome_icon_name                 : file-text
+
+  - title                                 : Auto Attach Resume
+    description                           : Automatically attach your resume to applications. Keep your documents organized and ready to submit.
+    fontawesome_icon_name                 : paperclip
+
 
 
 # Theme Settings
