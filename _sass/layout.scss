@@ -644,6 +644,79 @@ footer {
 	margin-right: 0px;
 }
 
+.supportForm {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	padding-bottom: 70px;
+}
+
+.supportFormInner {
+	max-width: 640px;
+	width: 100%;
+	text-align: center;
+	padding: 0 20px;
+}
+
+.supportTitle {
+	color: $footer-text-color;
+	font-size: 28px;
+	margin-bottom: 10px;
+}
+
+.supportSubtitle {
+	color: $footer-text-color;
+	opacity: 0.9;
+	margin-bottom: 24px;
+}
+
+.supportFormFields {
+	display: grid;
+	gap: 14px;
+}
+
+.supportFormFields input,
+.supportFormFields textarea {
+	width: 100%;
+	padding: 14px 16px;
+	border-radius: 8px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	background-color: #ffffff;
+	color: #111111;
+	font-size: 16px;
+}
+
+.supportFormFields input:focus,
+.supportFormFields textarea:focus {
+	border-color: $accent-color;
+	outline: none;
+	box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08);
+}
+
+.supportButton {
+	border: none;
+	border-radius: 999px;
+	background-color: $accent-color;
+	color: #ffffff;
+	padding: 14px 20px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.supportButton:hover {
+	filter: brightness(0.95);
+}
+
+.supportEmail {
+	margin-top: 18px;
+	color: $footer-text-color;
+}
+
+.supportEmail a {
+	color: $footer-text-color;
+	text-decoration: underline;
+}
+
 
 @media only screen and (max-width: 768px) {
 
@@ -660,6 +733,10 @@ footer {
 	.footerLinks a:first-child {
 		margin-top: 0px;
 	}	
+
+	.supportTitle {
+		font-size: 24px;
+	}
 
 }
 
