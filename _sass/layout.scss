@@ -680,9 +680,9 @@ footer {
 	width: 100%;
 	padding: 14px 16px;
 	border-radius: 8px;
-	border: 1px solid rgba(0, 0, 0, 0.2);
-	background-color: #ffffff;
-	color: #111111;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	background-color: #141414;
+	color: #f6f6f6;
 	font-size: 16px;
 }
 
@@ -690,7 +690,12 @@ footer {
 .supportFormFields textarea:focus {
 	border-color: $accent-color;
 	outline: none;
-	box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08);
+	box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.08);
+}
+
+.supportFormFields input::placeholder,
+.supportFormFields textarea::placeholder {
+	color: rgba(246, 246, 246, 0.6);
 }
 
 .supportButton {
@@ -704,7 +709,7 @@ footer {
 }
 
 .supportButton:hover {
-	filter: brightness(0.95);
+	filter: brightness(1.05);
 }
 
 .supportEmail {
