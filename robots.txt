@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://resume-maker-jobhunter.applanding.co/sitemap.xml
+Sitemap: https://mahmoudashraf93.github.io/job-hunter-landing/sitemap.xml

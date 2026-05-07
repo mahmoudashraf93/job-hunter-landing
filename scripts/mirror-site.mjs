@@ -2,7 +2,9 @@ import { createHash } from "node:crypto";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-const BASE_URL = "https://resume-maker-jobhunter.applanding.co";
+const SITE_ORIGIN = "https://mahmoudashraf93.github.io";
+const SITE_PATH = "/job-hunter-landing";
+const BASE_URL = `${SITE_ORIGIN}${SITE_PATH}`;
 const OUTPUT_DIR = process.argv[2] ? path.resolve(process.argv[2]) : process.cwd();
 const ROUTES = ["/", "/privacy", "/terms"];
 
@@ -15,7 +17,7 @@ const textAssetExtensions = new Set([
   ".html",
 ]);
 
-const nextAssetPattern = /\/_next\/static\/[^"'`\s)\\]+/g;
+const nextAssetPattern = /(?:\/job-hunter-landing)?\/_next\/static\/[^"'`\s)\\]+/g;
 const appleImagePattern = /https:\/\/is1-ssl\.mzstatic\.com\/[^"'`\s)\\]+/g;
 
 const urlToLocalPath = new Map();
@@ -37,6 +39,13 @@ const fetchOrThrow = async (url) => {
   }
   return response;
 };
+
+const siteUrl = (pathname) => {
+  const normalizedPath = pathname.startsWith("/") ? pathname : `/${pathname}`;
+  return new URL(`${SITE_PATH}${normalizedPath}`, SITE_ORIGIN).toString();
+};
+
+const localAssetPath = (assetPath) => assetPath.replace(new RegExp(`^${SITE_PATH}`), "");
 
 const localPathForAppleImage = (urlString) => {
   if (urlToLocalPath.has(urlString)) return urlToLocalPath.get(urlString);
@@ -93,12 +102,13 @@ const processTextAsset = async ({ assetUrl, localPath }) => {
   content = replaceAppleImageUrls(content);
 
   for (const nextAsset of extractMatches(content, nextAssetPattern)) {
-    const ext = path.extname(nextAsset);
-    const absoluteUrl = new URL(nextAsset, BASE_URL).toString();
+    const localPath = localAssetPath(nextAsset);
+    const ext = path.extname(localPath);
+    const absoluteUrl = siteUrl(localPath);
     if (textAssetExtensions.has(ext)) {
-      enqueueTextAsset(absoluteUrl, nextAsset);
+      enqueueTextAsset(absoluteUrl, localPath);
     } else {
-      await downloadBinaryAsset(absoluteUrl, nextAsset);
+      await downloadBinaryAsset(absoluteUrl, localPath);
     }
   }
 
@@ -108,7 +118,7 @@ const processTextAsset = async ({ assetUrl, localPath }) => {
 };
 
 for (const route of ROUTES) {
-  const routeUrl = new URL(route, BASE_URL).toString();
+  const routeUrl = siteUrl(route);
   const response = await fetchOrThrow(routeUrl);
   let html = await response.text();
 
@@ -120,12 +130,13 @@ for (const route of ROUTES) {
   html = replaceAppleImageUrls(html);
 
   for (const nextAsset of extractMatches(html, nextAssetPattern)) {
-    const ext = path.extname(nextAsset);
-    const absoluteUrl = new URL(nextAsset, BASE_URL).toString();
+    const localPath = localAssetPath(nextAsset);
+    const ext = path.extname(localPath);
+    const absoluteUrl = siteUrl(localPath);
     if (textAssetExtensions.has(ext)) {
-      enqueueTextAsset(absoluteUrl, nextAsset);
+      enqueueTextAsset(absoluteUrl, localPath);
     } else {
-      await downloadBinaryAsset(absoluteUrl, nextAsset);
+      await downloadBinaryAsset(absoluteUrl, localPath);
     }
   }
 
