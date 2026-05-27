@@ -2,7 +2,7 @@ import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const SITE_URL = "https://appjobhunter.com";
-const APP_STORE_URL = "https://apps.apple.com/us/app/resume-maker-jobhunter/id6645735955?uo=4";
+const APP_STORE_URL = "https://apps.apple.com/app/apple-store/id6645735955?pt=120006398&ct=lanlanding&mt=8";
 const APP_ICON = `${SITE_URL}/images/512x512bb-2c184703c8.jpg`;
 const ROOT = process.cwd();
 const TEXT_EXTENSIONS = new Set([".html", ".js", ".css", ".txt", ".xml", ".json", ".map"]);
