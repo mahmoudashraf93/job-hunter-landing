@@ -2,8 +2,8 @@ import { createHash } from "node:crypto";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-const SITE_ORIGIN = "https://mahmoudashraf93.github.io";
-const SITE_PATH = "/job-hunter-landing";
+const SITE_ORIGIN = process.env.MIRROR_SOURCE_ORIGIN ?? "https://appjobhunter.com";
+const SITE_PATH = process.env.MIRROR_SOURCE_PATH ?? "";
 const BASE_URL = `${SITE_ORIGIN}${SITE_PATH}`;
 const OUTPUT_DIR = process.argv[2] ? path.resolve(process.argv[2]) : process.cwd();
 const ROUTES = ["/", "/privacy", "/terms"];
@@ -17,7 +17,7 @@ const textAssetExtensions = new Set([
   ".html",
 ]);
 
-const nextAssetPattern = /(?:\/job-hunter-landing)?\/_next\/static\/[^"'`\s)\\]+/g;
+const nextAssetPattern = /(?:\/[^"'`\s)\\]+)?\/_next\/static\/[^"'`\s)\\]+/g;
 const appleImagePattern = /https:\/\/is1-ssl\.mzstatic\.com\/[^"'`\s)\\]+/g;
 
 const urlToLocalPath = new Map();

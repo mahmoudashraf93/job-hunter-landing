@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mahmoudashraf93.github.io/job-hunter-landing/sitemap.xml
+Sitemap: https://appjobhunter.com/sitemap.xml
