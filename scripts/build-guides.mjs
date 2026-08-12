@@ -2,14 +2,41 @@ import { mkdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { articles as baseArticles, clusterLabels } from "../content/articles.mjs";
 import { jobMatchingArticles } from "../content/job-matching-articles.mjs";
+import { guidePlans, SITE_MODIFIED } from "../content/seo-plan.mjs";
 
 const SITE_URL = "https://appjobhunter.com";
 const APP_NAME = "JobHunter";
 const APP_STORE_URL = "https://apps.apple.com/app/apple-store/id6645735955?pt=120006398&ct=lanlanding&mt=8";
 const APP_ICON = `${SITE_URL}/images/512x512bb-2c184703c8.jpg`;
-const LASTMOD = "2026-05-28";
+const DATE_PUBLISHED = "2026-05-28";
 const OUTPUT_DIR = process.cwd();
-const articles = [...baseArticles, ...jobMatchingArticles];
+const sourceArticles = [...baseArticles, ...jobMatchingArticles];
+const sourceBySlug = new Map(sourceArticles.map((article) => [article.slug, article]));
+const articles = guidePlans.map((plan) => {
+  const base = sourceBySlug.get(plan.slug);
+  if (!base) throw new Error(`Missing source article: ${plan.slug}`);
+
+  const absorbedSections = plan.redirectFrom.flatMap((slug) => {
+    const source = sourceBySlug.get(slug);
+    if (!source) throw new Error(`Missing redirected source article: ${slug}`);
+    return [
+      { heading: source.h1, paragraphs: [source.intro] },
+      ...source.sections
+    ];
+  });
+
+  return {
+    ...base,
+    ...plan,
+    sections: [
+      ...base.sections,
+      ...absorbedSections,
+      ...plan.editorialSections
+    ],
+    datePublished: DATE_PUBLISHED,
+    dateModified: SITE_MODIFIED
+  };
+});
 
 const escapeHtml = (value) =>
   String(value)
@@ -81,9 +108,8 @@ const siteFooter = `<footer class="site-footer">
   </nav>
 </footer>`;
 
-const articleSchema = (article, pathname) => ({
-  "@context": "https://schema.org",
-  "@graph": [
+const articleSchema = (article, pathname) => {
+  const graph = [
     {
       "@type": "BreadcrumbList",
       itemListElement: [
@@ -111,9 +137,9 @@ const articleSchema = (article, pathname) => ({
       "@type": "Article",
       headline: article.h1,
       description: article.description,
-      image: APP_ICON,
-      datePublished: LASTMOD,
-      dateModified: LASTMOD,
+      image: absoluteUrl(article.screenshot.src),
+      datePublished: article.datePublished,
+      dateModified: article.dateModified,
       author: {
         "@type": "Organization",
         name: APP_NAME,
@@ -128,17 +154,28 @@ const articleSchema = (article, pathname) => ({
         }
       },
       mainEntityOfPage: absoluteUrl(pathname)
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: article.faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer
+        }
+      }))
     }
-  ]
-});
-
-const getRelated = (article) => {
-  const sameCluster = articles.filter(
-    (candidate) => candidate.cluster === article.cluster && candidate.slug !== article.slug
-  );
-  const otherCluster = articles.filter((candidate) => candidate.cluster !== article.cluster);
-  return [...sameCluster.slice(0, 3), otherCluster[0]].slice(0, 4);
+  ];
+  return { "@context": "https://schema.org", "@graph": graph };
 };
+
+const getRelated = (article) =>
+  article.relatedSlugs.map((slug) => {
+    const related = articles.find((candidate) => candidate.slug === slug);
+    if (!related) throw new Error(`Missing related guide ${slug} for ${article.slug}`);
+    return related;
+  });
 
 const renderArticle = (article) => {
   const pathname = articlePath(article);
@@ -157,24 +194,43 @@ ${siteHeader}
     <p class="eyebrow">${escapeHtml(clusterLabels[article.cluster])}</p>
     <h1>${escapeHtml(article.h1)}</h1>
     <p class="intro">${escapeHtml(article.intro)}</p>
+    <p class="byline">Published ${article.datePublished} · Updated ${article.dateModified} · By the JobHunter team</p>
+    <figure class="article-image">
+      <img src="${article.screenshot.src}" alt="${escapeHtml(article.screenshot.alt)}" width="1125" height="2436">
+      <figcaption>${escapeHtml(article.screenshot.alt)}</figcaption>
+    </figure>
     ${article.sections
-      .map(
-        (section) => `<section>
+      .map((section) => {
+        const paragraphs = (section.paragraphs || [])
+          .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
+          .join("\n      ");
+        const bullets = section.bullets
+          ? `<ul>${section.bullets
+              .map((bullet) => `<li>${escapeHtml(bullet)}</li>`)
+              .join("")}</ul>`
+          : "";
+        return `<section>
       <h2>${escapeHtml(section.heading)}</h2>
-      ${(section.paragraphs || []).map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("\n      ")}
-      ${
-        section.bullets
-          ? `<ul>${section.bullets.map((bullet) => `<li>${escapeHtml(bullet)}</li>`).join("")}</ul>`
-          : ""
-      }
-    </section>`
-      )
+      ${paragraphs}${bullets ? `\n      ${bullets}` : ""}
+    </section>`;
+      })
       .join("\n")}
     <aside class="cta">
       <h2>Apply faster from your iPhone</h2>
       <p>Save your profile once, autofill repeat fields, attach resumes, and draft cover letters with JobHunter.</p>
       <a href="${APP_STORE_URL}">Download JobHunter on the App Store</a>
     </aside>
+    <section class="faq-section">
+      <h2>Frequently asked questions</h2>
+      ${article.faqs
+        .map(
+          (faq) => `<details>
+        <summary>${escapeHtml(faq.question)}</summary>
+        <p>${escapeHtml(faq.answer)}</p>
+      </details>`
+        )
+        .join("\n")}
+    </section>
   </article>
   <section class="related">
     <h2>Related guides</h2>
@@ -344,6 +400,28 @@ p { margin: 0 0 18px; }
   color: var(--muted);
   font-size: 1.16rem;
 }
+.byline {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin-bottom: 26px;
+}
+.article-image {
+  margin: 30px 0 40px;
+  max-width: 420px;
+}
+.article-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  box-shadow: 0 20px 50px rgba(20, 33, 61, 0.14);
+}
+.article-image figcaption {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
 .cluster { margin-top: 46px; }
 .card-grid,
 .related-grid {
@@ -400,6 +478,13 @@ li { margin: 8px 0; }
 .related {
   margin-top: 54px;
 }
+.faq-section details {
+  border-top: 1px solid var(--line);
+  padding: 16px 0;
+}
+.faq-section details:last-child { border-bottom: 1px solid var(--line); }
+.faq-section summary { cursor: pointer; font-weight: 800; }
+.faq-section details p { color: var(--muted); margin: 12px 0 0; }
 @media (max-width: 720px) {
   .site-header,
   .site-footer {
@@ -424,18 +509,15 @@ const write = async (pathname, html) => {
 };
 
 const sitemapUrls = [
-  { loc: `${SITE_URL}/`, priority: "1.0", changefreq: "weekly" },
-  { loc: `${SITE_URL}/tools/`, priority: "0.9", changefreq: "weekly" },
-  { loc: `${SITE_URL}/tools/free-resume-maker/`, priority: "0.9", changefreq: "monthly" },
-  { loc: `${SITE_URL}/tools/free-cover-letter-generator/`, priority: "0.9", changefreq: "monthly" },
-  { loc: `${SITE_URL}/guides/`, priority: "0.9", changefreq: "weekly" },
+  { loc: `${SITE_URL}/`, lastmod: SITE_MODIFIED },
+  { loc: `${SITE_URL}/tools/`, lastmod: SITE_MODIFIED },
+  { loc: `${SITE_URL}/tools/free-resume-maker/`, lastmod: SITE_MODIFIED },
+  { loc: `${SITE_URL}/tools/free-cover-letter-generator/`, lastmod: SITE_MODIFIED },
+  { loc: `${SITE_URL}/guides/`, lastmod: SITE_MODIFIED },
   ...articles.map((article) => ({
     loc: absoluteUrl(articlePath(article)),
-    priority: "0.8",
-    changefreq: "monthly"
-  })),
-  { loc: `${SITE_URL}/privacy/`, priority: "0.3", changefreq: "yearly" },
-  { loc: `${SITE_URL}/terms/`, priority: "0.3", changefreq: "yearly" }
+    lastmod: article.dateModified
+  }))
 ];
 
 await rm(path.join(OUTPUT_DIR, "guides"), { recursive: true, force: true });
@@ -454,9 +536,7 @@ ${sitemapUrls
   .map(
     (url) => `  <url>
     <loc>${url.loc}</loc>
-    <lastmod>${LASTMOD}</lastmod>
-    <changefreq>${url.changefreq}</changefreq>
-    <priority>${url.priority}</priority>
+    <lastmod>${url.lastmod}</lastmod>
   </url>`
   )
   .join("\n")}

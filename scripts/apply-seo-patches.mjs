@@ -61,7 +61,11 @@ const homepageSchema = {
   publisher: {
     "@type": "Organization",
     name: "JobHunter",
-    url: SITE_URL
+    url: SITE_URL,
+    sameAs: [
+      APP_STORE_URL,
+      "https://github.com/mahmoudashraf93/job-hunter-landing"
+    ]
   }
 };
 
@@ -74,7 +78,7 @@ const guideStrip = `<section id="seo-guide-strip" style="background:#f6f8fb;colo
       <a href="/guides/autofill-job-applications-iphone/" style="display:block;padding:18px;border:1px solid #d9e1ea;border-radius:8px;background:white;text-decoration:none;color:#14213d"><strong>Autofill job applications</strong><br><span style="color:#526173">Save repeat typing on iPhone forms.</span></a>
       <a href="/guides/ats-friendly-resume-checklist/" style="display:block;padding:18px;border:1px solid #d9e1ea;border-radius:8px;background:white;text-decoration:none;color:#14213d"><strong>Resume builder workflow</strong><br><span style="color:#526173">Use cleaner resumes for online forms.</span></a>
       <a href="/guides/ai-cover-letter-generator-review-checklist/" style="display:block;padding:18px;border:1px solid #d9e1ea;border-radius:8px;background:white;text-decoration:none;color:#14213d"><strong>AI cover letters</strong><br><span style="color:#526173">Draft faster and review before sending.</span></a>
-      <a href="/guides/" style="display:block;padding:18px;border:1px solid #d9e1ea;border-radius:8px;background:#14213d;text-decoration:none;color:white"><strong>View all guides</strong><br><span style="color:#d9e1ea">20 job search workflow guides.</span></a>
+      <a href="/guides/" style="display:block;padding:18px;border:1px solid #d9e1ea;border-radius:8px;background:#14213d;text-decoration:none;color:white"><strong>View all guides</strong><br><span style="color:#d9e1ea">15 in-depth job search guides.</span></a>
     </div>
   </div>
 </section>`;
@@ -131,7 +135,10 @@ const patchHomepage = (input) => {
     "<h1$1>JobHunter</h1>"
   );
   html = html.replace(new RegExp(`<script>\\(function\\(\\)\\{function ${["update", "Hero"].join("")}\\(\\).*?<\\/script>`), "");
-  if (!html.includes('id="seo-guide-strip"')) {
+  if (
+    !html.includes('id="seo-guide-strip"') &&
+    !html.includes('class="section guide-section"')
+  ) {
     html = html.replace("<footer", `${guideStrip}<footer`);
   }
   return html;
@@ -147,6 +154,7 @@ const legalPage = ({ title, description, pathname, body }) => {
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeHtml(description)}">
   <link rel="canonical" href="${canonical}">
+  <meta name="robots" content="noindex,follow">
   <meta property="og:type" content="website">
   <meta property="og:title" content="${escapeHtml(title)}">
   <meta property="og:description" content="${escapeHtml(description)}">
@@ -230,6 +238,25 @@ const writeLegalPages = async () => {
   await mkdir(path.join(ROOT, "terms"), { recursive: true });
   await writeFile(path.join(ROOT, "privacy", "index.html"), privacy);
   await writeFile(path.join(ROOT, "terms", "index.html"), terms);
+
+  const legacyPrivacy = `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JobHunter Privacy Policy</title>
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="${SITE_URL}/privacy/">
+  <meta http-equiv="refresh" content="0; url=${SITE_URL}/privacy/">
+</head>
+<body>
+  <p>The JobHunter privacy policy has moved to <a href="${SITE_URL}/privacy/">${SITE_URL}/privacy/</a>.</p>
+  <script>location.replace(${JSON.stringify(`${SITE_URL}/privacy/`)});</script>
+</body>
+</html>
+`;
+  await mkdir(path.join(ROOT, "privacypolicy"), { recursive: true });
+  await writeFile(path.join(ROOT, "privacypolicy", "index.html"), legacyPrivacy);
 };
 
 for (const file of await walk(ROOT)) {

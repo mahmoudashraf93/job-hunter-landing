@@ -24,6 +24,45 @@ const write = async (pathname, html) => {
 const jsonLd = (data) =>
   `<script type="application/ld+json">${JSON.stringify(data)}</script>`;
 
+const resumeFaqs = [
+  {
+    question: "Does the free resume maker upload my resume data?",
+    answer: "No. The form, preview, and PDF generation run in your browser. Your information leaves the page only if you later attach the exported file to an employer's application."
+  },
+  {
+    question: "Is the classic template ATS-friendly?",
+    answer: "It uses a simple single-column structure and standard headings designed for readable exports, but you should still test the PDF in the employer's application parser."
+  },
+  {
+    question: "Can I create different resume versions?",
+    answer: "Yes. Export a separate PDF for each role family and use clear filenames so you can choose the right version from iPhone Safari."
+  }
+];
+
+const coverFaqs = [
+  {
+    question: "Is the free cover letter generator using AI?",
+    answer: "No. The browser tool uses transparent templates. JobHunter on iPhone offers AI-assisted drafts that you review and edit before using."
+  },
+  {
+    question: "Does the tool send my details to a server?",
+    answer: "No. The template is generated locally in your browser. Copying or downloading the result stays under your control."
+  },
+  {
+    question: "Should I send the generated letter without editing it?",
+    answer: "No. Verify names and claims, add a specific result, explain genuine interest in the role, and make the final wording sound like you."
+  }
+];
+
+const renderFaqs = (faqs) => `<section class="tool-content faq-content">
+  <h2>Frequently asked questions</h2>
+  ${faqs
+    .map(
+      (faq) => `<details><summary>${escapeHtml(faq.question)}</summary><p>${escapeHtml(faq.answer)}</p></details>`
+    )
+    .join("\n  ")}
+</section>`;
+
 const renderHead = ({ title, description, pathname, schema }) => {
   const canonical = absoluteUrl(pathname);
   return `<!doctype html>
@@ -74,24 +113,36 @@ const footer = `<footer class="site-footer">
   </nav>
 </footer>`;
 
-const toolSchema = (name, description, pathname) => ({
+const toolSchema = (name, description, pathname, faqs) => ({
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name,
-  applicationCategory: "BusinessApplication",
-  operatingSystem: "Web",
-  url: absoluteUrl(pathname),
-  description,
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "USD"
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "JobHunter",
-    url: SITE_URL
-  }
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      name,
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      url: absoluteUrl(pathname),
+      description,
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD"
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "JobHunter",
+        url: SITE_URL
+      }
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: { "@type": "Answer", text: faq.answer }
+      }))
+    }
+  ]
 });
 
 const toolsIndex = () => `${renderHead({
@@ -148,7 +199,8 @@ const resumeTool = () => `${renderHead({
   schema: toolSchema(
     "Free Resume Maker",
     "Create a free classic resume in your browser and save it as a PDF.",
-    "/tools/free-resume-maker/"
+    "/tools/free-resume-maker/",
+    resumeFaqs
   )
 })}
 <body>
@@ -211,6 +263,23 @@ Partnered with product and sales teams to surface adoption risks and expansion o
     </aside>
   </section>
 
+  <section class="tool-content">
+    <p class="eyebrow">Resume guide</p>
+    <h2>Build a resume that works in online applications</h2>
+    <p>Begin with accurate source information. Use your real name, current contact details, consistent employment dates, and official education information. The example values in the form demonstrate the layout; replace every example before exporting. Keep a private master resume with all verified experience, then create shorter role-family versions from that source.</p>
+    <p>The classic template uses standard sections and a single-column reading order. That makes the document easier to scan and reduces common applicant-tracking-system problems caused by floating text boxes, decorative charts, tables, and information stored only inside images. A simple format cannot guarantee how every employer's parser behaves, so test the exported PDF in a real application and compare each imported field with the document.</p>
+    <h2>Write evidence-focused experience bullets</h2>
+    <p>A useful bullet explains what you did, where or for whom you did it, and what changed. Replace vague phrases such as “responsible for customer service” with accurate scope and outcomes: “Onboarded 60 customer accounts and created setup checklists that reduced repeated questions,” for example. Use numbers only when you can explain where they came from.</p>
+    <p>Put the strongest relevant bullets first. A customer-success resume might lead with onboarding, product adoption, account communication, and renewal-risk work. A support-operations version might prioritize documentation, ticket workflows, quality, and process improvement. The underlying jobs and dates remain the same even when the emphasis changes.</p>
+    <h2>Review the PDF before applying</h2>
+    <p>Download the PDF, open it on the same iPhone you use for applications, and inspect every page. Check that no heading is stranded at the bottom, no line is clipped, links are readable, and the filename is professional. Select and copy text from the PDF to confirm that headings and experience appear in a sensible order.</p>
+    <p>Save active files with clear role-family names, such as Alex-Johnson-Customer-Success-Resume.pdf. Move old versions out of the active folder so the iOS file picker does not tempt you to attach a stale document. Record which version you send with each application.</p>
+    <h2>Use JobHunter when the form opens in Safari</h2>
+    <p>The free maker is useful for a quick browser-based classic resume. JobHunter adds more templates, resume imports, matched jobs, reusable profile information, and an iPhone application workflow. After exporting, use the <a href="/guides/ats-friendly-resume-checklist/">ATS-friendly resume checklist</a>, learn how to <a href="/guides/attach-resume-from-iphone-safari/">attach the correct resume from Safari</a>, and keep <a href="/guides/multiple-resume-versions-different-roles/">multiple role-family versions</a> organized.</p>
+  </section>
+
+  ${renderFaqs(resumeFaqs)}
+
   <section class="app-cta">
     <div>
       <p class="eyebrow">Need more templates?</p>
@@ -234,7 +303,8 @@ const coverLetterTool = () => `${renderHead({
   schema: toolSchema(
     "Free Cover Letter Generator",
     "Generate a free cover letter from a browser template and copy it into your job application.",
-    "/tools/free-cover-letter-generator/"
+    "/tools/free-cover-letter-generator/",
+    coverFaqs
   )
 })}
 <body>
@@ -285,6 +355,26 @@ ${header}
       <textarea id="cover-output" rows="24" aria-label="Generated cover letter"></textarea>
     </aside>
   </section>
+
+  <section class="tool-content">
+    <p class="eyebrow">Cover letter guide</p>
+    <h2>Turn the template into a specific application</h2>
+    <p>The generated letter is a starting structure, not a finished claim about your background. Replace the example identity, employer, role, experience, strengths, and motivation before copying or downloading. Read the job description again and choose one central responsibility that you can support with real evidence.</p>
+    <p>A focused letter usually needs three ideas: why this role makes sense, proof that you can contribute, and why this company or problem interests you. The form turns those inputs into a readable draft, but only you can verify whether the facts are true and the motivation is genuine.</p>
+    <h2>Choose evidence instead of adjectives</h2>
+    <p>Words such as passionate, dynamic, and hardworking are easy to generate and difficult to verify. Use a concrete example instead. Describe the customer group, project, process, or result that demonstrates the required capability. If the role values onboarding, explain the onboarding work you actually completed. If it values documentation, mention the material you created and how people used it.</p>
+    <p>For entry-level applications, evidence can come from an internship, project, coursework, volunteering, or transferable customer-facing work. For a career change, translate the action and result into the new employer's language without pretending you already held the target title.</p>
+    <h2>Make the company paragraph real</h2>
+    <p>Review the official job page and company website. Mention an accurate product, customer, responsibility, or problem that connects to your direction. Avoid claims about culture, growth, or mission that you cannot verify. A single precise sentence is stronger than a paragraph of generic praise.</p>
+    <p>Remove the company name as a test. If the whole letter could be sent unchanged to any employer, add one specific connection and confirm that the selected experience supports this particular role.</p>
+    <h2>Run an accuracy and privacy review</h2>
+    <p>Check the employer name, role title, hiring-manager name, dates, tools, years, results, and every number. Delete anything you would not be comfortable explaining in an interview. Do not include passwords, identification numbers, medical details, private account information, or confidential information from a current employer.</p>
+    <p>The browser generator performs its template work locally and does not submit an application. You decide whether to copy the letter, download it, edit it elsewhere, or discard it. The employer receives it only when you add it to an application yourself.</p>
+    <h2>Continue with a review-first workflow</h2>
+    <p>Use the <a href="/guides/write-cover-letter-fast/">fast cover-letter guide</a> to prepare reusable evidence, follow the <a href="/guides/ai-cover-letter-generator-review-checklist/">AI draft review checklist</a> for generated wording, and use the <a href="/guides/career-change-cover-letter-structure/">career-change structure</a> when your previous title does not tell the whole story.</p>
+  </section>
+
+  ${renderFaqs(coverFaqs)}
 
   <section class="app-cta">
     <div>
@@ -509,6 +599,19 @@ textarea { resize: vertical; }
   justify-content: space-between;
   gap: 22px;
 }
+.tool-content {
+  max-width: 820px;
+  margin-top: 54px;
+}
+.tool-content h2 { margin-top: 34px; }
+.tool-content a { color: var(--blue); font-weight: 800; }
+.faq-content details {
+  border-top: 1px solid var(--line);
+  padding: 16px 0;
+}
+.faq-content details:last-child { border-bottom: 1px solid var(--line); }
+.faq-content summary { cursor: pointer; font-weight: 800; }
+.faq-content details p { color: var(--muted); margin: 12px 0 0; }
 .app-cta p:last-child { margin-bottom: 0; }
 @media (max-width: 860px) {
   .site-header,

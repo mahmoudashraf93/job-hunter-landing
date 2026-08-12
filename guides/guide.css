@@ -91,6 +91,28 @@ p { margin: 0 0 18px; }
   color: var(--muted);
   font-size: 1.16rem;
 }
+.byline {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin-bottom: 26px;
+}
+.article-image {
+  margin: 30px 0 40px;
+  max-width: 420px;
+}
+.article-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  box-shadow: 0 20px 50px rgba(20, 33, 61, 0.14);
+}
+.article-image figcaption {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
 .cluster { margin-top: 46px; }
 .card-grid,
 .related-grid {
@@ -147,6 +169,13 @@ li { margin: 8px 0; }
 .related {
   margin-top: 54px;
 }
+.faq-section details {
+  border-top: 1px solid var(--line);
+  padding: 16px 0;
+}
+.faq-section details:last-child { border-bottom: 1px solid var(--line); }
+.faq-section summary { cursor: pointer; font-weight: 800; }
+.faq-section details p { color: var(--muted); margin: 12px 0 0; }
 @media (max-width: 720px) {
   .site-header,
   .site-footer {

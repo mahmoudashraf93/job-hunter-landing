@@ -57,7 +57,11 @@ const schema = {
   publisher: {
     "@type": "Organization",
     name: "JobHunter",
-    url: SITE_URL
+    url: SITE_URL,
+    sameAs: [
+      "https://apps.apple.com/app/apple-store/id6645735955",
+      "https://github.com/mahmoudashraf93/job-hunter-landing"
+    ]
   }
 };
 
@@ -248,6 +252,7 @@ const html = `<!doctype html>
       background: var(--paper);
       padding: 22px;
     }
+    .feature { display: block; color: inherit; text-decoration: none; }
     .feature strong,
     .guide-card strong {
       display: block;
@@ -399,10 +404,10 @@ const html = `<!doctype html>
         <h2>Spend less time typing the same profile.</h2>
         <p class="section-intro">JobHunter focuses on the repeat work that slows down job seekers: matched job discovery, profile fields, resume attachment, and cover letter drafts.</p>
         <div class="feature-grid">
-          <div class="feature"><strong>Find matched jobs</strong><p>Review active roles by title, company, work mode, and fit before you apply.</p></div>
-          <div class="feature"><strong>Autofill application fields</strong><p>Save profile details once and use them to complete repetitive application forms faster.</p></div>
-          <div class="feature"><strong>Attach resumes from iPhone</strong><p>Keep resume versions ready so you can choose the right file while applying on mobile.</p></div>
-          <div class="feature"><strong>Draft AI cover letters</strong><p>Create a quick draft, then review and tailor it before adding it to an application.</p></div>
+          <a class="feature" href="/guides/review-job-matches-faster/"><strong>Find matched jobs</strong><p>Review active roles by title, company, work mode, and fit before you apply.</p></a>
+          <a class="feature" href="/guides/autofill-job-applications-iphone/"><strong>Autofill application fields</strong><p>Save profile details once and use them to complete repetitive application forms faster.</p></a>
+          <a class="feature" href="/guides/attach-resume-from-iphone-safari/"><strong>Attach resumes from iPhone</strong><p>Keep resume versions ready so you can choose the right file while applying on mobile.</p></a>
+          <a class="feature" href="/guides/ai-cover-letter-generator-review-checklist/"><strong>Draft AI cover letters</strong><p>Create a quick draft, then review and tailor it before adding it to an application.</p></a>
         </div>
       </div>
     </section>
@@ -442,7 +447,7 @@ const html = `<!doctype html>
           <a class="guide-card" href="/guides/autofill-job-applications-iphone/"><span>Autofill</span><strong>How to Autofill Job Applications on iPhone</strong><p>Save repeat typing and review every field before submitting.</p></a>
           <a class="guide-card" href="/guides/ats-friendly-resume-checklist/"><span>Resume</span><strong>ATS-Friendly Resume Checklist</strong><p>Prepare resumes that parse cleanly in online forms.</p></a>
           <a class="guide-card" href="/guides/ai-cover-letter-generator-review-checklist/"><span>Cover letters</span><strong>AI Cover Letter Review Checklist</strong><p>Use AI drafts without sending generic or inaccurate letters.</p></a>
-          <a class="guide-card" href="/guides/"><span>All guides</span><strong>View 40 job search workflow guides</strong><p>Browse job matching, autofill, resume, and cover letter topics.</p></a>
+          <a class="guide-card" href="/guides/"><span>All guides</span><strong>View 15 in-depth job search guides</strong><p>Browse consolidated job matching, autofill, resume, and cover letter resources.</p></a>
         </div>
       </div>
     </section>
@@ -483,6 +488,7 @@ const html = `<!doctype html>
   <footer>
     <p>© 2026 JobHunter. All rights reserved.</p>
     <nav aria-label="Footer">
+      <a href="/tools/">Tools</a>
       <a href="/guides/">Guides</a>
       <a href="/privacy/">Privacy</a>
       <a href="/terms/">Terms</a>

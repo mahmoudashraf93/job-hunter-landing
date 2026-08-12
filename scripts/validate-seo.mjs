@@ -1,13 +1,26 @@
 import { readFile, stat } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import path from "node:path";
+import {
+  guidePlans,
+  guideRedirects,
+  retainedGuideSlugs
+} from "../content/seo-plan.mjs";
 
 const ROOT = process.cwd();
 const SITE_URL = "https://appjobhunter.com";
-const BAD_PATTERNS = [
-  ["mahmoudashraf93", "github", "io"].join("."),
-  ["", "job-hunter-landing", ""].join("/")
+const FIXED_INDEXABLE_PATHS = [
+  "/",
+  "/tools/",
+  "/tools/free-resume-maker/",
+  "/tools/free-cover-letter-generator/",
+  "/guides/"
 ];
+const INDEXABLE_PATHS = [
+  ...FIXED_INDEXABLE_PATHS,
+  ...retainedGuideSlugs.map((slug) => `/guides/${slug}/`)
+];
+const EXPECTED_URLS = INDEXABLE_PATHS.map((pathname) => `${SITE_URL}${pathname}`);
 
 const exists = async (filePath) => {
   try {
@@ -18,65 +31,178 @@ const exists = async (filePath) => {
   }
 };
 
-const fileForUrl = (url) => {
-  const parsed = new URL(url);
-  if (parsed.origin !== SITE_URL) {
-    throw new Error(`Non-canonical sitemap URL: ${url}`);
+const fileForPath = (pathname) => {
+  if (pathname === "/") return path.join(ROOT, "index.html");
+  return path.join(ROOT, pathname.replace(/^\/+|\/+$/g, ""), "index.html");
+};
+
+const textFromHtml = (html) =>
+  html
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&(?:nbsp|amp|quot|#39);/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const wordCount = (html) =>
+  textFromHtml(html).split(/\s+/).filter(Boolean).length;
+
+const oneMatch = (html, pattern, label, pathname) => {
+  const matches = [...html.matchAll(pattern)];
+  if (matches.length !== 1) {
+    throw new Error(`${pathname} has ${matches.length} ${label} values`);
   }
-  if (parsed.pathname === "/") return path.join(ROOT, "index.html");
-  return path.join(ROOT, parsed.pathname.replace(/^\/|\/$/g, ""), "index.html");
+  return matches[0][1];
 };
 
 const sitemap = await readFile(path.join(ROOT, "sitemap.xml"), "utf8");
-const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
+const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(
+  (match) => match[1]
+);
 
-if (urls.length !== 47) {
-  throw new Error(`Expected 47 sitemap URLs, found ${urls.length}`);
+if (sitemapUrls.length !== 20) {
+  throw new Error(`Expected 20 sitemap URLs, found ${sitemapUrls.length}`);
 }
 
-const textFiles = [
-  "index.html",
-  "privacy/index.html",
-  "terms/index.html",
-  "robots.txt",
-  "sitemap.xml",
-  "tools/index.html",
-  "tools/free-resume-maker/index.html",
-  "tools/free-cover-letter-generator/index.html",
-  "guides/index.html",
-  "guides/autofill-job-applications-iphone/index.html",
-  "guides/find-top-remote-jobs-iphone/index.html",
-  "guides/highest-hiring-companies-job-search/index.html",
-  "guides/set-up-job-matching-profile/index.html",
-  "guides/ats-friendly-resume-checklist/index.html",
-  "guides/ai-cover-letter-generator-review-checklist/index.html"
-];
+if (sitemap.includes("<priority>") || sitemap.includes("<changefreq>")) {
+  throw new Error("Sitemap contains ignored priority or changefreq fields");
+}
 
-for (const relativePath of textFiles) {
-  const content = await readFile(path.join(ROOT, relativePath), "utf8");
-  for (const pattern of BAD_PATTERNS) {
-    if (content.includes(pattern)) {
-      throw new Error(`${relativePath} still contains ${pattern}`);
+if (
+  sitemapUrls.some((url) => !EXPECTED_URLS.includes(url)) ||
+  EXPECTED_URLS.some((url) => !sitemapUrls.includes(url))
+) {
+  throw new Error("Sitemap membership does not match the 20 canonical URLs");
+}
+
+const seenTitles = new Map();
+const seenDescriptions = new Map();
+const seenH1s = new Map();
+
+for (const pathname of INDEXABLE_PATHS) {
+  const filePath = fileForPath(pathname);
+  if (!(await exists(filePath))) throw new Error(`Missing indexable file: ${pathname}`);
+  const html = await readFile(filePath, "utf8");
+  const canonical = oneMatch(
+    html,
+    /<link rel="canonical" href="([^"]+)"/g,
+    "canonical",
+    pathname
+  );
+  const expectedCanonical = `${SITE_URL}${pathname}`;
+  if (canonical !== expectedCanonical) {
+    throw new Error(`${pathname} canonical points to ${canonical}`);
+  }
+  if (/<meta name="robots" content="[^"]*noindex/i.test(html)) {
+    throw new Error(`${pathname} is accidentally noindex`);
+  }
+
+  const title = oneMatch(html, /<title>([^<]+)<\/title>/g, "title", pathname);
+  const description = oneMatch(
+    html,
+    /<meta name="description" content="([^"]+)"/g,
+    "description",
+    pathname
+  );
+  const h1 = oneMatch(html, /<h1[^>]*>([\s\S]*?)<\/h1>/g, "H1", pathname);
+
+  for (const [value, label, seen] of [
+    [title, "title", seenTitles],
+    [description, "description", seenDescriptions],
+    [textFromHtml(h1), "H1", seenH1s]
+  ]) {
+    if (seen.has(value)) {
+      throw new Error(`${pathname} duplicates ${label} from ${seen.get(value)}`);
+    }
+    seen.set(value, pathname);
+  }
+
+  const schemas = [
+    ...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)
+  ];
+  if (!schemas.length) throw new Error(`${pathname} has no JSON-LD`);
+  for (const schema of schemas) {
+    try {
+      JSON.parse(schema[1]);
+    } catch (error) {
+      throw new Error(`${pathname} contains invalid JSON-LD: ${error.message}`);
+    }
+  }
+
+  for (const match of html.matchAll(/href="(\/[^"]*)"/g)) {
+    const href = match[1];
+    const targetPath = href.split(/[?#]/)[0];
+    if (!targetPath || targetPath === "/") continue;
+    if (guideRedirects[targetPath]) {
+      throw new Error(`${pathname} links to retired guide ${targetPath}`);
+    }
+    if (!(await exists(fileForPath(targetPath)))) {
+      const assetPath = path.join(ROOT, targetPath.replace(/^\//, ""));
+      if (!(await exists(assetPath))) {
+        throw new Error(`${pathname} has broken internal link ${href}`);
+      }
     }
   }
 }
 
-for (const url of urls) {
-  const filePath = fileForUrl(url);
-  if (!(await exists(filePath))) {
-    throw new Error(`Missing file for sitemap URL: ${url}`);
+for (const plan of guidePlans) {
+  const pathname = `/guides/${plan.slug}/`;
+  const html = await readFile(fileForPath(pathname), "utf8");
+  const article = html.match(/<article class="article">([\s\S]*?)<\/article>/)?.[1];
+  if (!article) throw new Error(`${pathname} is missing article content`);
+  const words = wordCount(article);
+  if (words < 700) {
+    throw new Error(`${pathname} has ${words} article words; expected at least 700`);
   }
-  const html = await readFile(filePath, "utf8");
-  const canonicalMatches = [...html.matchAll(/<link rel="canonical" href="([^"]+)"/g)];
-  if (canonicalMatches.length !== 1) {
-    throw new Error(`${url} has ${canonicalMatches.length} canonical tags`);
+  if (!html.includes("Frequently asked questions")) {
+    throw new Error(`${pathname} is missing visible FAQs`);
   }
-  if (canonicalMatches[0][1] !== url) {
-    throw new Error(`${url} canonical points to ${canonicalMatches[0][1]}`);
+  if (!html.includes(plan.screenshot.src)) {
+    throw new Error(`${pathname} is missing its planned screenshot`);
   }
-  if (!/<h1[\s>]/.test(html)) {
-    throw new Error(`${url} is missing an H1`);
+}
+
+for (const pathname of [
+  "/tools/free-resume-maker/",
+  "/tools/free-cover-letter-generator/"
+]) {
+  const html = await readFile(fileForPath(pathname), "utf8");
+  const main = html.match(/<main[^>]*>([\s\S]*?)<\/main>/)?.[1];
+  const words = wordCount(main ?? "");
+  if (words < 600) {
+    throw new Error(`${pathname} has ${words} visible words; expected at least 600`);
   }
+  if (!html.includes("Frequently asked questions")) {
+    throw new Error(`${pathname} is missing visible FAQs`);
+  }
+}
+
+for (const pathname of ["/privacy/", "/terms/"]) {
+  const html = await readFile(fileForPath(pathname), "utf8");
+  if (!/<meta name="robots" content="noindex,follow">/.test(html)) {
+    throw new Error(`${pathname} must be noindex,follow`);
+  }
+  if (sitemapUrls.includes(`${SITE_URL}${pathname}`)) {
+    throw new Error(`${pathname} must not appear in the sitemap`);
+  }
+}
+
+for (const [source, target] of Object.entries(guideRedirects)) {
+  if (!INDEXABLE_PATHS.includes(target)) {
+    throw new Error(`Redirect target is not canonical: ${source} -> ${target}`);
+  }
+  if (await exists(fileForPath(source))) {
+    throw new Error(`Retired guide directory still exists: ${source}`);
+  }
+}
+
+const legacyPrivacy = await readFile(
+  path.join(ROOT, "privacypolicy", "index.html"),
+  "utf8"
+);
+if (!legacyPrivacy.includes(`${SITE_URL}/privacy/`)) {
+  throw new Error("Legacy privacy page does not point to the canonical policy");
 }
 
 const expectedAssets = [
@@ -86,8 +212,11 @@ const expectedAssets = [
   "tools/free-resume-maker/tool.js",
   "tools/free-cover-letter-generator/tool.js",
   "guides/guide.css",
-  "_next/static/chunks/f215fe74447fe0b9.css",
-  "_next/static/chunks/66a8c16702b8a250.js"
+  "public/ios/iphone/1125x2436/en/03-device-bottom.png",
+  "public/ios/iphone/1125x2436/en/04-device-top.png",
+  "public/ios/iphone/1125x2436/en/05-device-bottom.png",
+  "public/ios/iphone/1125x2436/en/06-two-devices.png",
+  "public/ios/iphone/1125x2436/en/07-device-top.png"
 ];
 
 for (const asset of expectedAssets) {
@@ -97,6 +226,7 @@ for (const asset of expectedAssets) {
 }
 
 for (const script of [
+  "src/worker.js",
   "tools/free-resume-maker/tool.js",
   "tools/free-cover-letter-generator/tool.js"
 ]) {
@@ -108,4 +238,6 @@ for (const script of [
   }
 }
 
-console.log(`Validated ${urls.length} sitemap URLs and ${expectedAssets.length} representative assets.`);
+console.log(
+  `Validated ${INDEXABLE_PATHS.length} canonical URLs, ${guidePlans.length} substantial guides, ${Object.keys(guideRedirects).length} redirects, and ${expectedAssets.length} assets.`
+);
