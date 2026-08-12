@@ -3,7 +3,7 @@ import path from "node:path";
 
 const SITE_URL = "https://appjobhunter.com";
 const APP_STORE_URL = "https://apps.apple.com/app/apple-store/id6645735955?pt=120006398&ct=lanlanding&mt=8";
-const APP_ICON = `${SITE_URL}/images/512x512bb-2c184703c8.jpg`;
+const APP_ICON = `${SITE_URL}/images/app-icon.png`;
 const HERO_SCREENSHOT = "/public/ios/iphone/1125x2436/en/02-hero.png";
 const SCREENSHOTS = [
   {
@@ -83,8 +83,8 @@ const html = `<!doctype html>
   <meta name="twitter:title" content="JobHunter | Autofill Job Applications Faster">
   <meta name="twitter:description" content="Autofill job applications from your iPhone, attach resumes, and draft AI cover letters with JobHunter.">
   <meta name="twitter:image" content="${APP_ICON}">
-  <link rel="icon" href="/images/512x512bb-2c184703c8.jpg">
-  <link rel="apple-touch-icon" href="/images/512x512bb-2c184703c8.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
   <style>
     :root {
@@ -371,7 +371,7 @@ const html = `<!doctype html>
 <body>
   <header class="topbar">
     <a class="brand" href="/" aria-label="JobHunter home">
-      <img src="/images/60x60bb-4a7d0f083e.jpg" width="40" height="40" alt="">
+      <img src="/images/app-icon.png" width="40" height="40" alt="">
       <span>JobHunter</span>
     </a>
     <nav aria-label="Primary">

@@ -7,7 +7,7 @@ import { guidePlans, SITE_MODIFIED } from "../content/seo-plan.mjs";
 const SITE_URL = "https://appjobhunter.com";
 const APP_NAME = "JobHunter";
 const APP_STORE_URL = "https://apps.apple.com/app/apple-store/id6645735955?pt=120006398&ct=lanlanding&mt=8";
-const APP_ICON = `${SITE_URL}/images/512x512bb-2c184703c8.jpg`;
+const APP_ICON = `${SITE_URL}/images/app-icon.png`;
 const DATE_PUBLISHED = "2026-05-28";
 const OUTPUT_DIR = process.cwd();
 const sourceArticles = [...baseArticles, ...jobMatchingArticles];
@@ -76,8 +76,8 @@ const renderHead = ({ title, description, pathname, schema }) => {
   <meta name="twitter:title" content="${escapeHtml(title)}">
   <meta name="twitter:description" content="${escapeHtml(description)}">
   <meta name="twitter:image" content="${APP_ICON}">
-  <link rel="icon" href="/images/512x512bb-2c184703c8.jpg">
-  <link rel="apple-touch-icon" href="/images/512x512bb-2c184703c8.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="stylesheet" href="/guides/guide.css">
   ${jsonLd(schema)}
 </head>`;
@@ -85,7 +85,7 @@ const renderHead = ({ title, description, pathname, schema }) => {
 
 const siteHeader = `<header class="site-header">
   <a class="brand" href="/" aria-label="JobHunter home">
-    <img src="/images/60x60bb-4a7d0f083e.jpg" alt="" width="40" height="40">
+    <img src="/images/app-icon.png" alt="" width="40" height="40">
     <span>JobHunter</span>
   </a>
   <nav aria-label="Primary">

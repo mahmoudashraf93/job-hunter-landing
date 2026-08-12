@@ -20,7 +20,14 @@ const INDEXABLE_PATHS = [
   ...FIXED_INDEXABLE_PATHS,
   ...retainedGuideSlugs.map((slug) => `/guides/${slug}/`)
 ];
+const BRANDED_PATHS = [...INDEXABLE_PATHS, "/privacy/", "/terms/"];
 const EXPECTED_URLS = INDEXABLE_PATHS.map((pathname) => `${SITE_URL}${pathname}`);
+const APP_ICON_URL = `${SITE_URL}/images/app-icon.png`;
+const STALE_ICON_PATHS = [
+  "/images/512x512bb-2c184703c8.jpg",
+  "/images/100x100bb-ed35c7b432.jpg",
+  "/images/60x60bb-4a7d0f083e.jpg"
+];
 
 const exists = async (filePath) => {
   try {
@@ -96,6 +103,18 @@ for (const pathname of INDEXABLE_PATHS) {
   }
   if (/<meta name="robots" content="[^"]*noindex/i.test(html)) {
     throw new Error(`${pathname} is accidentally noindex`);
+  }
+  if (!html.includes(`<meta property="og:image" content="${APP_ICON_URL}">`)) {
+    throw new Error(`${pathname} does not use the current app icon for social previews`);
+  }
+  if (!html.includes('href="/images/favicon-32x32.png"')) {
+    throw new Error(`${pathname} does not use the current favicon`);
+  }
+  if (!html.includes('href="/images/apple-touch-icon.png"')) {
+    throw new Error(`${pathname} does not use the current Apple touch icon`);
+  }
+  if (STALE_ICON_PATHS.some((asset) => html.includes(asset))) {
+    throw new Error(`${pathname} still references a retired app icon`);
   }
 
   const title = oneMatch(html, /<title>([^<]+)<\/title>/g, "title", pathname);
@@ -188,6 +207,19 @@ for (const pathname of ["/privacy/", "/terms/"]) {
   }
 }
 
+for (const pathname of BRANDED_PATHS) {
+  const html = await readFile(fileForPath(pathname), "utf8");
+  if (!html.includes(`<meta name="twitter:image" content="${APP_ICON_URL}">`)) {
+    throw new Error(`${pathname} does not use the current app icon for Twitter previews`);
+  }
+  if (!html.includes('<img src="/images/app-icon.png"')) {
+    throw new Error(`${pathname} does not use the current app icon in its header`);
+  }
+  if (STALE_ICON_PATHS.some((asset) => html.includes(asset))) {
+    throw new Error(`${pathname} still references a retired app icon`);
+  }
+}
+
 for (const [source, target] of Object.entries(guideRedirects)) {
   if (!INDEXABLE_PATHS.includes(target)) {
     throw new Error(`Redirect target is not canonical: ${source} -> ${target}`);
@@ -206,8 +238,10 @@ if (!legacyPrivacy.includes(`${SITE_URL}/privacy/`)) {
 }
 
 const expectedAssets = [
-  "images/512x512bb-2c184703c8.jpg",
-  "images/60x60bb-4a7d0f083e.jpg",
+  "images/app-icon.png",
+  "images/favicon-32x32.png",
+  "images/apple-touch-icon.png",
+  "favicon.ico",
   "tools/tool.css",
   "tools/free-resume-maker/tool.js",
   "tools/free-cover-letter-generator/tool.js",
