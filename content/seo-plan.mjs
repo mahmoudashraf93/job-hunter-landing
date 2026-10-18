@@ -1,4 +1,5 @@
 export const SITE_MODIFIED = "2026-08-12";
+export const PAGE_MODIFIED = { "/": "2026-10-19" };
 
 const screenshots = {
   autofill: {
@@ -25,46 +26,212 @@ const screenshots = {
 
 export const guidePlans = [
   {
-    slug: "autofill-job-applications-iphone",
-    redirectFrom: [
+    "slug": "autofill-job-applications-iphone",
+    "redirectFrom": [
       "save-reusable-job-application-answers",
       "fill-long-job-application-forms-faster",
       "safari-extension-job-applications-iphone"
     ],
-    relatedSlugs: [
+    "relatedSlugs": [
       "job-application-autofill-vs-auto-apply",
       "attach-resume-from-iphone-safari",
       "ten-minute-job-application-workflow"
     ],
-    screenshot: screenshots.autofill,
-    editorialSections: [
+    "screenshot": {
+      "src": "/images/guides/autofill-contact-example.png",
+      "alt": "Demonstration form with fictional first name, last name, email and phone filled; the company-specific answer is blank",
+      "caption": "Controlled browser example with fictional profile details. This is a demonstration form, not a live employer application. Supported fields vary by website.",
+      "width": 390,
+      "height": 844,
+      "wide": false
+    },
+    "faqs": [
       {
-        heading: "A Complete Mobile Autofill Walkthrough",
-        paragraphs: [
-          "Start on the employer's real application page in Safari, not on a copy of the listing. Open JobHunter only after you have confirmed that the role, location, seniority, and work authorization requirements fit. Let the saved profile handle stable facts such as contact details, education, and employment history. Then move through the form from top to bottom and treat each filled value as a draft that you are responsible for checking.",
-          "A useful review order is identity, eligibility, experience, documents, and written answers. This catches the expensive mistakes first: a wrong phone number, an incorrect sponsorship answer, a stale job date, or the wrong resume. Finish by reading the confirmation screen before submitting. Mobile autofill is valuable because it removes repeated typing, but the final decision and every answer remain yours."
+        "question": "Does Safari AutoFill fill an entire job application?",
+        "answer": "Safari’s contact AutoFill and a job-application extension are separate tools. JobHunter can fill supported fields from your saved details, but every form needs review and some sections require manual entry."
+      },
+      {
+        "question": "Why does JobHunter leave a field blank?",
+        "answer": "The saved value may be missing, site access may be disabled, or the website may use an unsupported control. Check the profile and permissions, then enter the answer manually if needed."
+      },
+      {
+        "question": "Does tapping Autofill submit my application?",
+        "answer": "No. Filling fields and attaching documents do not complete the employer’s final submission. Review the application and choose Submit yourself; a site may upload attachments before that final step."
+      }
+    ],
+    "title": "How to Autofill Job Applications on iPhone",
+    "h1": "How to Autofill Job Applications on iPhone",
+    "description": "Set up JobHunter in Safari, fill saved contact details, review a worked example, and troubleshoot job application autofill on iPhone.",
+    "intro": "To autofill a supported job application on iPhone, save your details in JobHunter, enable its Safari extension, open the employer’s application in Safari, and choose Autofill. Check every filled field and document before you submit. JobHunter does not submit the application for you.",
+    "dateModified": "2026-10-19",
+    "imagePlacement": "inline",
+    "sections": [
+      {
+        "heading": "What you need before starting",
+        "paragraphs": [
+          "Install JobHunter and open it to prepare your profile. Save your name, email, phone number and any links you intend to use. Check these details against your resume, especially the email address an employer should use to reach you. Choose your current resume if you want it available during applications.",
+          "Begin with a role you have read and want to apply for. You will still need the employer’s account login when requested, your own answers to eligibility questions, and any documents or work samples listed in the application. Autofill support depends on the website and the controls it uses."
         ]
       },
       {
-        heading: "Example: Turning a 25-Minute Form Into a Reviewable Draft",
-        paragraphs: [
-          "Imagine a customer-success application that asks for three jobs, education, a portfolio link, salary expectations, and two written responses. The reusable profile can fill the factual sections in seconds. You then spend the saved time checking that the dates match the attached resume, selecting the correct salary range, and writing two answers that mention the employer's product and customer type. The form becomes faster without becoming generic.",
-          "If the career site imports information from the resume, compare the imported fields with the PDF before continuing. Parsers sometimes move company names into title fields or drop bullet points. Correct the source resume when the same mistake appears repeatedly; do not accept permanent cleanup work on every application."
+        "heading": "Enable JobHunter in Safari",
+        "steps": [
+          "On your iPhone, open Settings → Apps → Safari → Extensions. On older iOS versions, Safari may appear directly in Settings.",
+          "Select JobHunter and turn on Allow Extension. If you use Safari profiles, enable it for the profile where you apply.",
+          "Open the employer’s application page in Safari. From the Page Menu beside the address field, open Manage Extensions if JobHunter is not available.",
+          "When Safari asks about website access, choose access appropriate to the application site you are using. Return to the form after enabling the extension."
+        ],
+        "paragraphs": [
+          "Apple’s extension settings control whether JobHunter can work on a site. Turning on Safari’s contact AutoFill is a different setting: it uses your contact card and does not enable the JobHunter extension. If a menu label differs on your iOS version, use the Apple instructions in the sources below."
+        ]
+      },
+      {
+        "heading": "Fill the application and review it in order",
+        "steps": [
+          "Open the actual application form. A job description page or a page inside another app’s browser may not expose the fields JobHunter needs.",
+          "Open JobHunter from Safari’s extension menu and choose Autofill. Wait for the operation to finish before editing or navigating away.",
+          "Compare the filled contact details with your saved profile. Correct any mismatch and complete fields that stayed empty.",
+          "Check dropdowns, dates, eligibility questions and document attachments separately. A completion message is a prompt to review the result, not proof that every required answer is correct.",
+          "Read the employer’s final review and consent text. Submit the application yourself only after the form and documents are ready."
+        ],
+        "paragraphs": [
+          "Saved contact details and profile links are useful starting points. Education sections, work-history repeaters, custom controls and written questions vary across employers; do not assume they will all fill. Keep your resume open as a reference and enter unsupported sections manually."
+        ]
+      },
+      {
+        "heading": "An autofill example you can check field by field",
+        "paragraphs": [
+          "Here is a controlled example using Alex Morgan’s fictional profile. The field mapper filled four contact fields on the demonstration form. The question about the company stayed empty. This illustrates a review workflow, not a guarantee about any particular employer’s application."
+        ],
+        "table": {
+          "caption": "Fictional saved profile → demonstration form",
+          "columns": [
+            "Field",
+            "Value after autofill",
+            "What to review"
+          ],
+          "rows": [
+            [
+              "First name",
+              "Alex",
+              "Use the name requested by the employer."
+            ],
+            [
+              "Last name",
+              "Morgan",
+              "Check spelling and the correct family-name field."
+            ],
+            [
+              "Email",
+              "alex.morgan@example.com",
+              "Confirm this is the address you monitor."
+            ],
+            [
+              "Phone",
+              "+1 202-555-0146",
+              "Check the country code and the form’s required format."
+            ],
+            [
+              "Why this company?",
+              "Left blank",
+              "Write a truthful answer for this role."
+            ]
+          ]
+        },
+        "image": {
+          "src": "/images/guides/autofill-contact-example.png",
+          "alt": "Demonstration form with fictional first name, last name, email and phone filled; the company-specific answer is blank",
+          "caption": "Controlled browser example with fictional profile details. This is a demonstration form, not a live employer application. Supported fields vary by website.",
+          "width": 390,
+          "height": 844,
+          "wide": false
+        }
+      },
+      {
+        "heading": "Check resumes and cover letters as separate steps",
+        "paragraphs": [
+          "A filled email field does not confirm that a resume was attached. Look at the upload control, confirm the intended filename, and wait for any processing or validation to finish. Use the file types and size limit the employer requests. If resume parsing populates other fields, compare those values with your document.",
+          "Selecting or uploading a file is different from submitting the whole application. A website may receive a document as soon as it uploads, before the final Submit step. Confirm that you trust the destination and have chosen the correct version. Review any AI-written answer or cover letter before adding it to the form."
+        ],
+        "links": [
+          {
+            "label": "How to attach a resume from iPhone Safari",
+            "href": "/guides/attach-resume-from-iphone-safari/"
+          },
+          {
+            "label": "Check resume formatting and parsing",
+            "href": "/guides/ats-friendly-resume-checklist/"
+          },
+          {
+            "label": "Review an AI cover-letter draft with a worked example",
+            "href": "/guides/ai-cover-letter-generator-review-checklist/"
+          }
+        ]
+      },
+      {
+        "heading": "Troubleshoot an empty or incorrect field",
+        "table": {
+          "caption": "Common autofill symptoms and checks",
+          "columns": [
+            "What you see",
+            "What to check next"
+          ],
+          "rows": [
+            [
+              "JobHunter is missing from Safari",
+              "Confirm it is installed, Allow Extension is on, and the current Safari profile permits it."
+            ],
+            [
+              "The extension opens but cannot fill",
+              "Check access for this site and open the actual application form before retrying."
+            ],
+            [
+              "A field stays empty",
+              "Check that your profile contains the value. Custom controls may need manual entry."
+            ],
+            [
+              "A value appears in the wrong field",
+              "Correct it before continuing. Verify the profile and compare the form with your resume."
+            ],
+            [
+              "A resume filename does not appear",
+              "Check the upload control, allowed format, file size and any error beside the field."
+            ]
+          ]
+        },
+        "paragraphs": [
+          "Keep a copy of written answers before reloading a page; reloading can discard unsaved work. If a control remains unsupported, complete it manually rather than repeatedly running autofill. For a reproducible problem, use JobHunter’s support option with the site name and a description of the affected field; avoid sending your resume or private answers unless needed."
+        ]
+      },
+      {
+        "heading": "Final review before you submit",
+        "checklist": [
+          "The company and role are the ones I intended to apply for.",
+          "My contact details and profile links are correct.",
+          "Work history and education match my resume wherever the form asks for them.",
+          "I answered authorization, sponsorship, compensation and other eligibility questions myself.",
+          "The correct documents are attached and finished processing.",
+          "I checked each required field and the employer’s consent text."
+        ],
+        "paragraphs": [
+          "Use autofill to reduce repeat typing while keeping your attention on the decisions that matter for this application. After submission, save the employer’s confirmation and update your application tracker. A populated form alone is not a submission receipt."
+        ],
+        "links": [
+          {
+            "label": "Understand autofill versus auto-apply",
+            "href": "/guides/job-application-autofill-vs-auto-apply/"
+          }
         ]
       }
     ],
-    faqs: [
+    "sources": [
       {
-        question: "Does JobHunter submit applications automatically?",
-        answer: "No. JobHunter helps with repeated fields, resume attachment, and drafts, while you review the employer's form and choose when to submit."
+        "label": "Apple: enable and manage Safari extensions on iPhone",
+        "href": "https://support.apple.com/guide/iphone/get-extensions-iphab0432bf6/ios"
       },
       {
-        question: "Which answers should always be reviewed manually?",
-        answer: "Review work authorization, sponsorship, compensation, relocation, availability, demographic questions, company-specific answers, and every uploaded document."
-      },
-      {
-        question: "What should I do when autofill puts information in the wrong field?",
-        answer: "Correct the field before submitting and update the saved profile or source resume when the same mapping problem happens more than once."
+        "label": "JobHunter on the App Store: published features and compatibility",
+        "href": "https://apps.apple.com/us/app/jobhunter-apply-lock/id6645735955"
       }
     ]
   },
@@ -179,6 +346,7 @@ export const guidePlans = [
   },
   {
     slug: "ten-minute-job-application-workflow",
+    dateModified: "2026-10-19",
     redirectFrom: [],
     relatedSlugs: [
       "review-job-matches-faster",
@@ -203,8 +371,9 @@ export const guidePlans = [
       {
         heading: "Minutes Four to Six: Fill Stable Information",
         paragraphs: [
-          "Use JobHunter to fill contact details, employment history, education, links, and other stable profile information. Compare dates and titles against the attached resume. Resolve parsing mistakes now, while the relevant section is visible. Do not rush required questions about authorization, sponsorship, relocation, or availability; a wrong answer can end the process before a recruiter reads the resume."
-        ]
+          "Use JobHunter to fill supported contact and profile fields, then compare the result with your saved details and resume. Complete employment-history sections, education and custom controls manually when needed; support varies by website. Resolve parsing mistakes while the relevant section is visible. Take time over authorization, sponsorship, relocation and availability questions and answer them yourself."
+        ],
+        links: [{ label: "Set up iPhone autofill and check the filled fields", href: "/guides/autofill-job-applications-iphone/" }]
       },
       {
         heading: "Minutes Seven to Nine: Tailor the Human-Read Sections",
@@ -248,6 +417,7 @@ export const guidePlans = [
   },
   {
     slug: "ats-friendly-resume-checklist",
+    dateModified: "2026-10-19",
     redirectFrom: [
       "best-resume-format-job-application-forms",
       "pdf-resume-vs-online-form-fields",
@@ -265,7 +435,8 @@ export const guidePlans = [
         paragraphs: [
           "Select the text in the exported PDF and paste it into a plain-text editor. The name, headings, companies, titles, dates, and bullets should appear in a sensible reading order. Then upload the resume to a real application that offers parsing and compare the imported fields. This practical test reveals problems that visual inspection cannot.",
           "When the same field imports incorrectly more than once, repair the source document. Move critical text out of headers, footers, images, and floating text boxes. Replace decorative skill charts with plain text and use recognizable headings. The goal is not to make every resume identical; it is to make important evidence available to both software and people."
-        ]
+        ],
+        links: [{ label: "Review contact fields filled by iPhone autofill", href: "/guides/autofill-job-applications-iphone/" }]
       },
       {
         heading: "A Recruiter-Friendly Quality Check",
@@ -407,6 +578,7 @@ export const guidePlans = [
   },
   {
     slug: "write-cover-letter-fast",
+    dateModified: "2026-10-19",
     redirectFrom: [
       "entry-level-internship-cover-letter",
       "short-cover-letter-examples"
@@ -430,6 +602,10 @@ export const guidePlans = [
         paragraphs: [
           "Open by naming the role and one reason it fits your direction. In the middle, connect a relevant achievement to a responsibility from the listing. Close with a specific reason the company's product, customers, or mission makes the opportunity worth discussing. Replace every bracketed detail before sending and read the letter aloud once.",
           "For an entry-level role, evidence can come from an internship, project, volunteer position, coursework, or customer-facing job. For an experienced candidate, choose one result that demonstrates scope rather than summarizing the entire resume."
+        ],
+        links: [
+          { label: "Review your draft with a checklist and worked example", href: "/guides/ai-cover-letter-generator-review-checklist/" },
+          { label: "Create a template-based draft in the free cover-letter tool", href: "/tools/free-cover-letter-generator/" }
         ]
       }
     ],
@@ -449,72 +625,164 @@ export const guidePlans = [
     ]
   },
   {
-    slug: "ai-cover-letter-generator-review-checklist",
-    redirectFrom: [],
-    relatedSlugs: [
+    "slug": "ai-cover-letter-generator-review-checklist",
+    "redirectFrom": [],
+    "relatedSlugs": [
       "write-cover-letter-fast",
       "career-change-cover-letter-structure",
       "tailor-resume-to-job-description-iphone"
     ],
-    screenshot: screenshots.cover,
-    editorialSections: [
+    "screenshot": null,
+    "faqs": [
       {
-        heading: "Give the Draft Accurate Source Material",
-        paragraphs: [
-          "An AI draft is only as reliable as the profile, resume, and job information behind it. Before generating, confirm the employer, role title, responsibilities, and the experience you want emphasized. Remove outdated skills and do not ask the system to infer achievements, numbers, or motivations that you have not supplied.",
-          "Treat the generated letter as an editable proposal. It can organize ideas quickly, but it cannot decide which claims are true or what you genuinely value about the employer."
+        "question": "Can I submit an AI-generated cover letter without editing it?",
+        "answer": "Review it first. Check the employer and role, verify each factual claim against your own experience, add relevant evidence and follow the application instructions."
+      },
+      {
+        "question": "How do I make an AI cover letter less generic?",
+        "answer": "Choose a real example that relates to an important responsibility, explain the connection in your own words, and give an accurate reason this opportunity interests you."
+      },
+      {
+        "question": "Should I keep a result or percentage suggested by AI?",
+        "answer": "Only if you can verify it from your own work. Otherwise remove it and describe your actual contribution without inventing a number."
+      }
+    ],
+    "title": "AI Cover Letter Checklist: Review a Draft + Example",
+    "h1": "AI Cover Letter Checklist: Review Your Draft Before Sending",
+    "description": "Review an AI cover-letter draft with a practical checklist, before-and-after edits and a fictional example. Check accuracy, relevance and final formatting.",
+    "intro": "Before sending an AI-generated cover letter, verify every claim, connect one real example to the role, remove generic wording, and check the employer’s name and file requirements. Use the checklist below, then compare the worked draft with its source facts.",
+    "dateModified": "2026-10-18",
+    "sections": [
+      {
+        "heading": "Use this cover-letter review checklist",
+        "paragraphs": [
+          "Tick each item as you review the actual letter. Resolve any issue before marking it complete, and compare the final draft with your resume and the job description."
+        ],
+        "checklist": [
+          "The employer, role title and any job reference are correct.",
+          "Every skill, responsibility, qualification and result is supported by my experience.",
+          "One concrete example shows how I meet an important requirement.",
+          "My reason for applying relates to this employer or this role.",
+          "The letter adds useful detail rather than repeating my whole resume.",
+          "The wording sounds natural when I read it aloud.",
+          "The letter follows the employer’s instructions and contains no placeholders.",
+          "The final text or attachment matches the version I reviewed."
         ]
       },
       {
-        heading: "Run a Sentence-by-Sentence Accuracy Review",
-        paragraphs: [
-          "Underline every statement about years, tools, results, leadership, industries, education, and company knowledge. Verify each one against your resume or direct experience. Delete invented metrics, responsibilities you only observed, and praise that assumes facts about the company. If you would hesitate when an interviewer quotes the sentence, rewrite it.",
-          "Check names carefully. A polished letter addressed to the wrong company is worse than a simple letter. Also confirm that the draft has not confused the employer's requirements with your own experience."
+        "heading": "Start with a small set of verified facts",
+        "paragraphs": [
+          "A useful draft starts with information you can stand behind: the exact role, two relevant requirements, a real example from your work or a project, and an accurate reason the opportunity interests you. If a detail is missing, leave a note to resolve it rather than asking AI to invent an achievement.",
+          "For the example below, Alex Morgan is a fictional applicant for a fictional Customer Support Specialist role at ClearDesk. The role description asks for clear customer replies and maintenance of help articles. Alex’s supplied facts are limited to the following:"
+        ],
+        "bullets": [
+          "Answered email support questions about bookings and refunds.",
+          "Updated a help article after noticing a recurring customer question.",
+          "Helped two new colleagues learn the support queue.",
+          "Wants to contribute to a role that combines customer support and clearer documentation."
         ]
       },
       {
-        heading: "Replace Generic Language With Evidence",
-        paragraphs: [
-          "Phrases such as passionate professional, dynamic team, and perfect fit provide little evidence. Replace one generic sentence with a concrete example showing the type of problem you solved. Keep the wording natural enough that you could say it in conversation.",
-          "A useful test is to remove the company name. If the entire letter could go to any employer, it needs one specific product, customer, challenge, or responsibility from the listing."
+        "heading": "Before and after: replace claims with evidence",
+        "paragraphs": [
+          "These deliberately flawed draft sentences show what to remove. The revisions use only the fictional facts above. The unsupported claims in the first column are examples of mistakes, not achievements the applicant should copy."
+        ],
+        "table": {
+          "caption": "Editing a fictional AI cover-letter draft",
+          "columns": [
+            "Flawed draft",
+            "Reviewed revision",
+            "Why change it?"
+          ],
+          "rows": [
+            [
+              "I am a perfect fit for your world-leading company.",
+              "I am applying for the Customer Support Specialist role because it combines customer replies with help-article work.",
+              "Names the actual work instead of making unsupported claims."
+            ],
+            [
+              "I reduced response times by 40% and led a large team.",
+              "I answered booking and refund questions and helped two new colleagues learn the support queue.",
+              "Removes an invented metric and an inflated leadership claim."
+            ],
+            [
+              "I have always admired your award-winning product.",
+              "I would like to use recurring support questions to improve customer guidance.",
+              "Uses a supplied motivation instead of inventing a history with the company."
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "A reviewed cover-letter draft using those facts",
+        "paragraphs": [
+          "Fictional example for demonstration only. ClearDesk and this vacancy are invented; this is not a real application or a statement about JobHunter’s results.",
+          "Dear Hiring Manager,",
+          "I am applying for the Customer Support Specialist role at ClearDesk. The combination of customer email support and help-article maintenance interests me because both are part of the work I would like to continue developing.",
+          "In my support work, I answered questions about bookings and refunds. When a recurring question appeared in the queue, I updated a help article so customers had a clearer explanation to refer to. I also helped two new colleagues learn how to work through the support queue.",
+          "Those experiences are relevant to the clear replies and documentation described in your role. I would welcome the chance to discuss how I approach a customer question and turn repeated confusion into more useful guidance.",
+          "Thank you for considering my application.",
+          "Alex Morgan",
+          "Each factual claim in this draft maps to Alex’s supplied details. Replace the example with your own evidence and research the actual employer before writing."
         ]
       },
       {
-        heading: "Review Tone, Privacy, and Sensitive Details",
-        paragraphs: [
-          "Remove private information that the employer did not request, including identification numbers, health details, account credentials, or confidential information from a current employer. Keep the tone direct and respectful. Avoid promises, desperation, exaggerated flattery, and claims that the tool itself applied or made decisions for you."
+        "heading": "Review the draft against the role and your resume",
+        "paragraphs": [
+          "Put the job description, resume and letter beside one another. Check job titles, dates, qualifications and any numbers. A requirement in the advertisement is not evidence that you have that skill; delete sentences that accidentally present the employer’s wish list as your background.",
+          "Choose a relevant example and explain its connection to the work. Avoid squeezing every keyword into the letter or retelling each job on your resume. Harvard and MIT career guidance both emphasize specific, relevant evidence and tailoring to the position; their guidance is linked below.",
+          "If you cannot support a sentence, revise it before polishing its tone. Replace an invented percentage with the work you actually did. When an example depends on confidential customer or employer information, describe your contribution without identifying private details."
         ]
       },
       {
-        heading: "Final AI Draft Checklist",
-        bullets: [
-          "Employer and role names are correct.",
-          "Every skill, result, and number is true.",
-          "At least one example proves a central requirement.",
-          "The motivation is specific to the opportunity.",
-          "No confidential or unnecessary personal data appears.",
-          "The final voice sounds like you."
+        "heading": "Make the wording sound like you",
+        "paragraphs": [
+          "Read the letter aloud. Replace phrases you would not use in conversation with direct descriptions of your work. Remove repeated enthusiasm, generic praise and claims such as perfect candidate. Clear writing gives the reader a better basis for assessing your experience.",
+          "A useful editing prompt is: “Revise this paragraph for clarity using only the facts I supplied. Do not add qualifications, outcomes, numbers or knowledge of the employer. Flag anything you cannot verify.” Review the revision against the facts again; an editing instruction is not a guarantee that the output stayed accurate."
         ]
       },
       {
-        heading: "Compare the Letter With the Resume",
-        paragraphs: [
-          "Read both documents together before attaching them. The cover letter may emphasize a different part of your experience, but titles, dates, tools, scope, and results must agree. If the letter introduces a major achievement that the resume never supports, confirm the source and decide whether the resume should include it. Consistency helps the recruiter trust the application and prepares you to discuss the same evidence in an interview."
+        "heading": "Check the final format and application field",
+        "paragraphs": [
+          "Follow the employer’s instructions for file type, length and submission method. If no length is specified, keep the letter focused; the career guidance below uses a concise one-page format as a starting point. A web form may have its own character limit.",
+          "For a text field, paste the reviewed letter and check paragraph breaks, quotation marks and any character counter. For an attachment, open the exported file and inspect every page. Confirm the filename and make sure a previous draft is not still attached. Do one final check for the wrong employer name, bracketed placeholders and an old role title.",
+          "Do not add a letter through an unrelated contact channel when the application does not request one. Complete the materials the employer asks for, then review the whole application before choosing Submit."
+        ]
+      },
+      {
+        "heading": "Use JobHunter to prepare the draft on iPhone",
+        "paragraphs": [
+          "JobHunter supports cover-letter generation as part of its application tools. Supply accurate information and use the result as text to review and tailor for the specific role. Check the available features in your installed version before relying on a particular workflow.",
+          "If you prefer a browser starting point, JobHunter’s free cover-letter tool creates a template-based draft. It is separate from the app’s AI features. Use the same review checklist for either route; the applicant remains responsible for the content and final submission."
+        ],
+        "links": [
+          {
+            "label": "Start with the free browser cover-letter generator",
+            "href": "/tools/free-cover-letter-generator/"
+          },
+          {
+            "label": "Build a short cover letter from your own evidence",
+            "href": "/guides/write-cover-letter-fast/"
+          },
+          {
+            "label": "Prepare a tailored resume alongside the letter",
+            "href": "/guides/tailor-resume-to-job-description-iphone/"
+          }
         ]
       }
     ],
-    faqs: [
+    "sources": [
       {
-        question: "Can I submit an AI-generated cover letter without editing it?",
-        answer: "You should not. Verify every claim, add specific evidence and motivation, remove generic wording, and make sure the final voice represents you."
+        "label": "Harvard Mignone Center for Career Success: cover-letter tips and AI guidance",
+        "href": "https://careerservices.fas.harvard.edu/resources/create-a-strong-resume/"
       },
       {
-        question: "What information should not go into a cover-letter generator?",
-        answer: "Do not include passwords, identification numbers, medical details, confidential employer information, or personal data unrelated to the application."
+        "label": "MIT Career Advising & Professional Development: effective cover letters",
+        "href": "https://capd.mit.edu/resources/how-to-write-an-effective-cover-letter/"
       },
       {
-        question: "How do I make an AI cover letter sound less generic?",
-        answer: "Add a real accomplishment, connect it to a central job requirement, and mention one accurate reason the company's work or customers interest you."
+        "label": "JobHunter on the App Store: published product features",
+        "href": "https://apps.apple.com/us/app/jobhunter-apply-lock/id6645735955"
       }
     ]
   },
@@ -674,6 +942,7 @@ export const guidePlans = [
   },
   {
     slug: "review-job-matches-faster",
+    dateModified: "2026-10-19",
     redirectFrom: [
       "daily-job-match-routine",
       "avoid-bad-job-matches",
@@ -692,8 +961,10 @@ export const guidePlans = [
         heading: "Use Three Outcomes: Apply, Save With a Question, or Skip",
         paragraphs: [
           "Every review should end with a decision. Apply when the core fit and eligibility are clear. Save with a specific note when one answer—such as region, salary, or schedule—needs research. Skip when a hard requirement conflicts with your background or goals. Avoid an unstructured saved pile that simply moves decisions into the future.",
-          "A written reason also improves your search. After several sessions, common skip reasons reveal which filters or profile signals need adjustment."
-        ]
+          "A written reason also improves your search. After several sessions, common skip reasons reveal which filters or profile signals need adjustment.",
+          "When several matches come from one employer, compare them with the company's careers page and focus on the role that best fits your experience. Multiple vacancies alone do not show that every listing is current."
+        ],
+        links: [{ label: "Evaluate companies with several open roles", href: "/guides/highest-hiring-companies-job-search/" }]
       }
     ],
     faqs: [
@@ -713,6 +984,7 @@ export const guidePlans = [
   },
   {
     slug: "highest-hiring-companies-job-search",
+    dateModified: "2026-10-19",
     redirectFrom: [
       "find-companies-with-many-open-roles",
       "find-startup-jobs-hiring-now"
@@ -736,7 +1008,8 @@ export const guidePlans = [
         paragraphs: [
           "Choose the one or two openings with the clearest fit rather than applying to every role. Keep the resume story consistent and explain the appropriate team or problem in each tailored response. Track all applications under the same company so you can discuss them honestly if one recruiter contacts you.",
           "For startups, confirm the role exists on the official careers page, understand the likely breadth of responsibility, and look for evidence of an active product and team. Avoid paying fees, purchasing equipment through an unknown contact, or moving the conversation away from verifiable company channels."
-        ]
+        ],
+        links: [{ label: "Move from a matched role to a reviewed application", href: "/guides/apply-to-matched-jobs-iphone/" }]
       }
     ],
     faqs: [

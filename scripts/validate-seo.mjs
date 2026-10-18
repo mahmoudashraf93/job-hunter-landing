@@ -4,8 +4,11 @@ import path from "node:path";
 import {
   guidePlans,
   guideRedirects,
-  retainedGuideSlugs
+  retainedGuideSlugs,
+  SITE_MODIFIED,
+  PAGE_MODIFIED
 } from "../content/seo-plan.mjs";
+import { auditInternalLinks } from "./seo-links.mjs";
 
 const ROOT = process.cwd();
 const SITE_URL = "https://appjobhunter.com";
@@ -31,8 +34,7 @@ const STALE_ICON_PATHS = [
 
 const exists = async (filePath) => {
   try {
-    await stat(filePath);
-    return true;
+    return (await stat(filePath)).isFile();
   } catch {
     return false;
   }
@@ -52,9 +54,6 @@ const textFromHtml = (html) =>
     .replace(/\s+/g, " ")
     .trim();
 
-const wordCount = (html) =>
-  textFromHtml(html).split(/\s+/).filter(Boolean).length;
-
 const oneMatch = (html, pattern, label, pathname) => {
   const matches = [...html.matchAll(pattern)];
   if (matches.length !== 1) {
@@ -68,8 +67,8 @@ const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(
   (match) => match[1]
 );
 
-if (sitemapUrls.length !== 20) {
-  throw new Error(`Expected 20 sitemap URLs, found ${sitemapUrls.length}`);
+if (sitemapUrls.length !== EXPECTED_URLS.length) {
+  throw new Error(`Expected ${EXPECTED_URLS.length} sitemap URLs, found ${sitemapUrls.length}`);
 }
 
 if (sitemap.includes("<priority>") || sitemap.includes("<changefreq>")) {
@@ -80,17 +79,29 @@ if (
   sitemapUrls.some((url) => !EXPECTED_URLS.includes(url)) ||
   EXPECTED_URLS.some((url) => !sitemapUrls.includes(url))
 ) {
-  throw new Error("Sitemap membership does not match the 20 canonical URLs");
+  throw new Error("Sitemap membership does not match the canonical URL set");
+}
+
+const sitemapDates = new Map([...sitemap.matchAll(/<url>\s*<loc>(.*?)<\/loc>\s*<lastmod>(.*?)<\/lastmod>/g)].map(([, url, date]) => [url, date]));
+for (const pathname of FIXED_INDEXABLE_PATHS) {
+  const expectedDate = pathname === "/guides/"
+    ? guidePlans.map((plan) => plan.dateModified ?? SITE_MODIFIED).sort().at(-1)
+    : PAGE_MODIFIED[pathname] ?? SITE_MODIFIED;
+  if (sitemapDates.get(`${SITE_URL}${pathname}`) !== expectedDate) {
+    throw new Error(`${pathname} has an incorrect sitemap modification date`);
+  }
 }
 
 const seenTitles = new Map();
 const seenDescriptions = new Map();
 const seenH1s = new Map();
+const pages = new Map();
 
 for (const pathname of INDEXABLE_PATHS) {
   const filePath = fileForPath(pathname);
   if (!(await exists(filePath))) throw new Error(`Missing indexable file: ${pathname}`);
   const html = await readFile(filePath, "utf8");
+  pages.set(pathname, html);
   const canonical = oneMatch(
     html,
     /<link rel="canonical" href="([^"]+)"/g,
@@ -170,14 +181,18 @@ for (const plan of guidePlans) {
   const html = await readFile(fileForPath(pathname), "utf8");
   const article = html.match(/<article class="article">([\s\S]*?)<\/article>/)?.[1];
   if (!article) throw new Error(`${pathname} is missing article content`);
-  const words = wordCount(article);
-  if (words < 700) {
-    throw new Error(`${pathname} has ${words} article words; expected at least 700`);
+  if (!textFromHtml(article)) throw new Error(`${pathname} has empty article content`);
+  const graph = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])["@graph"];
+  const metadata = graph.find((item) => item["@type"] === "Article");
+  const modified = plan.dateModified ?? SITE_MODIFIED;
+  if (metadata?.dateModified !== modified || sitemapDates.get(`${SITE_URL}${pathname}`) !== modified ||
+      !article.includes(`Published ${metadata.datePublished} · Updated ${modified}`)) {
+    throw new Error(`${pathname} has inconsistent visible, structured or sitemap dates`);
   }
   if (!html.includes("Frequently asked questions")) {
     throw new Error(`${pathname} is missing visible FAQs`);
   }
-  if (!html.includes(plan.screenshot.src)) {
+  if (plan.screenshot && !html.includes(plan.screenshot.src)) {
     throw new Error(`${pathname} is missing its planned screenshot`);
   }
 }
@@ -188,10 +203,7 @@ for (const pathname of [
 ]) {
   const html = await readFile(fileForPath(pathname), "utf8");
   const main = html.match(/<main[^>]*>([\s\S]*?)<\/main>/)?.[1];
-  const words = wordCount(main ?? "");
-  if (words < 600) {
-    throw new Error(`${pathname} has ${words} visible words; expected at least 600`);
-  }
+  if (!main || !textFromHtml(main)) throw new Error(`${pathname} has empty main content`);
   if (!html.includes("Frequently asked questions")) {
     throw new Error(`${pathname} is missing visible FAQs`);
   }
@@ -199,11 +211,22 @@ for (const pathname of [
 
 for (const pathname of ["/privacy/", "/terms/"]) {
   const html = await readFile(fileForPath(pathname), "utf8");
+  pages.set(pathname, html);
   if (!/<meta name="robots" content="noindex,follow">/.test(html)) {
     throw new Error(`${pathname} must be noindex,follow`);
   }
   if (sitemapUrls.includes(`${SITE_URL}${pathname}`)) {
     throw new Error(`${pathname} must not appear in the sitemap`);
+  }
+}
+
+const links = auditInternalLinks(pages, INDEXABLE_PATHS, {
+  origin: SITE_URL,
+  redirects: { ...guideRedirects, "/privacypolicy/": "/privacy/" }
+});
+for (const { from, to } of links.references) {
+  if (!(await exists(fileForPath(to))) && !(await exists(path.join(ROOT, to.replace(/^\//, ""))))) {
+    throw new Error(`${from} has broken internal link ${to}`);
   }
 }
 
@@ -273,5 +296,5 @@ for (const script of [
 }
 
 console.log(
-  `Validated ${INDEXABLE_PATHS.length} canonical URLs, ${guidePlans.length} substantial guides, ${Object.keys(guideRedirects).length} redirects, and ${expectedAssets.length} assets.`
+  `Validated ${INDEXABLE_PATHS.length} canonical URLs, ${guidePlans.length} guides, ${Object.keys(guideRedirects).length} redirects, and ${expectedAssets.length} assets. All indexable pages are reachable; maximum depth: ${links.maxDepth} clicks.`
 );

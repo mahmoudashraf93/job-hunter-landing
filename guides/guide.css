@@ -113,6 +113,20 @@ p { margin: 0 0 18px; }
   font-size: 0.85rem;
   margin-top: 10px;
 }
+.article-image-wide { max-width: 640px; }
+.table-scroll { overflow-x: auto; margin: 24px 0; border: 1px solid var(--line); border-radius: 8px; }
+.table-scroll:focus-visible, .review-checklist input:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 0.95rem; }
+.table-hint { font-size: 0.85rem; color: var(--muted); }
+@media (min-width: 641px) { .table-hint { display: none; } }
+caption { text-align: left; padding: 16px; font-weight: 700; background: var(--soft); }
+th, td { text-align: left; padding: 14px 16px; vertical-align: top; border-top: 1px solid var(--line); overflow-wrap: anywhere; }
+th { background: var(--soft); }
+.review-checklist { padding: 0; list-style: none; }
+.review-checklist li { margin: 0; border-bottom: 1px solid var(--line); }
+.review-checklist label { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; cursor: pointer; }
+.review-checklist input { flex: 0 0 auto; width: 20px; height: 20px; margin-top: 3px; accent-color: var(--blue); }
+.sources { font-size: 0.95rem; }
 .cluster { margin-top: 46px; }
 .card-grid,
 .related-grid {

@@ -53,11 +53,6 @@ const homepageSchema = {
     priceCurrency: "USD",
     availability: "https://schema.org/InStock"
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.2",
-    ratingCount: "5"
-  },
   publisher: {
     "@type": "Organization",
     name: "JobHunter",
