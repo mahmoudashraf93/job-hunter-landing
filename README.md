@@ -43,12 +43,20 @@ match the site palette. The JobHunter logo and product screenshots are the
 existing project assets. `design-qa.md` records the selected reference and
 browser verification and is excluded from public assets.
 
+The 13 canonical guides are explicitly authored in `content/seo-plan.mjs`.
+The older topic sources provide history and labels; their sections are replaced
+by the canonical plan rather than appended to it. The application workflow
+includes the former matched-jobs/tracking article, and the indexed cover-letter
+URL includes the former fast-drafting article. All 27 retired guide URLs redirect
+directly to a retained article, including aliases of the consolidated pages.
+
 ## SEO publishing standard
 
 Before an article is ready for review:
 
 - Choose one reader task and search intent. Refresh the existing canonical guide when it answers that intent; create a new URL only for a meaningfully different task. Search Console queries are incomplete observations of our own visibility, not market-wide keyword volume.
 - Answer the question early, then provide useful steps, original examples or tested product evidence. Verify app claims against a published version, label fictional examples and controlled tests, and cite primary sources where they substantiate advice. Length follows the task; there is no minimum SEO word count.
+- Make the advice usable without JobHunter. Explain native or manual methods, distinguish upload, parsing and submission, and qualify instructions that vary by employer or system. Product promotion belongs in the single optional block after the advice, FAQs and sources. Publisher branding and site navigation remain separate from editorial advice. Do not insert product plugs into individual sections or FAQs.
 - Link to the guide from a relevant existing page and the guide index. Add links beside advice where the next resource helps the reader, using concise, descriptive anchor text. Keep the related-guide cards useful. There is no fixed target number of links; avoid forcing unrelated links or keywords.
 - Use ordinary HTML anchors pointing directly to canonical URLs. Preserve existing URLs and redirects. Check titles, descriptions, headings, indexability, sitemap membership, image descriptions and structured data against the actual page.
 - Keep the original publication date; set actual publication and modification dates explicitly for new guides. Set `dateModified` only after a substantive article change. Fixed-page modification overrides live in `PAGE_MODIFIED`; unchanged pages retain their dates. Visible dates, Article markup and sitemap dates must agree.

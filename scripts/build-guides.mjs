@@ -189,8 +189,8 @@ const renderArticle = (article) => {
   const sections = outlineSections(article.sections);
   const outline = [
     { id: "short-version", heading: "The short version" }, ...sections,
-    ...(article.sources ? [{ id: "sources", heading: "Sources and further reading" }] : []),
-    { id: "frequently-asked-questions", heading: "Frequently asked questions" }
+    { id: "frequently-asked-questions", heading: "Frequently asked questions" },
+    ...(article.sources?.length ? [{ id: "sources", heading: "Sources and further reading" }] : [])
   ];
   const toc = (label, limit = outline.length) => {
     const links = outline.map((item, index) =>
@@ -198,11 +198,7 @@ const renderArticle = (article) => {
     return `<nav class="toc" aria-label="${label}">${links.slice(0, limit).join("\n")}${links.length > limit
       ? `<details class="toc-more"><summary>${links.length - limit} more sections</summary>${links.slice(limit).join("\n")}</details>` : ""}</nav>`;
   };
-  const isAutofill = article.slug === "autofill-job-applications-iphone";
-  const intro = isAutofill ? article.intro.replace(" JobHunter does not submit the application for you.", "") : article.intro;
-  const summary = isAutofill
-    ? "Save your details in JobHunter, enable its Safari extension, fill supported fields on the employer’s application, and review everything before you submit yourself."
-    : article.description;
+  const summary = article.summary ?? article.description;
   return `${renderHead({
     title: `${article.title} | JobHunter Guides`,
     description: article.description,
@@ -214,9 +210,9 @@ ${siteHeader}
 <main id="main-content" tabindex="-1">
   <article class="article">
     <header class="article-hero"><div class="container">
-      <p class="eyebrow">${isAutofill ? "iPhone · Safari · Autofill" : escapeHtml(clusterLabels[article.cluster])}</p>
+      <p class="eyebrow">${escapeHtml(article.eyebrow ?? clusterLabels[article.cluster])}</p>
       <h1>${escapeHtml(article.h1)}</h1>
-      <p class="intro">${escapeHtml(intro)}</p>
+      <p class="intro">${escapeHtml(article.intro)}</p>
       <p class="byline"><span>By the JobHunter team</span><span>Updated <time datetime="${article.dateModified}">${displayDate(article.dateModified)}</time></span><span>Published <time datetime="${article.datePublished}">${displayDate(article.datePublished)}</time></span><span>${readingMinutes(article)} min read</span></p>
     </div></header>
     <div class="container article-layout">
@@ -228,13 +224,6 @@ ${siteHeader}
           <div><h2>The short version</h2><p>${escapeHtml(summary)}</p></div>
         </section>
         ${sections.map((section, index) => renderSection(section) + (index === 0 && article.imagePlacement !== "inline" ? renderFigure(article.screenshot) : "")).join("\n")}
-        ${article.sources ? `<section class="sources" id="sources" tabindex="-1"><h2>Sources and further reading</h2>${renderLinks(article.sources)}</section>` : ""}
-    <aside class="cta">
-      <p class="eyebrow">Your next application</p>
-      <h2>Apply faster from your iPhone</h2>
-      <p>Save your profile once, autofill repeat fields, attach resumes, and draft cover letters with JobHunter.</p>
-      <a href="${APP_STORE_URL}">Download JobHunter on the App Store</a>
-    </aside>
     <section class="faq-section" id="frequently-asked-questions" tabindex="-1">
       <h2>Frequently asked questions</h2>
       ${article.faqs
@@ -246,6 +235,13 @@ ${siteHeader}
         )
         .join("\n")}
     </section>
+        ${article.sources?.length ? `<section class="sources" id="sources" tabindex="-1"><h2>Sources and further reading</h2>${renderLinks(article.sources)}</section>` : ""}
+        <aside class="cta" aria-label="Optional application tool">
+          <p class="eyebrow">Optional tool</p>
+          <h2>JobHunter for repeated applications</h2>
+          <p>JobHunter offers saved profiles, supported-field autofill and AI cover-letter drafts on iPhone. The steps above work without it. If you use it, review the filled fields and generated text, then submit the application yourself.</p>
+          <a href="${APP_STORE_URL}">View JobHunter on the App Store</a>
+        </aside>
       </div>
       <aside class="reading-sidebar" aria-label="Reading companion"><div class="sidebar-inner">
         <h2>On this page</h2>${toc("On this page", 6)}
