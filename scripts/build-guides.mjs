@@ -3,6 +3,7 @@ import path from "node:path";
 import { articles as baseArticles, clusterLabels } from "../content/articles.mjs";
 import { jobMatchingArticles } from "../content/job-matching-articles.mjs";
 import { guidePlans, SITE_MODIFIED } from "../content/seo-plan.mjs";
+import { articleDates, escapeHtml, renderLinks, renderSection } from "./guide-rendering.mjs";
 
 const SITE_URL = "https://appjobhunter.com";
 const APP_NAME = "JobHunter";
@@ -28,22 +29,14 @@ const articles = guidePlans.map((plan) => {
   return {
     ...base,
     ...plan,
-    sections: [
+    sections: plan.sections ?? [
       ...base.sections,
       ...absorbedSections,
       ...plan.editorialSections
     ],
-    datePublished: DATE_PUBLISHED,
-    dateModified: SITE_MODIFIED
+    ...articleDates(plan, { datePublished: DATE_PUBLISHED, dateModified: SITE_MODIFIED })
   };
 });
-
-const escapeHtml = (value) =>
-  String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
 
 const absoluteUrl = (pathname) => `${SITE_URL}${pathname}`;
 
@@ -137,7 +130,7 @@ const articleSchema = (article, pathname) => {
       "@type": "Article",
       headline: article.h1,
       description: article.description,
-      image: absoluteUrl(article.screenshot.src),
+      image: article.screenshot ? absoluteUrl(article.screenshot.src) : APP_ICON,
       datePublished: article.datePublished,
       dateModified: article.dateModified,
       author: {
@@ -195,26 +188,13 @@ ${siteHeader}
     <h1>${escapeHtml(article.h1)}</h1>
     <p class="intro">${escapeHtml(article.intro)}</p>
     <p class="byline">Published ${article.datePublished} · Updated ${article.dateModified} · By the JobHunter team</p>
-    <figure class="article-image">
+${article.imagePlacement === "inline" || !article.screenshot ? "" : `    <figure class="article-image">
       <img src="${article.screenshot.src}" alt="${escapeHtml(article.screenshot.alt)}" width="1125" height="2436">
       <figcaption>${escapeHtml(article.screenshot.alt)}</figcaption>
-    </figure>
+    </figure>`}
     ${article.sections
-      .map((section) => {
-        const paragraphs = (section.paragraphs || [])
-          .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
-          .join("\n      ");
-        const bullets = section.bullets
-          ? `<ul>${section.bullets
-              .map((bullet) => `<li>${escapeHtml(bullet)}</li>`)
-              .join("")}</ul>`
-          : "";
-        return `<section>
-      <h2>${escapeHtml(section.heading)}</h2>
-      ${paragraphs}${bullets ? `\n      ${bullets}` : ""}
-    </section>`;
-      })
-      .join("\n")}
+      .map(renderSection)
+      .join("\n")}${article.sources ? `\n    <section class="sources"><h2>Sources and further reading</h2>${renderLinks(article.sources)}</section>` : ""}
     <aside class="cta">
       <h2>Apply faster from your iPhone</h2>
       <p>Save your profile once, autofill repeat fields, attach resumes, and draft cover letters with JobHunter.</p>
@@ -422,6 +402,20 @@ p { margin: 0 0 18px; }
   font-size: 0.85rem;
   margin-top: 10px;
 }
+.article-image-wide { max-width: 640px; }
+.table-scroll { overflow-x: auto; margin: 24px 0; border: 1px solid var(--line); border-radius: 8px; }
+.table-scroll:focus-visible, .review-checklist input:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 0.95rem; }
+.table-hint { font-size: 0.85rem; color: var(--muted); }
+@media (min-width: 641px) { .table-hint { display: none; } }
+caption { text-align: left; padding: 16px; font-weight: 700; background: var(--soft); }
+th, td { text-align: left; padding: 14px 16px; vertical-align: top; border-top: 1px solid var(--line); overflow-wrap: anywhere; }
+th { background: var(--soft); }
+.review-checklist { padding: 0; list-style: none; }
+.review-checklist li { margin: 0; border-bottom: 1px solid var(--line); }
+.review-checklist label { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; cursor: pointer; }
+.review-checklist input { flex: 0 0 auto; width: 20px; height: 20px; margin-top: 3px; accent-color: var(--blue); }
+.sources { font-size: 0.95rem; }
 .cluster { margin-top: 46px; }
 .card-grid,
 .related-grid {
@@ -513,7 +507,7 @@ const sitemapUrls = [
   { loc: `${SITE_URL}/tools/`, lastmod: SITE_MODIFIED },
   { loc: `${SITE_URL}/tools/free-resume-maker/`, lastmod: SITE_MODIFIED },
   { loc: `${SITE_URL}/tools/free-cover-letter-generator/`, lastmod: SITE_MODIFIED },
-  { loc: `${SITE_URL}/guides/`, lastmod: SITE_MODIFIED },
+  { loc: `${SITE_URL}/guides/`, lastmod: articles.reduce((latest, article) => article.dateModified > latest ? article.dateModified : latest, SITE_MODIFIED) },
   ...articles.map((article) => ({
     loc: absoluteUrl(articlePath(article)),
     lastmod: article.dateModified

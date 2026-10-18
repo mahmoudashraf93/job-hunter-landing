@@ -177,7 +177,7 @@ for (const plan of guidePlans) {
   if (!html.includes("Frequently asked questions")) {
     throw new Error(`${pathname} is missing visible FAQs`);
   }
-  if (!html.includes(plan.screenshot.src)) {
+  if (plan.screenshot && !html.includes(plan.screenshot.src)) {
     throw new Error(`${pathname} is missing its planned screenshot`);
   }
 }
