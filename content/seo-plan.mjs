@@ -1,4 +1,5 @@
 export const SITE_MODIFIED = "2026-08-12";
+export const PAGE_MODIFIED = { "/": "2026-10-19" };
 
 const screenshots = {
   autofill: {
@@ -62,7 +63,7 @@ export const guidePlans = [
     "h1": "How to Autofill Job Applications on iPhone",
     "description": "Set up JobHunter in Safari, fill saved contact details, review a worked example, and troubleshoot job application autofill on iPhone.",
     "intro": "To autofill a supported job application on iPhone, save your details in JobHunter, enable its Safari extension, open the employer’s application in Safari, and choose Autofill. Check every filled field and document before you submit. JobHunter does not submit the application for you.",
-    "dateModified": "2026-10-18",
+    "dateModified": "2026-10-19",
     "imagePlacement": "inline",
     "sections": [
       {
@@ -156,6 +157,10 @@ export const guidePlans = [
           {
             "label": "How to attach a resume from iPhone Safari",
             "href": "/guides/attach-resume-from-iphone-safari/"
+          },
+          {
+            "label": "Check resume formatting and parsing",
+            "href": "/guides/ats-friendly-resume-checklist/"
           },
           {
             "label": "Review an AI cover-letter draft with a worked example",
@@ -341,6 +346,7 @@ export const guidePlans = [
   },
   {
     slug: "ten-minute-job-application-workflow",
+    dateModified: "2026-10-19",
     redirectFrom: [],
     relatedSlugs: [
       "review-job-matches-faster",
@@ -365,8 +371,9 @@ export const guidePlans = [
       {
         heading: "Minutes Four to Six: Fill Stable Information",
         paragraphs: [
-          "Use JobHunter to fill contact details, employment history, education, links, and other stable profile information. Compare dates and titles against the attached resume. Resolve parsing mistakes now, while the relevant section is visible. Do not rush required questions about authorization, sponsorship, relocation, or availability; a wrong answer can end the process before a recruiter reads the resume."
-        ]
+          "Use JobHunter to fill supported contact and profile fields, then compare the result with your saved details and resume. Complete employment-history sections, education and custom controls manually when needed; support varies by website. Resolve parsing mistakes while the relevant section is visible. Take time over authorization, sponsorship, relocation and availability questions and answer them yourself."
+        ],
+        links: [{ label: "Set up iPhone autofill and check the filled fields", href: "/guides/autofill-job-applications-iphone/" }]
       },
       {
         heading: "Minutes Seven to Nine: Tailor the Human-Read Sections",
@@ -410,6 +417,7 @@ export const guidePlans = [
   },
   {
     slug: "ats-friendly-resume-checklist",
+    dateModified: "2026-10-19",
     redirectFrom: [
       "best-resume-format-job-application-forms",
       "pdf-resume-vs-online-form-fields",
@@ -427,7 +435,8 @@ export const guidePlans = [
         paragraphs: [
           "Select the text in the exported PDF and paste it into a plain-text editor. The name, headings, companies, titles, dates, and bullets should appear in a sensible reading order. Then upload the resume to a real application that offers parsing and compare the imported fields. This practical test reveals problems that visual inspection cannot.",
           "When the same field imports incorrectly more than once, repair the source document. Move critical text out of headers, footers, images, and floating text boxes. Replace decorative skill charts with plain text and use recognizable headings. The goal is not to make every resume identical; it is to make important evidence available to both software and people."
-        ]
+        ],
+        links: [{ label: "Review contact fields filled by iPhone autofill", href: "/guides/autofill-job-applications-iphone/" }]
       },
       {
         heading: "A Recruiter-Friendly Quality Check",
@@ -569,6 +578,7 @@ export const guidePlans = [
   },
   {
     slug: "write-cover-letter-fast",
+    dateModified: "2026-10-19",
     redirectFrom: [
       "entry-level-internship-cover-letter",
       "short-cover-letter-examples"
@@ -592,6 +602,10 @@ export const guidePlans = [
         paragraphs: [
           "Open by naming the role and one reason it fits your direction. In the middle, connect a relevant achievement to a responsibility from the listing. Close with a specific reason the company's product, customers, or mission makes the opportunity worth discussing. Replace every bracketed detail before sending and read the letter aloud once.",
           "For an entry-level role, evidence can come from an internship, project, volunteer position, coursework, or customer-facing job. For an experienced candidate, choose one result that demonstrates scope rather than summarizing the entire resume."
+        ],
+        links: [
+          { label: "Review your draft with a checklist and worked example", href: "/guides/ai-cover-letter-generator-review-checklist/" },
+          { label: "Create a template-based draft in the free cover-letter tool", href: "/tools/free-cover-letter-generator/" }
         ]
       }
     ],
@@ -928,6 +942,7 @@ export const guidePlans = [
   },
   {
     slug: "review-job-matches-faster",
+    dateModified: "2026-10-19",
     redirectFrom: [
       "daily-job-match-routine",
       "avoid-bad-job-matches",
@@ -946,8 +961,10 @@ export const guidePlans = [
         heading: "Use Three Outcomes: Apply, Save With a Question, or Skip",
         paragraphs: [
           "Every review should end with a decision. Apply when the core fit and eligibility are clear. Save with a specific note when one answer—such as region, salary, or schedule—needs research. Skip when a hard requirement conflicts with your background or goals. Avoid an unstructured saved pile that simply moves decisions into the future.",
-          "A written reason also improves your search. After several sessions, common skip reasons reveal which filters or profile signals need adjustment."
-        ]
+          "A written reason also improves your search. After several sessions, common skip reasons reveal which filters or profile signals need adjustment.",
+          "When several matches come from one employer, compare them with the company's careers page and focus on the role that best fits your experience. Multiple vacancies alone do not show that every listing is current."
+        ],
+        links: [{ label: "Evaluate companies with several open roles", href: "/guides/highest-hiring-companies-job-search/" }]
       }
     ],
     faqs: [
@@ -967,6 +984,7 @@ export const guidePlans = [
   },
   {
     slug: "highest-hiring-companies-job-search",
+    dateModified: "2026-10-19",
     redirectFrom: [
       "find-companies-with-many-open-roles",
       "find-startup-jobs-hiring-now"
@@ -990,7 +1008,8 @@ export const guidePlans = [
         paragraphs: [
           "Choose the one or two openings with the clearest fit rather than applying to every role. Keep the resume story consistent and explain the appropriate team or problem in each tailored response. Track all applications under the same company so you can discuss them honestly if one recruiter contacts you.",
           "For startups, confirm the role exists on the official careers page, understand the likely breadth of responsibility, and look for evidence of an active product and team. Avoid paying fees, purchasing equipment through an unknown contact, or moving the conversation away from verifiable company channels."
-        ]
+        ],
+        links: [{ label: "Move from a matched role to a reviewed application", href: "/guides/apply-to-matched-jobs-iphone/" }]
       }
     ],
     faqs: [

@@ -2,7 +2,7 @@ import { mkdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { articles as baseArticles, clusterLabels } from "../content/articles.mjs";
 import { jobMatchingArticles } from "../content/job-matching-articles.mjs";
-import { guidePlans, SITE_MODIFIED } from "../content/seo-plan.mjs";
+import { guidePlans, SITE_MODIFIED, PAGE_MODIFIED } from "../content/seo-plan.mjs";
 import { articleDates, escapeHtml, renderLinks, renderSection } from "./guide-rendering.mjs";
 
 const SITE_URL = "https://appjobhunter.com";
@@ -503,7 +503,7 @@ const write = async (pathname, html) => {
 };
 
 const sitemapUrls = [
-  { loc: `${SITE_URL}/`, lastmod: SITE_MODIFIED },
+  { loc: `${SITE_URL}/`, lastmod: PAGE_MODIFIED["/"] ?? SITE_MODIFIED },
   { loc: `${SITE_URL}/tools/`, lastmod: SITE_MODIFIED },
   { loc: `${SITE_URL}/tools/free-resume-maker/`, lastmod: SITE_MODIFIED },
   { loc: `${SITE_URL}/tools/free-cover-letter-generator/`, lastmod: SITE_MODIFIED },
