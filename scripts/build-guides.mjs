@@ -1,9 +1,9 @@
-import { mkdir, rm, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { articles as baseArticles, clusterLabels } from "../content/articles.mjs";
 import { jobMatchingArticles } from "../content/job-matching-articles.mjs";
 import { guidePlans, SITE_MODIFIED, PAGE_MODIFIED } from "../content/seo-plan.mjs";
-import { articleDates, escapeHtml, renderLinks, renderSection } from "./guide-rendering.mjs";
+import { articleDates, escapeHtml, outlineSections, readingMinutes, renderFigure, renderLinks, renderSection } from "./guide-rendering.mjs";
 
 const SITE_URL = "https://appjobhunter.com";
 const APP_NAME = "JobHunter";
@@ -71,24 +71,25 @@ const renderHead = ({ title, description, pathname, schema }) => {
   <meta name="twitter:image" content="${APP_ICON}">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/guides/guide.css">
+  <script src="/guides/guide.js" defer></script>
   ${jsonLd(schema)}
 </head>`;
 };
 
-const siteHeader = `<header class="site-header">
+const siteHeader = `<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="container header-inner">
   <a class="brand" href="/" aria-label="JobHunter home">
     <img src="/images/app-icon.png" alt="" width="40" height="40">
     <span>JobHunter</span>
   </a>
   <nav aria-label="Primary">
-    <a href="/tools/">Tools</a>
     <a href="/guides/">Guides</a>
-    <a href="/privacy/">Privacy</a>
-    <a href="/terms/">Terms</a>
-    <a class="download-link" href="${APP_STORE_URL}">Download</a>
+    <a href="/tools/">Free tools</a>
+    <a class="download-link" href="${APP_STORE_URL}"><img src="/images/ui/apple.svg" alt="" width="20" height="20"><span>Get JobHunter</span></a>
   </nav>
-</header>`;
+</div></header>`;
 
 const siteFooter = `<footer class="site-footer">
   <p>JobHunter helps iPhone job seekers find matched jobs, autofill applications, attach resumes, and draft AI cover letters faster.</p>
@@ -170,9 +171,38 @@ const getRelated = (article) =>
     return related;
   });
 
+const displayDate = (date) => new Intl.DateTimeFormat("en-US", {
+  month: "short", day: "numeric", year: "numeric", timeZone: "UTC"
+}).format(new Date(`${date}T00:00:00Z`));
+
+const renderRelated = (related, sidebar = false) => related.map((item) =>
+  `<a class="${sidebar ? "sidebar-guide" : "guide-card"}" href="${articlePath(item)}">
+    ${sidebar ? '<img src="/images/ui/file-text.svg" alt="" width="24" height="28">' : ""}
+    <div><span class="card-category">${escapeHtml(clusterLabels[item.cluster])}</span>
+    <strong>${escapeHtml(item.title)}</strong>
+    <p>${escapeHtml(item.description)}</p></div>
+  </a>`).join("\n");
+
 const renderArticle = (article) => {
   const pathname = articlePath(article);
   const related = getRelated(article);
+  const sections = outlineSections(article.sections);
+  const outline = [
+    { id: "short-version", heading: "The short version" }, ...sections,
+    ...(article.sources ? [{ id: "sources", heading: "Sources and further reading" }] : []),
+    { id: "frequently-asked-questions", heading: "Frequently asked questions" }
+  ];
+  const toc = (label, limit = outline.length) => {
+    const links = outline.map((item, index) =>
+      `<a href="${pathname}#${item.id}" data-section="${item.id}"${index === 0 ? ' aria-current="location"' : ""}>${escapeHtml(item.heading)}</a>`);
+    return `<nav class="toc" aria-label="${label}">${links.slice(0, limit).join("\n")}${links.length > limit
+      ? `<details class="toc-more"><summary>${links.length - limit} more sections</summary>${links.slice(limit).join("\n")}</details>` : ""}</nav>`;
+  };
+  const isAutofill = article.slug === "autofill-job-applications-iphone";
+  const intro = isAutofill ? article.intro.replace(" JobHunter does not submit the application for you.", "") : article.intro;
+  const summary = isAutofill
+    ? "Save your details in JobHunter, enable its Safari extension, fill supported fields on the employer’s application, and review everything before you submit yourself."
+    : article.description;
   return `${renderHead({
     title: `${article.title} | JobHunter Guides`,
     description: article.description,
@@ -181,26 +211,31 @@ const renderArticle = (article) => {
   })}
 <body>
 ${siteHeader}
-<main class="article-shell">
-  <a class="breadcrumb" href="/guides/">Guides</a>
+<main id="main-content" tabindex="-1">
   <article class="article">
-    <p class="eyebrow">${escapeHtml(clusterLabels[article.cluster])}</p>
-    <h1>${escapeHtml(article.h1)}</h1>
-    <p class="intro">${escapeHtml(article.intro)}</p>
-    <p class="byline">Published ${article.datePublished} · Updated ${article.dateModified} · By the JobHunter team</p>
-${article.imagePlacement === "inline" || !article.screenshot ? "" : `    <figure class="article-image">
-      <img src="${article.screenshot.src}" alt="${escapeHtml(article.screenshot.alt)}" width="1125" height="2436">
-      <figcaption>${escapeHtml(article.screenshot.alt)}</figcaption>
-    </figure>`}
-    ${article.sections
-      .map(renderSection)
-      .join("\n")}${article.sources ? `\n    <section class="sources"><h2>Sources and further reading</h2>${renderLinks(article.sources)}</section>` : ""}
+    <header class="article-hero"><div class="container">
+      <p class="eyebrow">${isAutofill ? "iPhone · Safari · Autofill" : escapeHtml(clusterLabels[article.cluster])}</p>
+      <h1>${escapeHtml(article.h1)}</h1>
+      <p class="intro">${escapeHtml(intro)}</p>
+      <p class="byline"><span>By the JobHunter team</span><span>Updated <time datetime="${article.dateModified}">${displayDate(article.dateModified)}</time></span><span>Published <time datetime="${article.datePublished}">${displayDate(article.datePublished)}</time></span><span>${readingMinutes(article)} min read</span></p>
+    </div></header>
+    <div class="container article-layout">
+      <div class="article-content">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/guides/">All guides</a><span aria-hidden="true">/</span><span>${escapeHtml(clusterLabels[article.cluster])}</span></nav>
+        <details class="mobile-contents"><summary>On this page</summary>${toc("Article sections")}</details>
+        <section class="short-version" id="short-version" tabindex="-1">
+          <img src="/images/ui/notes.svg" alt="" width="42" height="46">
+          <div><h2>The short version</h2><p>${escapeHtml(summary)}</p></div>
+        </section>
+        ${sections.map((section, index) => renderSection(section) + (index === 0 && article.imagePlacement !== "inline" ? renderFigure(article.screenshot) : "")).join("\n")}
+        ${article.sources ? `<section class="sources" id="sources" tabindex="-1"><h2>Sources and further reading</h2>${renderLinks(article.sources)}</section>` : ""}
     <aside class="cta">
+      <p class="eyebrow">Your next application</p>
       <h2>Apply faster from your iPhone</h2>
       <p>Save your profile once, autofill repeat fields, attach resumes, and draft cover letters with JobHunter.</p>
       <a href="${APP_STORE_URL}">Download JobHunter on the App Store</a>
     </aside>
-    <section class="faq-section">
+    <section class="faq-section" id="frequently-asked-questions" tabindex="-1">
       <h2>Frequently asked questions</h2>
       ${article.faqs
         .map(
@@ -211,19 +246,17 @@ ${article.imagePlacement === "inline" || !article.screenshot ? "" : `    <figure
         )
         .join("\n")}
     </section>
-  </article>
-  <section class="related">
-    <h2>Related guides</h2>
-    <div class="related-grid">
-      ${related
-        .map(
-          (item) => `<a href="${articlePath(item)}">
-        <span>${escapeHtml(clusterLabels[item.cluster])}</span>
-        <strong>${escapeHtml(item.title)}</strong>
-      </a>`
-        )
-        .join("\n")}
+      </div>
+      <aside class="reading-sidebar" aria-label="Reading companion"><div class="sidebar-inner">
+        <h2>On this page</h2>${toc("On this page", 6)}
+        <div class="sidebar-related"><h2>Related guides</h2>${renderRelated(related, true)}</div>
+      </div></aside>
     </div>
+  </article>
+  <section class="related container">
+    <p class="eyebrow">Keep going</p>
+    <h2>Related guides</h2>
+    <div class="related-grid">${renderRelated(related)}</div>
   </section>
 </main>
 ${siteFooter}
@@ -256,21 +289,25 @@ const renderGuideIndex = () => {
   }).replace('property="og:type" content="article"', 'property="og:type" content="website"')}
 <body>
 ${siteHeader}
-<main class="index-shell">
-  <section class="hero">
+<main id="main-content" class="index-shell" tabindex="-1">
+  <section class="article-hero index-hero"><div class="container">
     <p class="eyebrow">JobHunter Guides</p>
     <h1>Find better jobs and apply faster from iPhone</h1>
     <p>Use these guides to review matched jobs, find remote roles, compare hiring companies, autofill applications, prepare ATS-friendly resumes, and draft cover letters without losing control of the final submission.</p>
-  </section>
+    <p class="index-meta">${articles.length} practical guides · Written by the JobHunter team</p>
+  </div></section>
+  <div class="container index-body">
+  <nav class="category-nav" aria-label="Guide topics">${grouped.map((group) => `<a href="/guides/#${group.cluster}">${escapeHtml(group.label)} <span>${group.items.length}</span></a>`).join("")}</nav>
   ${grouped
     .map(
-      (group) => `<section class="cluster">
+      (group) => `<section class="cluster" id="${group.cluster}" tabindex="-1">
+    <p class="eyebrow">JobHunter field notes</p>
     <h2>${escapeHtml(group.label)}</h2>
     <div class="card-grid">
       ${group.items
         .map(
           (article) => `<a class="guide-card" href="${articlePath(article)}">
-        <span>${escapeHtml(group.label)}</span>
+        <span class="card-category">${escapeHtml(group.label)} · ${readingMinutes(article)} min read</span>
         <strong>${escapeHtml(article.title)}</strong>
         <p>${escapeHtml(article.description)}</p>
       </a>`
@@ -280,6 +317,7 @@ ${siteHeader}
   </section>`
     )
     .join("\n")}
+  </div>
 </main>
 ${siteFooter}
 </body>
@@ -287,219 +325,13 @@ ${siteFooter}
 `;
 };
 
-const css = `:root {
-  color-scheme: light;
-  --ink: #14213d;
-  --muted: #526173;
-  --line: #d9e1ea;
-  --paper: #ffffff;
-  --soft: #f6f8fb;
-  --blue: #2364aa;
-  --green: #2a9d8f;
-  --gold: #f0b429;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: var(--ink);
-  background: var(--paper);
-  line-height: 1.65;
-}
-a { color: inherit; }
-.site-header,
-.site-footer {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
-.site-header { border-bottom: 1px solid var(--line); }
-.site-footer { border-top: 1px solid var(--line); color: var(--muted); }
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 800;
-  text-decoration: none;
-}
-.brand img { border-radius: 10px; }
-nav { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
-nav a { color: var(--muted); font-weight: 700; text-decoration: none; }
-.download-link,
-.cta a {
-  background: var(--ink);
-  color: #fff;
-  padding: 10px 16px;
-  border-radius: 8px;
-  text-decoration: none;
-  display: inline-flex;
-  font-weight: 800;
-}
-.index-shell,
-.article-shell {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 40px 24px 72px;
-}
-.hero {
-  max-width: 760px;
-  padding: 36px 0 28px;
-}
-.eyebrow,
-.breadcrumb {
-  color: var(--blue);
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.breadcrumb {
-  display: inline-flex;
-  margin-bottom: 22px;
-  text-decoration: none;
-}
-h1 {
-  font-size: clamp(2.25rem, 5vw, 4.5rem);
-  line-height: 1.04;
-  letter-spacing: 0;
-  margin: 0 0 18px;
-}
-h2 {
-  font-size: clamp(1.35rem, 2.4vw, 2rem);
-  line-height: 1.18;
-  letter-spacing: 0;
-  margin: 0 0 12px;
-}
-p { margin: 0 0 18px; }
-.intro,
-.hero p {
-  color: var(--muted);
-  font-size: 1.16rem;
-}
-.byline {
-  color: var(--muted);
-  font-size: 0.92rem;
-  margin-bottom: 26px;
-}
-.article-image {
-  margin: 30px 0 40px;
-  max-width: 420px;
-}
-.article-image img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 24px;
-  border: 1px solid var(--line);
-  box-shadow: 0 20px 50px rgba(20, 33, 61, 0.14);
-}
-.article-image figcaption {
-  color: var(--muted);
-  font-size: 0.85rem;
-  margin-top: 10px;
-}
-.article-image-wide { max-width: 640px; }
-.table-scroll { overflow-x: auto; margin: 24px 0; border: 1px solid var(--line); border-radius: 8px; }
-.table-scroll:focus-visible, .review-checklist input:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
-table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 0.95rem; }
-.table-hint { font-size: 0.85rem; color: var(--muted); }
-@media (min-width: 641px) { .table-hint { display: none; } }
-caption { text-align: left; padding: 16px; font-weight: 700; background: var(--soft); }
-th, td { text-align: left; padding: 14px 16px; vertical-align: top; border-top: 1px solid var(--line); overflow-wrap: anywhere; }
-th { background: var(--soft); }
-.review-checklist { padding: 0; list-style: none; }
-.review-checklist li { margin: 0; border-bottom: 1px solid var(--line); }
-.review-checklist label { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; cursor: pointer; }
-.review-checklist input { flex: 0 0 auto; width: 20px; height: 20px; margin-top: 3px; accent-color: var(--blue); }
-.sources { font-size: 0.95rem; }
-.cluster { margin-top: 46px; }
-.card-grid,
-.related-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
-}
-.guide-card,
-.related a {
-  display: block;
-  min-height: 180px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 20px;
-  text-decoration: none;
-  background: var(--soft);
-}
-.guide-card span,
-.related span {
-  display: block;
-  color: var(--green);
-  font-size: 0.78rem;
-  font-weight: 800;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-}
-.guide-card strong,
-.related strong {
-  display: block;
-  font-size: 1.08rem;
-  line-height: 1.25;
-  margin-bottom: 10px;
-}
-.guide-card p { color: var(--muted); font-size: 0.95rem; }
-.article {
-  max-width: 760px;
-}
-.article section {
-  margin-top: 38px;
-}
-ul {
-  margin: 0 0 18px;
-  padding-left: 24px;
-}
-li { margin: 8px 0; }
-.cta {
-  margin: 44px 0;
-  border-left: 6px solid var(--gold);
-  background: #fff8e7;
-  padding: 24px;
-  border-radius: 8px;
-}
-.cta p { color: var(--muted); }
-.related {
-  margin-top: 54px;
-}
-.faq-section details {
-  border-top: 1px solid var(--line);
-  padding: 16px 0;
-}
-.faq-section details:last-child { border-bottom: 1px solid var(--line); }
-.faq-section summary { cursor: pointer; font-weight: 800; }
-.faq-section details p { color: var(--muted); margin: 12px 0 0; }
-@media (max-width: 720px) {
-  .site-header,
-  .site-footer {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-  .site-header nav,
-  .site-footer nav {
-    gap: 12px;
-  }
-  .index-shell,
-  .article-shell {
-    padding-top: 26px;
-  }
-}
-`;
+const css = await readFile(new URL("../content/guides.css", import.meta.url), "utf8");
+const interactions = await readFile(new URL("./guide-interactions.js", import.meta.url), "utf8");
 
 const write = async (pathname, html) => {
   const filePath = pageFilePath(pathname);
   await mkdir(path.dirname(filePath), { recursive: true });
-  await writeFile(filePath, html);
+  await writeFile(filePath, html.replace(/[\t ]+$/gm, ""));
 };
 
 const sitemapUrls = [
@@ -522,6 +354,7 @@ for (const article of articles) {
 }
 
 await writeFile(path.join(OUTPUT_DIR, "guides", "guide.css"), css);
+await writeFile(path.join(OUTPUT_DIR, "guides", "guide.js"), interactions);
 await writeFile(
   path.join(OUTPUT_DIR, "sitemap.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>

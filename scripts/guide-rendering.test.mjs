@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { articleDates, renderFigure, renderLinks, renderSection, safeHref } from "./guide-rendering.mjs";
+import { articleDates, outlineSections, readingMinutes, renderFigure, renderLinks, renderSection, safeHref } from "./guide-rendering.mjs";
 
 test("rich sections escape text in every rendered content type", () => {
   const attack = '<img src=x onerror="alert(1)">';
@@ -38,4 +38,21 @@ test("optional figures can be omitted and figure attributes are escaped", () => 
   assert.ok(html.includes('alt="Example &quot;quoted&quot;"'));
   assert.ok(html.includes('width="390" height="844"'));
   assert.ok(html.includes('A &lt; B'));
+});
+
+test("consolidated guides get stable, unique fragment targets including reserved names", () => {
+  const sections = outlineSections([
+    {heading:"Résumé & Safari"}, {heading:"Resume Safari"},
+    {heading:"Resume Safari 2"}, {heading:"Resume Safari"},
+    {heading:"Sources"}, {heading:"The short version"}, {heading:"!!!"}
+  ]);
+  assert.deepEqual(sections.map(({id}) => id), ["resume-safari","resume-safari-2","resume-safari-2-2","resume-safari-3","sources-2","the-short-version","section"]);
+  for (const section of sections) assert.ok(renderSection(section).includes(`id="${section.id}" tabindex="-1"`));
+});
+
+test("reading estimates count editorial copy and exclude URLs and object keys", () => {
+  const article = {intro:"word ".repeat(220).trim(),sections:[],faqs:[]};
+  assert.equal(readingMinutes(article),1);
+  article.sections.push({heading:"Next",paragraphs:["word ".repeat(220)],links:[{label:"More",href:"https://example.com/".repeat(100)}]});
+  assert.equal(readingMinutes(article),3);
 });

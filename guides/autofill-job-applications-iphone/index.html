@@ -17,47 +17,65 @@
   <meta name="twitter:image" content="https://appjobhunter.com/images/app-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/guides/guide.css">
+  <script src="/guides/guide.js" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://appjobhunter.com"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://appjobhunter.com/guides/"},{"@type":"ListItem","position":3,"name":"How to Autofill Job Applications on iPhone","item":"https://appjobhunter.com/guides/autofill-job-applications-iphone/"}]},{"@type":"Article","headline":"How to Autofill Job Applications on iPhone","description":"Set up JobHunter in Safari, fill saved contact details, review a worked example, and troubleshoot job application autofill on iPhone.","image":"https://appjobhunter.com/images/guides/autofill-contact-example.png","datePublished":"2026-05-28","dateModified":"2026-10-19","author":{"@type":"Organization","name":"JobHunter","url":"https://appjobhunter.com"},"publisher":{"@type":"Organization","name":"JobHunter","logo":{"@type":"ImageObject","url":"https://appjobhunter.com/images/app-icon.png"}},"mainEntityOfPage":"https://appjobhunter.com/guides/autofill-job-applications-iphone/"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Safari AutoFill fill an entire job application?","acceptedAnswer":{"@type":"Answer","text":"Safari’s contact AutoFill and a job-application extension are separate tools. JobHunter can fill supported fields from your saved details, but every form needs review and some sections require manual entry."}},{"@type":"Question","name":"Why does JobHunter leave a field blank?","acceptedAnswer":{"@type":"Answer","text":"The saved value may be missing, site access may be disabled, or the website may use an unsupported control. Check the profile and permissions, then enter the answer manually if needed."}},{"@type":"Question","name":"Does tapping Autofill submit my application?","acceptedAnswer":{"@type":"Answer","text":"No. Filling fields and attaching documents do not complete the employer’s final submission. Review the application and choose Submit yourself; a site may upload attachments before that final step."}}]}]}</script>
 </head>
 <body>
-<header class="site-header">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="container header-inner">
   <a class="brand" href="/" aria-label="JobHunter home">
     <img src="/images/app-icon.png" alt="" width="40" height="40">
     <span>JobHunter</span>
   </a>
   <nav aria-label="Primary">
-    <a href="/tools/">Tools</a>
     <a href="/guides/">Guides</a>
-    <a href="/privacy/">Privacy</a>
-    <a href="/terms/">Terms</a>
-    <a class="download-link" href="https://apps.apple.com/app/apple-store/id6645735955?pt=120006398&ct=lanlanding&mt=8">Download</a>
+    <a href="/tools/">Free tools</a>
+    <a class="download-link" href="https://apps.apple.com/app/apple-store/id6645735955?pt=120006398&ct=lanlanding&mt=8"><img src="/images/ui/apple.svg" alt="" width="20" height="20"><span>Get JobHunter</span></a>
   </nav>
-</header>
-<main class="article-shell">
-  <a class="breadcrumb" href="/guides/">Guides</a>
+</div></header>
+<main id="main-content" tabindex="-1">
   <article class="article">
-    <p class="eyebrow">Job Application Autofill</p>
-    <h1>How to Autofill Job Applications on iPhone</h1>
-    <p class="intro">To autofill a supported job application on iPhone, save your details in JobHunter, enable its Safari extension, open the employer’s application in Safari, and choose Autofill. Check every filled field and document before you submit. JobHunter does not submit the application for you.</p>
-    <p class="byline">Published 2026-05-28 · Updated 2026-10-19 · By the JobHunter team</p>
-
-    <section>
+    <header class="article-hero"><div class="container">
+      <p class="eyebrow">iPhone · Safari · Autofill</p>
+      <h1>How to Autofill Job Applications on iPhone</h1>
+      <p class="intro">To autofill a supported job application on iPhone, save your details in JobHunter, enable its Safari extension, open the employer’s application in Safari, and choose Autofill. Check every filled field and document before you submit.</p>
+      <p class="byline"><span>By the JobHunter team</span><span>Updated <time datetime="2026-10-19">Oct 19, 2026</time></span><span>Published <time datetime="2026-05-28">May 28, 2026</time></span><span>5 min read</span></p>
+    </div></header>
+    <div class="container article-layout">
+      <div class="article-content">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/guides/">All guides</a><span aria-hidden="true">/</span><span>Job Application Autofill</span></nav>
+        <details class="mobile-contents"><summary>On this page</summary><nav class="toc" aria-label="Article sections"><a href="/guides/autofill-job-applications-iphone/#short-version" data-section="short-version" aria-current="location">The short version</a>
+<a href="/guides/autofill-job-applications-iphone/#what-you-need-before-starting" data-section="what-you-need-before-starting">What you need before starting</a>
+<a href="/guides/autofill-job-applications-iphone/#enable-jobhunter-in-safari" data-section="enable-jobhunter-in-safari">Enable JobHunter in Safari</a>
+<a href="/guides/autofill-job-applications-iphone/#fill-the-application-and-review-it-in-order" data-section="fill-the-application-and-review-it-in-order">Fill the application and review it in order</a>
+<a href="/guides/autofill-job-applications-iphone/#an-autofill-example-you-can-check-field-by-field" data-section="an-autofill-example-you-can-check-field-by-field">An autofill example you can check field by field</a>
+<a href="/guides/autofill-job-applications-iphone/#check-resumes-and-cover-letters-as-separate-steps" data-section="check-resumes-and-cover-letters-as-separate-steps">Check resumes and cover letters as separate steps</a>
+<a href="/guides/autofill-job-applications-iphone/#troubleshoot-an-empty-or-incorrect-field" data-section="troubleshoot-an-empty-or-incorrect-field">Troubleshoot an empty or incorrect field</a>
+<a href="/guides/autofill-job-applications-iphone/#final-review-before-you-submit" data-section="final-review-before-you-submit">Final review before you submit</a>
+<a href="/guides/autofill-job-applications-iphone/#sources" data-section="sources">Sources and further reading</a>
+<a href="/guides/autofill-job-applications-iphone/#frequently-asked-questions" data-section="frequently-asked-questions">Frequently asked questions</a></nav></details>
+        <section class="short-version" id="short-version" tabindex="-1">
+          <img src="/images/ui/notes.svg" alt="" width="42" height="46">
+          <div><h2>The short version</h2><p>Save your details in JobHunter, enable its Safari extension, fill supported fields on the employer’s application, and review everything before you submit yourself.</p></div>
+        </section>
+        <section id="what-you-need-before-starting" tabindex="-1">
       <h2>What you need before starting</h2>
       <p>Install JobHunter and open it to prepare your profile. Save your name, email, phone number and any links you intend to use. Check these details against your resume, especially the email address an employer should use to reach you. Choose your current resume if you want it available during applications.</p>
       <p>Begin with a role you have read and want to apply for. You will still need the employer’s account login when requested, your own answers to eligibility questions, and any documents or work samples listed in the application. Autofill support depends on the website and the controls it uses.</p>
     </section>
-<section>
+<section id="enable-jobhunter-in-safari" tabindex="-1">
       <h2>Enable JobHunter in Safari</h2>
       <p>Apple’s extension settings control whether JobHunter can work on a site. Turning on Safari’s contact AutoFill is a different setting: it uses your contact card and does not enable the JobHunter extension. If a menu label differs on your iOS version, use the Apple instructions in the sources below.</p>
       <ol><li>On your iPhone, open Settings → Apps → Safari → Extensions. On older iOS versions, Safari may appear directly in Settings.</li><li>Select JobHunter and turn on Allow Extension. If you use Safari profiles, enable it for the profile where you apply.</li><li>Open the employer’s application page in Safari. From the Page Menu beside the address field, open Manage Extensions if JobHunter is not available.</li><li>When Safari asks about website access, choose access appropriate to the application site you are using. Return to the form after enabling the extension.</li></ol>
     </section>
-<section>
+<section id="fill-the-application-and-review-it-in-order" tabindex="-1">
       <h2>Fill the application and review it in order</h2>
       <p>Saved contact details and profile links are useful starting points. Education sections, work-history repeaters, custom controls and written questions vary across employers; do not assume they will all fill. Keep your resume open as a reference and enter unsupported sections manually.</p>
       <ol><li>Open the actual application form. A job description page or a page inside another app’s browser may not expose the fields JobHunter needs.</li><li>Open JobHunter from Safari’s extension menu and choose Autofill. Wait for the operation to finish before editing or navigating away.</li><li>Compare the filled contact details with your saved profile. Correct any mismatch and complete fields that stayed empty.</li><li>Check dropdowns, dates, eligibility questions and document attachments separately. A completion message is a prompt to review the result, not proof that every required answer is correct.</li><li>Read the employer’s final review and consent text. Submit the application yourself only after the form and documents are ready.</li></ol>
     </section>
-<section>
+<section id="an-autofill-example-you-can-check-field-by-field" tabindex="-1">
       <h2>An autofill example you can check field by field</h2>
       <p>Here is a controlled example using Alex Morgan’s fictional profile. The field mapper filled four contact fields on the demonstration form. The question about the company stayed empty. This illustrates a review workflow, not a guarantee about any particular employer’s application.</p>
       <p class="table-hint">Scroll across the table to see all columns.</p><div class="table-scroll" role="region" aria-label="Fictional saved profile → demonstration form" tabindex="0"><table>
@@ -70,13 +88,13 @@
       <figcaption>Controlled browser example with fictional profile details. This is a demonstration form, not a live employer application. Supported fields vary by website.</figcaption>
     </figure>
     </section>
-<section>
+<section id="check-resumes-and-cover-letters-as-separate-steps" tabindex="-1">
       <h2>Check resumes and cover letters as separate steps</h2>
       <p>A filled email field does not confirm that a resume was attached. Look at the upload control, confirm the intended filename, and wait for any processing or validation to finish. Use the file types and size limit the employer requests. If resume parsing populates other fields, compare those values with your document.</p>
       <p>Selecting or uploading a file is different from submitting the whole application. A website may receive a document as soon as it uploads, before the final Submit step. Confirm that you trust the destination and have chosen the correct version. Review any AI-written answer or cover letter before adding it to the form.</p>
       <ul><li><a href="/guides/attach-resume-from-iphone-safari/">How to attach a resume from iPhone Safari</a></li><li><a href="/guides/ats-friendly-resume-checklist/">Check resume formatting and parsing</a></li><li><a href="/guides/ai-cover-letter-generator-review-checklist/">Review an AI cover-letter draft with a worked example</a></li></ul>
     </section>
-<section>
+<section id="troubleshoot-an-empty-or-incorrect-field" tabindex="-1">
       <h2>Troubleshoot an empty or incorrect field</h2>
       <p>Keep a copy of written answers before reloading a page; reloading can discard unsaved work. If a control remains unsupported, complete it manually rather than repeatedly running autofill. For a reproducible problem, use JobHunter’s support option with the site name and a description of the affected field; avoid sending your resume or private answers unless needed.</p>
       <p class="table-hint">Scroll across the table to see all columns.</p><div class="table-scroll" role="region" aria-label="Common autofill symptoms and checks" tabindex="0"><table>
@@ -85,19 +103,20 @@
         <tbody><tr><td>JobHunter is missing from Safari</td><td>Confirm it is installed, Allow Extension is on, and the current Safari profile permits it.</td></tr><tr><td>The extension opens but cannot fill</td><td>Check access for this site and open the actual application form before retrying.</td></tr><tr><td>A field stays empty</td><td>Check that your profile contains the value. Custom controls may need manual entry.</td></tr><tr><td>A value appears in the wrong field</td><td>Correct it before continuing. Verify the profile and compare the form with your resume.</td></tr><tr><td>A resume filename does not appear</td><td>Check the upload control, allowed format, file size and any error beside the field.</td></tr></tbody>
       </table></div>
     </section>
-<section>
+<section id="final-review-before-you-submit" tabindex="-1">
       <h2>Final review before you submit</h2>
       <p>Use autofill to reduce repeat typing while keeping your attention on the decisions that matter for this application. After submission, save the employer’s confirmation and update your application tracker. A populated form alone is not a submission receipt.</p>
       <ul class="review-checklist"><li><label><input type="checkbox"><span>The company and role are the ones I intended to apply for.</span></label></li><li><label><input type="checkbox"><span>My contact details and profile links are correct.</span></label></li><li><label><input type="checkbox"><span>Work history and education match my resume wherever the form asks for them.</span></label></li><li><label><input type="checkbox"><span>I answered authorization, sponsorship, compensation and other eligibility questions myself.</span></label></li><li><label><input type="checkbox"><span>The correct documents are attached and finished processing.</span></label></li><li><label><input type="checkbox"><span>I checked each required field and the employer’s consent text.</span></label></li></ul>
       <ul><li><a href="/guides/job-application-autofill-vs-auto-apply/">Understand autofill versus auto-apply</a></li></ul>
     </section>
-    <section class="sources"><h2>Sources and further reading</h2><ul><li><a href="https://support.apple.com/guide/iphone/get-extensions-iphab0432bf6/ios">Apple: enable and manage Safari extensions on iPhone</a></li><li><a href="https://apps.apple.com/us/app/jobhunter-apply-lock/id6645735955">JobHunter on the App Store: published features and compatibility</a></li></ul></section>
+        <section class="sources" id="sources" tabindex="-1"><h2>Sources and further reading</h2><ul><li><a href="https://support.apple.com/guide/iphone/get-extensions-iphab0432bf6/ios">Apple: enable and manage Safari extensions on iPhone</a></li><li><a href="https://apps.apple.com/us/app/jobhunter-apply-lock/id6645735955">JobHunter on the App Store: published features and compatibility</a></li></ul></section>
     <aside class="cta">
+      <p class="eyebrow">Your next application</p>
       <h2>Apply faster from your iPhone</h2>
       <p>Save your profile once, autofill repeat fields, attach resumes, and draft cover letters with JobHunter.</p>
       <a href="https://apps.apple.com/app/apple-store/id6645735955?pt=120006398&ct=lanlanding&mt=8">Download JobHunter on the App Store</a>
     </aside>
-    <section class="faq-section">
+    <section class="faq-section" id="frequently-asked-questions" tabindex="-1">
       <h2>Frequently asked questions</h2>
       <details>
         <summary>Does Safari AutoFill fill an entire job application?</summary>
@@ -112,23 +131,59 @@
         <p>No. Filling fields and attaching documents do not complete the employer’s final submission. Review the application and choose Submit yourself; a site may upload attachments before that final step.</p>
       </details>
     </section>
-  </article>
-  <section class="related">
-    <h2>Related guides</h2>
-    <div class="related-grid">
-      <a href="/guides/job-application-autofill-vs-auto-apply/">
-        <span>Job Application Autofill</span>
-        <strong>Job Application Autofill vs Auto-Apply: What to Use</strong>
-      </a>
-<a href="/guides/attach-resume-from-iphone-safari/">
-        <span>Job Application Autofill</span>
-        <strong>How to Attach a Resume From iPhone Safari</strong>
-      </a>
-<a href="/guides/ten-minute-job-application-workflow/">
-        <span>Job Application Autofill</span>
-        <strong>A 10-Minute Job Application Workflow</strong>
-      </a>
+      </div>
+      <aside class="reading-sidebar" aria-label="Reading companion"><div class="sidebar-inner">
+        <h2>On this page</h2><nav class="toc" aria-label="On this page"><a href="/guides/autofill-job-applications-iphone/#short-version" data-section="short-version" aria-current="location">The short version</a>
+<a href="/guides/autofill-job-applications-iphone/#what-you-need-before-starting" data-section="what-you-need-before-starting">What you need before starting</a>
+<a href="/guides/autofill-job-applications-iphone/#enable-jobhunter-in-safari" data-section="enable-jobhunter-in-safari">Enable JobHunter in Safari</a>
+<a href="/guides/autofill-job-applications-iphone/#fill-the-application-and-review-it-in-order" data-section="fill-the-application-and-review-it-in-order">Fill the application and review it in order</a>
+<a href="/guides/autofill-job-applications-iphone/#an-autofill-example-you-can-check-field-by-field" data-section="an-autofill-example-you-can-check-field-by-field">An autofill example you can check field by field</a>
+<a href="/guides/autofill-job-applications-iphone/#check-resumes-and-cover-letters-as-separate-steps" data-section="check-resumes-and-cover-letters-as-separate-steps">Check resumes and cover letters as separate steps</a><details class="toc-more"><summary>4 more sections</summary><a href="/guides/autofill-job-applications-iphone/#troubleshoot-an-empty-or-incorrect-field" data-section="troubleshoot-an-empty-or-incorrect-field">Troubleshoot an empty or incorrect field</a>
+<a href="/guides/autofill-job-applications-iphone/#final-review-before-you-submit" data-section="final-review-before-you-submit">Final review before you submit</a>
+<a href="/guides/autofill-job-applications-iphone/#sources" data-section="sources">Sources and further reading</a>
+<a href="/guides/autofill-job-applications-iphone/#frequently-asked-questions" data-section="frequently-asked-questions">Frequently asked questions</a></details></nav>
+        <div class="sidebar-related"><h2>Related guides</h2><a class="sidebar-guide" href="/guides/job-application-autofill-vs-auto-apply/">
+    <img src="/images/ui/file-text.svg" alt="" width="24" height="28">
+    <div><span class="card-category">Job Application Autofill</span>
+    <strong>Job Application Autofill vs Auto-Apply: What to Use</strong>
+    <p>Understand the difference between autofilling job applications and auto-applying, including when each workflow helps or hurts your search.</p></div>
+  </a>
+<a class="sidebar-guide" href="/guides/attach-resume-from-iphone-safari/">
+    <img src="/images/ui/file-text.svg" alt="" width="24" height="28">
+    <div><span class="card-category">Job Application Autofill</span>
+    <strong>How to Attach a Resume From iPhone Safari</strong>
+    <p>A simple iPhone workflow for keeping resumes ready, choosing the right file, and attaching it to job applications in Safari.</p></div>
+  </a>
+<a class="sidebar-guide" href="/guides/ten-minute-job-application-workflow/">
+    <img src="/images/ui/file-text.svg" alt="" width="24" height="28">
+    <div><span class="card-category">Job Application Autofill</span>
+    <strong>A 10-Minute Job Application Workflow</strong>
+    <p>A practical 10-minute workflow for reviewing a role, tailoring key details, autofilling the application, and submitting with confidence.</p></div>
+  </a></div>
+      </div></aside>
     </div>
+  </article>
+  <section class="related container">
+    <p class="eyebrow">Keep going</p>
+    <h2>Related guides</h2>
+    <div class="related-grid"><a class="guide-card" href="/guides/job-application-autofill-vs-auto-apply/">
+
+    <div><span class="card-category">Job Application Autofill</span>
+    <strong>Job Application Autofill vs Auto-Apply: What to Use</strong>
+    <p>Understand the difference between autofilling job applications and auto-applying, including when each workflow helps or hurts your search.</p></div>
+  </a>
+<a class="guide-card" href="/guides/attach-resume-from-iphone-safari/">
+
+    <div><span class="card-category">Job Application Autofill</span>
+    <strong>How to Attach a Resume From iPhone Safari</strong>
+    <p>A simple iPhone workflow for keeping resumes ready, choosing the right file, and attaching it to job applications in Safari.</p></div>
+  </a>
+<a class="guide-card" href="/guides/ten-minute-job-application-workflow/">
+
+    <div><span class="card-category">Job Application Autofill</span>
+    <strong>A 10-Minute Job Application Workflow</strong>
+    <p>A practical 10-minute workflow for reviewing a role, tailoring key details, autofilling the application, and submitting with confidence.</p></div>
+  </a></div>
   </section>
 </main>
 <footer class="site-footer">
