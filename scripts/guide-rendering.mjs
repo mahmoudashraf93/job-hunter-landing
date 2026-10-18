@@ -39,6 +39,31 @@ export const renderFigure = (image) => image ? `<figure class="article-image${im
       <figcaption>${escapeHtml(image.caption ?? image.alt)}</figcaption>
     </figure>` : "";
 
+// Keep the outline and rendered headings in sync, including repeated headings
+// from consolidated guides. Reserve IDs used by the surrounding article layout.
+export const outlineSections = (sections) => {
+  const used = new Set(["main-content", "short-version", "sources", "frequently-asked-questions"]);
+  return sections.map((section) => {
+    const base = section.heading.normalize("NFKD").replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "section";
+    let id = base;
+    let suffix = 2;
+    while (used.has(id)) id = `${base}-${suffix++}`;
+    used.add(id);
+    return { ...section, id };
+  });
+};
+
+export const readingMinutes = (article) => {
+  // Count editorial copy rather than object keys, URLs or presentation metadata.
+  const text = [article.intro, ...article.sections.flatMap((section) => [
+    section.heading, ...(section.paragraphs ?? []), ...(section.steps ?? []),
+    ...(section.bullets ?? []), ...(section.checklist ?? []),
+    ...(section.table?.columns ?? []), ...(section.table?.rows.flat() ?? [])
+  ]), ...article.faqs.flatMap((faq) => [faq.question, faq.answer])].join(" ");
+  return Math.max(1, Math.ceil(text.trim().split(/\s+/).length / 220));
+};
+
 export const renderSection = (section) => {
   const paragraphs = (section.paragraphs || [])
     .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("\n      ");
@@ -59,7 +84,7 @@ export const renderSection = (section) => {
       </table></div>`;
   }
   const additions = [bullets, steps, checklist, table, section.image && renderFigure(section.image), section.links && renderLinks(section.links)].filter(Boolean);
-  return `<section>
+  return `<section${section.id ? ` id="${escapeHtml(section.id)}" tabindex="-1"` : ""}>
       <h2>${escapeHtml(section.heading)}</h2>
       ${paragraphs}${additions.length ? `\n      ${additions.join("\n      ")}` : ""}
     </section>`;

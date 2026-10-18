@@ -22,6 +22,27 @@ Production deploys from the `master` branch to
 [appjobhunter.com](https://appjobhunter.com/). GitHub Pages also serves the
 repository so legacy App Store links can redirect to the canonical site.
 
+## Guide design
+
+The guide index and all article pages share the Field Notes layout. Edit
+`content/guides.css` and `scripts/guide-interactions.js`, then regenerate with
+`node scripts/build-guides.mjs`. The builder replaces the whole `guides/`
+directory; edit its sources rather than the generated pages.
+
+Section navigation is generated from the article headings, with unique fragment
+IDs for consolidated sections. Native disclosure menus, internal links, FAQs
+and checklists work without JavaScript. The small enhancement script tracks the
+current reading section and closes the mobile contents menu after a jump.
+Reading times are estimates at 220 words per minute. A visual-only change does
+not update an article's publication or modification date.
+
+Inter is self-hosted in `fonts/` under its included SIL Open Font License.
+The document, notes and Apple icons in `images/ui/` come from Tabler Icons
+under its included MIT license; their paths are unchanged and their colors
+match the site palette. The JobHunter logo and product screenshots are the
+existing project assets. `design-qa.md` records the selected reference and
+browser verification and is excluded from public assets.
+
 ## SEO publishing standard
 
 Before an article is ready for review:

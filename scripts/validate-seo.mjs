@@ -186,7 +186,8 @@ for (const plan of guidePlans) {
   const metadata = graph.find((item) => item["@type"] === "Article");
   const modified = plan.dateModified ?? SITE_MODIFIED;
   if (metadata?.dateModified !== modified || sitemapDates.get(`${SITE_URL}${pathname}`) !== modified ||
-      !article.includes(`Published ${metadata.datePublished} · Updated ${modified}`)) {
+      !article.includes(`Published <time datetime="${metadata.datePublished}">`) ||
+      !article.includes(`Updated <time datetime="${modified}">`)) {
     throw new Error(`${pathname} has inconsistent visible, structured or sitemap dates`);
   }
   if (!html.includes("Frequently asked questions")) {
