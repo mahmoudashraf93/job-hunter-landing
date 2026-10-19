@@ -1,5 +1,6 @@
 import { writeFile } from "node:fs/promises";
 import path from "node:path";
+import { guidePlans } from "../content/seo-plan.mjs";
 
 const SITE_URL = "https://appjobhunter.com";
 const APP_STORE_URL = "https://apps.apple.com/app/apple-store/id6645735955?pt=120006398&ct=lanlanding&mt=8";
@@ -441,8 +442,8 @@ const html = `<!doctype html>
           <a class="guide-card" href="/guides/highest-hiring-companies-job-search/"><span>Job matching</span><strong>How to Find Companies Hiring for Many Roles</strong><p>Use company hiring volume as a discovery signal without applying blindly.</p></a>
           <a class="guide-card" href="/guides/autofill-job-applications-iphone/"><span>Autofill</span><strong>How to Autofill Job Applications on iPhone</strong><p>Save repeat typing and review every field before submitting.</p></a>
           <a class="guide-card" href="/guides/ats-friendly-resume-checklist/"><span>Resume</span><strong>ATS-Friendly Resume Checklist</strong><p>Prepare resumes that parse cleanly in online forms.</p></a>
-          <a class="guide-card" href="/guides/ai-cover-letter-generator-review-checklist/"><span>Cover letters</span><strong>AI Cover Letter Review Checklist</strong><p>Use AI drafts without sending generic or inaccurate letters.</p></a>
-          <a class="guide-card" href="/guides/"><span>All guides</span><strong>View 15 in-depth job search guides</strong><p>Browse consolidated job matching, autofill, resume, and cover letter resources.</p></a>
+          <a class="guide-card" href="/guides/ai-cover-letter-generator-review-checklist/"><span>Cover letters</span><strong>Draft and Review a Cover Letter</strong><p>Build a draft from your own evidence and check it before sending.</p></a>
+          <a class="guide-card" href="/guides/"><span>All guides</span><strong>View ${guidePlans.length} practical job search guides</strong><p>Browse job matching, autofill, resume, and cover letter resources.</p></a>
         </div>
       </div>
     </section>

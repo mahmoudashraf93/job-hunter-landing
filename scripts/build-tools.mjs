@@ -371,7 +371,7 @@ ${header}
     <p>Check the employer name, role title, hiring-manager name, dates, tools, years, results, and every number. Delete anything you would not be comfortable explaining in an interview. Do not include passwords, identification numbers, medical details, private account information, or confidential information from a current employer.</p>
     <p>The browser generator performs its template work locally and does not submit an application. You decide whether to copy the letter, download it, edit it elsewhere, or discard it. The employer receives it only when you add it to an application yourself.</p>
     <h2>Continue with a review-first workflow</h2>
-    <p>Use the <a href="/guides/write-cover-letter-fast/">fast cover-letter guide</a> to prepare reusable evidence, follow the <a href="/guides/ai-cover-letter-generator-review-checklist/">AI draft review checklist</a> for generated wording, and use the <a href="/guides/career-change-cover-letter-structure/">career-change structure</a> when your previous title does not tell the whole story.</p>
+    <p>Use the <a href="/guides/ai-cover-letter-generator-review-checklist/">cover-letter drafting and review guide</a> to prepare your evidence, compare a worked example and check the final wording. Use the <a href="/guides/career-change-cover-letter-structure/">career-change structure</a> when your previous title does not tell the whole story.</p>
   </section>
 
   ${renderFaqs(coverFaqs)}
