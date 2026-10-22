@@ -658,7 +658,7 @@ export const guidePlans = [
     "description": "Check your resume’s file format, reading order, dates and relevant skills, then review imported fields. Includes a fictional parsing-review example.",
     "intro": "Follow the employer’s file instructions, use a readable text-based resume, and compare imported fields with the original after upload. This checklist helps you check formatting and accuracy; no template or keyword score guarantees an interview.",
     "datePublished": "2026-05-28",
-    "dateModified": "2026-10-19",
+    "dateModified": "2026-10-22",
     "redirectFrom": [
       "best-resume-format-job-application-forms",
       "pdf-resume-vs-online-form-fields",
@@ -700,7 +700,14 @@ export const guidePlans = [
         "heading": "Make the structure easy to follow",
         "paragraphs": [
           "Use recognizable headings such as Experience, Education and Skills. Keep each role’s title, employer and dates together, and use a consistent date style. Put your name and contact details in the main document body, where they do not depend on a decorative image.",
-          "A plain single-column version is a useful fallback when extraction goes wrong. Greenhouse lists columns, text boxes, graphics, and header/footer placement among potential parsing problems. This does not mean every two-column resume is rejected, or that a plain layout will parse perfectly."
+          "A plain single-column version is a useful fallback when extraction goes wrong. Greenhouse lists columns, text boxes, graphics, and header/footer placement among potential parsing problems. This does not mean every two-column resume is rejected, or that a plain layout will parse perfectly.",
+          "If you need to rebuild the layout, the free browser resume maker below exports a single-column PDF. Use the export only when the employer accepts PDF, then check its reading order and any imported fields."
+        ],
+        "links": [
+          {
+            "label": "Build a single-column PDF with the free resume maker",
+            "href": "/tools/free-resume-maker/"
+          }
         ]
       },
       {
@@ -831,7 +838,7 @@ export const guidePlans = [
     "description": "A mobile-friendly process for tailoring your resume to a job description without rewriting everything from scratch.",
     "intro": "You do not need to rewrite your entire resume for every role. On iPhone, the best approach is to adjust the parts that connect most directly to the job description.",
     "datePublished": "2026-05-28",
-    "dateModified": "2026-10-19",
+    "dateModified": "2026-10-22",
     "redirectFrom": [
       "resume-keywords-match-job-description",
       "job-match-keywords-resume"
@@ -865,7 +872,14 @@ export const guidePlans = [
       {
         "heading": "Reopen the exported resume before applying",
         "paragraphs": [
-          "Save the tailored version separately, open the export and check its page breaks, contact details and links. Attach the version you just reviewed, then compare any imported application fields with it."
+          "Save the tailored version separately, open the export and check its page breaks, contact details and links. Attach the version you just reviewed, then compare any imported application fields with it.",
+          "For a plain starting layout, the free browser resume maker below lets you enter the tailored text and export a PDF. Keep your source text separately and use that export only when the employer accepts PDF."
+        ],
+        "links": [
+          {
+            "label": "Create a tailored PDF with the free resume maker",
+            "href": "/tools/free-resume-maker/"
+          }
         ]
       },
       {
@@ -1074,7 +1088,7 @@ export const guidePlans = [
     "description": "Write a cover-letter draft from your own evidence, compare a complete fictional example, and use a practical checklist to review AI-assisted wording.",
     "intro": "Name the role, choose one relevant example from your experience, and explain how it connects to the work. Draft the letter in your own words, then check the facts, employer details and format. AI assistance is optional and must follow the employer’s instructions.",
     "datePublished": "2026-05-28",
-    "dateModified": "2026-10-19",
+    "dateModified": "2026-10-22",
     "redirectFrom": [
       "write-cover-letter-fast",
       "entry-level-internship-cover-letter",
@@ -1104,12 +1118,17 @@ export const guidePlans = [
         "paragraphs": [
           "Start with the exact role and a genuine reason it interests you. Use the middle of the letter to explain one or two relevant examples, then close with the contribution you would like to discuss. Add detail the resume does not explain rather than repeating every role in paragraph form.",
           "For a first job or internship, the example can come from a course project, volunteer work or another responsibility. For a career change, explain the connection between the work you have done and the role you want. Keep titles, scope and results accurate.",
-          "Store a small evidence bank: what happened, what you did and what result you can verify. Reuse those facts when relevant, but choose the example and employer-specific reason for each application. You can write the draft in a note or document; no generator is required."
+          "Store a small evidence bank: what happened, what you did and what result you can verify. Reuse those facts when relevant, but choose the example and employer-specific reason for each application. You can write the draft in a note or document; no generator is required.",
+          "If a blank page is slowing you down, the free browser template below can give you a structure. Replace the sample details and review every sentence; it does not use AI or submit applications."
         ],
         "links": [
           {
             "label": "Explain a career change in a cover letter",
             "href": "/guides/career-change-cover-letter-structure/"
+          },
+          {
+            "label": "Start a draft with the free cover-letter template",
+            "href": "/tools/free-cover-letter-generator/"
           }
         ]
       },
