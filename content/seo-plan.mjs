@@ -1206,6 +1206,12 @@ export const guidePlans = [
           "Put the job description, resume and letter beside one another. Check job titles, dates, qualifications and any numbers. A requirement in the advertisement is not evidence that you have that skill; delete sentences that accidentally present the employer’s wish list as your background.",
           "Choose a relevant example and explain its connection to the work. Avoid squeezing every keyword into the letter or retelling each job on your resume. Harvard and MIT career guidance both emphasize specific, relevant evidence and tailoring to the position; their guidance is linked below.",
           "If you cannot support a sentence, revise it before polishing its tone. Replace an invented percentage with the work you actually did. When an example depends on confidential customer or employer information, describe your contribution without identifying private details."
+        ],
+        "links": [
+          {
+            "label": "Check resume formatting and imported fields with the ATS checklist",
+            "href": "/guides/ats-friendly-resume-checklist/"
+          }
         ]
       },
       {
@@ -1222,6 +1228,12 @@ export const guidePlans = [
           "Follow the employer’s instructions for file type, length and submission method. If no length is specified, keep the letter focused; the career guidance below uses a concise one-page format as a starting point. A web form may have its own character limit.",
           "For a text field, paste the reviewed letter and check paragraph breaks, quotation marks and any character counter. For an attachment, open the exported file and inspect every page. Confirm the filename and make sure a previous draft is not still attached. Do one final check for the wrong employer name, bracketed placeholders and an old role title.",
           "Do not add a letter through an unrelated contact channel when the application does not request one. Complete the materials the employer asks for, then review the whole application before choosing Submit."
+        ],
+        "links": [
+          {
+            "label": "Find and upload your application documents from iPhone Safari",
+            "href": "/guides/attach-resume-from-iphone-safari/"
+          }
         ]
       }
     ],
@@ -2064,6 +2076,14 @@ export const guidePlans = [
           {
             "label": "Move from a matched role to a reviewed application",
             "href": "/guides/ten-minute-job-application-workflow/"
+          },
+          {
+            "label": "Set up Safari contact AutoFill and check the fields it fills",
+            "href": "/guides/autofill-job-applications-iphone/"
+          },
+          {
+            "label": "Choose and upload the correct resume from iPhone Safari",
+            "href": "/guides/attach-resume-from-iphone-safari/"
           }
         ]
       }
