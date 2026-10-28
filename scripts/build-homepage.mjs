@@ -400,7 +400,7 @@ const html = `<!doctype html>
         <h2>Spend less time typing the same profile.</h2>
         <p class="section-intro">JobHunter focuses on the repeat work that slows down job seekers: matched job discovery, profile fields, resume attachment, and cover letter drafts.</p>
         <div class="feature-grid">
-          <a class="feature" href="/guides/review-job-matches-faster/"><strong>Find matched jobs</strong><p>Review active roles by title, company, work mode, and fit before you apply.</p></a>
+          <a class="feature" href="/guides/ten-minute-job-application-workflow/"><strong>Review and apply for jobs</strong><p>Review active roles by title, company, work mode, and fit before you apply.</p></a>
           <a class="feature" href="/guides/autofill-job-applications-iphone/"><strong>Autofill application fields</strong><p>Save profile details once and use them to complete repetitive application forms faster.</p></a>
           <a class="feature" href="/guides/attach-resume-from-iphone-safari/"><strong>Attach resumes from iPhone</strong><p>Keep resume versions ready so you can choose the right file while applying on mobile.</p></a>
           <a class="feature" href="/guides/ai-cover-letter-generator-review-checklist/"><strong>Draft AI cover letters</strong><p>Create a quick draft, then review and tailor it before adding it to an application.</p></a>

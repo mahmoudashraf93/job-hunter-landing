@@ -32,9 +32,9 @@ img { max-width: 100%; }
 .brand img { width: 42px; height: 42px; border-radius: 6px; }
 .site-header nav { display: flex; align-items: center; gap: 34px; font-size: 15px; font-weight: 550; }
 .site-header nav a { color: white; text-decoration: none; }
-.site-header nav a:not(.download-link):hover { text-decoration: underline; }
-.download-link, .cta a { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 16px; border-radius: 6px; background: var(--teal); color: white; font-size: 14px; font-weight: 700; text-decoration: none; }
-.download-link:hover, .cta a:hover { background: #076f77; }
+.site-header nav a:hover { text-decoration: underline; }
+.cta a { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 16px; border-radius: 6px; background: var(--teal); color: white; font-size: 14px; font-weight: 700; text-decoration: none; }
+.cta a:hover { background: #076f77; }
 .site-header :focus-visible, .article-hero :focus-visible { outline-color: #55d6d0; }
 .article-hero { background: var(--ink); color: white; padding: 27px 0 23px; }
 .eyebrow { margin: 0 0 8px; color: var(--teal); font-size: 13px; font-weight: 750; line-height: 1.5; letter-spacing: 1.1px; text-transform: uppercase; }
@@ -91,6 +91,14 @@ th { background: var(--soft); }
 .review-checklist label { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; cursor: pointer; }
 .review-checklist input { flex: 0 0 auto; width: 20px; height: 20px; margin: 3px 0 0; accent-color: var(--blue); }
 .sources { font-size: 15px; }
+.editorial-note { margin-top: 24px; color: var(--muted); font-size: 14px; }
+.editorial-note summary { cursor: pointer; padding-block: 8px; }
+.practice-card { margin-block: 22px; padding: 22px; border: 1px solid #bad9dd; border-radius: 9px; background: var(--soft); }
+.practice-card > p { font-size: 15px; }
+.practice-card label { display: block; margin-bottom: 10px; font-weight: 650; }
+.practice-card input { display: block; width: 100%; min-width: 0; max-width: 100%; font: inherit; font-size: 15px; }
+.practice-card input::file-selector-button, .practice-card button { padding: 10px 14px; border: 1px solid #b4c6d8; border-radius: 6px; background: white; color: var(--ink); font: inherit; font-size: 15px; cursor: pointer; }
+.practice-card [data-file-status] { margin-block: 16px; overflow-wrap: anywhere; }
 .cta { margin: 36px 0; border: 1px solid #c9e6e5; background: var(--mint); padding: 28px; border-radius: 9px; }
 .cta p { color: #42576b; }
 .cta .eyebrow { color: var(--teal); margin-bottom: 8px; }
@@ -140,9 +148,7 @@ th { background: var(--soft); }
   .brand { font-size: 20px; gap: 10px; width: fit-content; }
   .brand img { width: 34px; height: 34px; }
   .site-header nav { gap: 23px; font-size: 13px; margin-top: 14px; }
-  .site-header nav a:not(.download-link) { display: inline-flex; align-items: center; min-height: 28px; }
-  .site-header .download-link { position: absolute; top: 14px; right: 0; font-size: 12px; padding: 8px 10px; min-height: 36px; }
-  .download-link img { width: 16px; height: 16px; }
+  .site-header nav a { display: inline-flex; align-items: center; min-height: 28px; }
   .article-hero { padding: 22px 0 26px; }
   .article-hero .eyebrow { font-size: 11px; letter-spacing: 1px; margin-bottom: 10px; }
   h1 { font-size: clamp(34px, 9.2vw, 48px); letter-spacing: -1.3px; line-height: 1.07; }
@@ -173,5 +179,5 @@ th { background: var(--soft); }
   .site-footer nav { gap: 18px; }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .guide-card, .download-link, .cta a { transition: background-color 140ms ease, border-color 140ms ease; }
+  .guide-card, .cta a { transition: background-color 140ms ease, border-color 140ms ease; }
 }

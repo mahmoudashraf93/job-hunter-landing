@@ -73,7 +73,7 @@ const guideStrip = `<section id="seo-guide-strip" style="background:#f6f8fb;colo
       <a href="/guides/autofill-job-applications-iphone/" style="display:block;padding:18px;border:1px solid #d9e1ea;border-radius:8px;background:white;text-decoration:none;color:#14213d"><strong>Autofill job applications</strong><br><span style="color:#526173">Save repeat typing on iPhone forms.</span></a>
       <a href="/guides/ats-friendly-resume-checklist/" style="display:block;padding:18px;border:1px solid #d9e1ea;border-radius:8px;background:white;text-decoration:none;color:#14213d"><strong>Resume builder workflow</strong><br><span style="color:#526173">Use cleaner resumes for online forms.</span></a>
       <a href="/guides/ai-cover-letter-generator-review-checklist/" style="display:block;padding:18px;border:1px solid #d9e1ea;border-radius:8px;background:white;text-decoration:none;color:#14213d"><strong>AI cover letters</strong><br><span style="color:#526173">Draft faster and review before sending.</span></a>
-      <a href="/guides/" style="display:block;padding:18px;border:1px solid #d9e1ea;border-radius:8px;background:#14213d;text-decoration:none;color:white"><strong>View all guides</strong><br><span style="color:#d9e1ea">15 in-depth job search guides.</span></a>
+      <a href="/guides/" style="display:block;padding:18px;border:1px solid #d9e1ea;border-radius:8px;background:#14213d;text-decoration:none;color:white"><strong>View all guides</strong><br><span style="color:#d9e1ea">10 practical job search guides.</span></a>
     </div>
   </div>
 </section>`;
