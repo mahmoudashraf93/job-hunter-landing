@@ -83,7 +83,20 @@ export const renderSection = (section) => {
         <tbody>${rows.map((row) => `<tr>${row.map((cell) => `<td>${escapeHtml(cell)}</td>`).join("")}</tr>`).join("")}</tbody>
       </table></div>`;
   }
-  const additions = [bullets, steps, checklist, table, section.image && renderFigure(section.image), section.links && renderLinks(section.links)].filter(Boolean);
+  let practice = "";
+  if (section.practice) {
+    if (section.practice !== "file-picker") throw new Error("Unknown guide practice: " + section.practice);
+    const id = escapeHtml("practice-" + (section.id ?? "file-picker"));
+    practice = `<div class="practice-card" data-file-practice>
+        <p id="${id}-help">Practice only: this page shows the filename and size. It does not upload the file or check employer compatibility.</p>
+        <label for="${id}">Choose a practice file</label>
+        <input id="${id}" type="file" disabled aria-describedby="${id}-help ${id}-status">
+        <p id="${id}-status" role="status" data-file-status>No file selected.</p>
+        <button type="button" data-file-clear hidden>Clear file selection</button>
+        <noscript><p>JavaScript is needed for this optional exercise. The upload instructions above remain available.</p></noscript>
+      </div>`;
+  }
+  const additions = [bullets, steps, checklist, table, practice, section.image && renderFigure(section.image), section.links && renderLinks(section.links)].filter(Boolean);
   return `<section${section.id ? ` id="${escapeHtml(section.id)}" tabindex="-1"` : ""}>
       <h2>${escapeHtml(section.heading)}</h2>
       ${paragraphs}${additions.length ? `\n      ${additions.join("\n      ")}` : ""}

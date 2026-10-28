@@ -1,8 +1,6 @@
-// Canonical, publishable guide content. Legacy topic sources remain in
-// articles.mjs and job-matching-articles.mjs for redirect history; edits here
-// explicitly replace their sections rather than appending another article.
+// Canonical guide content. Legacy topic sources preserve redirect history only.
 export const SITE_MODIFIED = "2026-08-12";
-export const PAGE_MODIFIED = { "/": "2026-10-19" };
+export const PAGE_MODIFIED = { "/": "2026-10-29" };
 
 export const guidePlans = [
   {
@@ -10,10 +8,10 @@ export const guidePlans = [
     "cluster": "job-autofill",
     "title": "How to Autofill Job Applications on iPhone",
     "h1": "How to Autofill Job Applications on iPhone",
-    "description": "Set up Safari contact AutoFill on iPhone, check the fields it fills, complete the rest manually, and troubleshoot missing or incorrect suggestions.",
+    "description": "Set up Safari contact AutoFill on iPhone, separate supported contact fields from job-specific answers, and fix missing or incorrect suggestions.",
     "intro": "Start with Safari’s built-in contact AutoFill for supported name, email, phone and address fields. Check the result against your own details, then complete work history, written answers and document uploads separately. Filling fields does not submit the application.",
     "datePublished": "2026-05-28",
-    "dateModified": "2026-10-19",
+    "dateModified": "2026-10-29",
     "redirectFrom": [
       "save-reusable-job-application-answers",
       "fill-long-job-application-forms-faster",
@@ -59,7 +57,7 @@ export const guidePlans = [
       {
         "heading": "Review contact details and custom answers separately",
         "paragraphs": [
-          "This fictional review sheet uses Alex Morgan’s details to show what to check. It is not a capture of Safari filling a live employer form, and it does not predict which fields a particular website will recognize."
+          "Use this fictional field-review example to distinguish reusable contact details from questions that need a separate answer. Alex Morgan is an invented applicant; the table is a review exercise rather than a capture of a particular employer’s form."
         ],
         "table": {
           "caption": "Fictional application review example",
@@ -93,6 +91,11 @@ export const guidePlans = [
               "Why this company?",
               "An answer written for this role",
               "Write from your own research and experience."
+            ],
+            [
+              "Country or region",
+              "The applicant’s actual location",
+              "Check the form’s wording; a populated address does not answer whether the employer can hire you there."
             ]
           ]
         }
@@ -117,7 +120,8 @@ export const guidePlans = [
       {
         "heading": "Troubleshoot without losing your answers",
         "paragraphs": [
-          "Before reloading or switching browsers, save a copy of any long written answers. If the employer’s form remains incompatible, use its official help channel or another supported device rather than leaving required fields inaccurate."
+          "Before reloading or switching browsers, save a copy of any long written answers. If the employer’s form remains incompatible, use its official help channel or another supported device rather than leaving required fields inaccurate.",
+          "A useful support note names the field, what you expected and what appeared. For example: “The phone value is correct in Contacts, but this form puts the country code in a separate dropdown.” Leave out personal details when asking a public support forum for help."
         ],
         "table": {
           "caption": "Contact AutoFill symptoms and next checks",
@@ -187,121 +191,152 @@ export const guidePlans = [
     ],
     "summary": "Enable contact AutoFill, choose your own contact card, and review every filled field. Your resume, work history and employer-specific answers need separate attention.",
     "screenshot": null,
-    "eyebrow": "iPhone · Safari · Contact AutoFill"
+    "eyebrow": "iPhone · Safari · Contact AutoFill",
+    "editorialNote": "Prepared with AI-assisted drafting and editorial review. Linked technical and career guidance was checked on October 29, 2026. Fictional examples are identified in the text."
   },
   {
     "slug": "job-application-autofill-vs-auto-apply",
     "cluster": "job-autofill",
-    "title": "Job Application Autofill vs Auto-Apply: What to Use",
+    "title": "Job Application Autofill vs Auto-Apply: A Practical Comparison",
     "h1": "Job Application Autofill vs Auto-Apply",
-    "description": "Understand the difference between autofilling job applications and auto-applying, including when each workflow helps or hurts your search.",
-    "intro": "Autofill and auto-apply sound similar, but they create very different job search workflows. Autofill speeds up forms. Auto-apply tries to submit applications with little or no review.",
+    "description": "Compare contact autofill, resume import and auto-apply. Check what a tool can change or send, and choose where to keep a manual review.",
+    "intro": "The useful distinction is what the tool can do before you approve an application. Filling a name, importing a resume and submitting to an employer are separate actions. Check those boundaries before handing a tool your documents or account access.",
     "datePublished": "2026-05-28",
-    "dateModified": "2026-10-19",
+    "dateModified": "2026-10-29",
     "redirectFrom": [
       "apply-to-jobs-faster-without-auto-submit"
     ],
     "relatedSlugs": [
       "autofill-job-applications-iphone",
-      "review-job-matches-faster",
+      "attach-resume-from-iphone-safari",
       "ten-minute-job-application-workflow"
     ],
     "sections": [
       {
-        "heading": "Autofill Keeps You in the Loop",
+        "heading": "Identify the action you are automating",
         "paragraphs": [
-          "With autofill, your saved profile fills repeated fields while you remain on the application page. You can edit answers, choose the resume, and decide when to submit.",
-          "This works well when the job is worth applying to and you want speed without sacrificing accuracy."
-        ]
-      },
-      {
-        "heading": "Auto-Apply Can Create Low-Quality Submissions",
-        "paragraphs": [
-          "Auto-apply tools can be tempting when you are tired of forms, but they can submit to roles you would not have chosen, attach generic documents, or answer nuanced questions poorly.",
-          "For many job seekers, the better tradeoff is fast human-reviewed applications."
-        ]
-      },
-      {
-        "heading": "Use Review-First Automation",
-        "paragraphs": [
-          "A practical workflow is to automate repeated typing and keep manual review for decisions. You still move faster, but your applications stay intentional.",
-          "This is especially important on company career pages with custom questions and compliance fields."
-        ]
-      },
-      {
-        "heading": "Apply to Jobs Faster Without Auto-Submitting",
-        "paragraphs": [
-          "Speed matters in a job search, but fully automatic submission can create bad applications. A review-first workflow keeps the time savings while protecting quality."
-        ]
-      },
-      {
-        "heading": "Separate Repetitive Fields From Judgment Calls",
-        "paragraphs": [
-          "Name, email, phone, education, work history, and basic profile fields are repetitive. Role-specific questions, salary expectations, relocation, and cover letters need more attention.",
-          "Treat autofill as a first draft for the form, not the final application."
-        ]
-      },
-      {
-        "heading": "Use a Three-Pass Review",
-        "paragraphs": [
-          "First, confirm the form is complete. Second, check answers that can reject you automatically. Third, tailor anything the recruiter will actually read.",
-          "This review is much faster than typing the entire application from scratch, and it prevents the common mistakes that come from rushing."
+          "A label such as one-click apply is not enough to explain a service. Look at the actual controls: does it suggest text, change the employer’s form, attach a file, choose vacancies or send the application? One product may combine several of these actions.",
+          "Use the table to describe the workflow rather than to judge a named product. Features and defaults vary; verify the service you are considering."
         ],
-        "bullets": [
-          "Pass one: missing required fields.",
-          "Pass two: eligibility, location, compensation, and work authorization.",
-          "Pass three: role-specific written answers and documents."
+        "table": {
+          "caption": "Four actions that need different checks",
+          "columns": [
+            "Action",
+            "What it does",
+            "What you should verify"
+          ],
+          "rows": [
+            [
+              "Contact autofill",
+              "Copies saved contact details into supported fields.",
+              "The selected contact, current email and placement of each value."
+            ],
+            [
+              "Resume import",
+              "Attempts to extract information from a document.",
+              "Titles, dates, employers and any field left blank or mapped incorrectly."
+            ],
+            [
+              "Drafting assistance",
+              "Suggests answers or cover-letter wording.",
+              "Every claim, the employer’s instructions and the information shared with the service."
+            ],
+            [
+              "Auto-apply",
+              "Sends applications according to the service’s rules.",
+              "Which roles and materials will be sent, whether approval is required, and how the outcome is recorded."
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "Use autofill where the source information is stable",
+        "paragraphs": [
+          "Contact details are a reasonable place to reduce repeated typing. On iPhone, Safari’s contact AutoFill can use your selected contact card on supported forms. It is a starting point for the form, not a substitute for checking it.",
+          "Keep a separate source for work history and approved factual details. For example, a saved employment start date can be reused when accurate. A response to “Why do you want this role?” needs a fresh connection to the particular vacancy."
+        ],
+        "links": [
+          {
+            "label": "Set up Safari contact AutoFill",
+            "href": "/guides/autofill-job-applications-iphone/"
+          }
         ]
       },
       {
-        "heading": "Keep the Resume Attached to the Role",
+        "heading": "Keep judgment-heavy answers under your control",
         "paragraphs": [
-          "If you use multiple resumes, name them clearly by target role. The wrong resume can make an otherwise strong application look unfocused.",
-          "On iPhone, keep the current resume easy to reach so attaching it does not break your application flow."
+          "Review eligibility, sponsorship, availability, compensation expectations and consent language yourself. A tool can populate a field without understanding the consequences of the answer. Correct the form even when the suggestion came from a previously accurate application.",
+          "Consider this fictional example: an applicant’s saved availability is two weeks, but a current notice commitment is six weeks. Reusing the old answer would be inaccurate even if the field was filled perfectly. The failure is in the source fact, not the typing."
         ]
       },
       {
-        "heading": "Choose Automation by Risk, Not by Speed Alone",
+        "heading": "Read the access request before enabling an extension",
         "paragraphs": [
-          "The safest dividing line is whether a task requires judgment. Copying a phone number, LinkedIn URL, school name, or employment date is low risk when the saved source is accurate. Choosing a salary expectation, describing why you want the role, answering a sponsorship question, or deciding which resume to use carries much more risk. Autofill is appropriate for the first group because the applicant remains present. Auto-apply often tries to make decisions in the second group without enough context.",
-          "A high application count is not useful if the submissions target the wrong locations, attach irrelevant resumes, or contradict your actual background. Recruiters also notice generic answers. A review-first workflow optimizes the number of credible applications you can submit, not the number of forms a bot can touch."
+          "Apple explains how Safari extensions receive access to websites. Use those controls to understand when an extension can operate, and inspect the tool’s own documentation for what it reads, stores and sends. Browser permission and a service’s data-retention policy answer different questions.",
+          "Before connecting an account or uploading a resume to a third party, locate its data-use and deletion information. Decide whether the task needs a document upload, access to a particular website or broader account access. If the explanation is unclear, resolve that question before providing the data."
+        ],
+        "links": [
+          {
+            "label": "Apple: Safari extensions and website access",
+            "href": "https://support.apple.com/guide/iphone/get-extensions-iphab0432bf6/ios"
+          }
         ]
       },
       {
-        "heading": "A Practical Decision Matrix",
+        "heading": "Try one intended application before relying on a workflow",
         "paragraphs": [
-          "Use autofill when the role has been reviewed, the form is open in front of you, and you can correct every value. Use a saved answer as a starting point when the question repeats but its wording may change. Write a fresh answer when the employer asks about its product, mission, role, or a specific situation. Skip automation entirely for legal attestations that you do not understand.",
-          "Before submitting, ask four questions: Did I choose this role intentionally? Is every factual answer true today? Are the resume and cover letter meant for this role? Would I be comfortable explaining every answer in an interview? If all four answers are yes, automation has supported the application rather than replacing your judgment."
+          "Start with a real vacancy you genuinely want, or a practice environment explicitly provided for testing. Do not send invented applications to employers to benchmark a tool.",
+          "Record what changed and where a review is still needed. A few successful fields on one site do not establish compatibility with another employer’s application."
+        ],
+        "checklist": [
+          "I can see the selected role and employer before anything is submitted.",
+          "I can inspect and correct the fields and attachments that will be sent.",
+          "I know whether a file is transmitted during upload or only at a later step.",
+          "I understand which actions happen automatically and how to stop future activity.",
+          "I can find the employer’s confirmation or check the application status."
         ]
       },
       {
-        "heading": "Measure the Right Outcome",
+        "heading": "Check what the employer actually received",
         "paragraphs": [
-          "Track completed, qualified applications and recruiter responses rather than raw submission volume. If faster forms create more errors or fewer relevant replies, narrow the target roles and strengthen the review step. If the applications remain accurate and you consistently finish roles you would otherwise abandon on mobile, the workflow is working."
+          "After a submission, keep the role reference, confirmation and version of the documents used. A tool’s internal “completed” label is not the same evidence as an employer’s receipt. If confirmation is missing, check the official application portal before sending another copy.",
+          "If an error slips through, use the employer’s stated correction or withdrawal method when available. Do not assume uninstalling an extension withdraws an application or deletes a document already transmitted."
+        ],
+        "links": [
+          {
+            "label": "Use an application record that preserves the details",
+            "href": "/guides/ten-minute-job-application-workflow/"
+          }
         ]
       }
     ],
     "faqs": [
       {
         "question": "Is autofill the same as auto-apply?",
-        "answer": "No. Autofill proposes values inside a form you are reviewing. Auto-apply attempts to select roles and submit applications with limited or no final review."
+        "answer": "No. Autofill populates fields; auto-apply includes sending applications. A service may offer both, so inspect its actual controls."
       },
       {
-        "question": "Can a fast application still be tailored?",
-        "answer": "Yes. Save time on stable facts, then use that time to tailor the resume emphasis, cover letter, and company-specific questions."
+        "question": "Does reviewing a preview guarantee the final application is accurate?",
+        "answer": "No. Check the final form and attachments, then retain the employer’s confirmation. A preview is one checkpoint."
       },
       {
-        "question": "What is the biggest risk of auto-apply?",
-        "answer": "It can create inaccurate or irrelevant submissions at scale, including wrong eligibility answers, generic documents, and applications to roles you would not choose yourself."
+        "question": "Can I reuse answers safely?",
+        "answer": "Reuse verified facts when they remain accurate. Revisit answers that depend on the role, employer, timing or your current circumstances."
       }
     ],
     "sources": [
       {
-        "label": "Apple: understand Safari extension access",
+        "label": "Apple: contact AutoFill in Safari",
+        "href": "https://support.apple.com/en-gb/guide/iphone/iphccfb450b7/ios"
+      },
+      {
+        "label": "Apple: control Safari extension access",
         "href": "https://support.apple.com/guide/iphone/get-extensions-iphab0432bf6/ios"
       }
     ],
-    "screenshot": null
+    "screenshot": null,
+    "summary": "Choose automation for a specific task, check its access and review the result. A filled field, an uploaded document and a submitted application need different checks.",
+    "editorialNote": "Prepared with AI-assisted drafting and editorial review. Linked technical and career guidance was checked on October 29, 2026. Fictional examples are identified in the text."
   },
   {
     "slug": "attach-resume-from-iphone-safari",
@@ -311,11 +346,11 @@ export const guidePlans = [
     "description": "Find your resume in Files, select it from a Safari application form, confirm the upload, and check file-type, cloud-file and parsing problems.",
     "intro": "Save the requested resume file in Files, open the employer’s application in Safari, and use its upload control to select the document. Wait for processing and confirm the filename. Attaching a resume and submitting the application are separate steps.",
     "datePublished": "2026-05-28",
-    "dateModified": "2026-10-19",
+    "dateModified": "2026-10-29",
     "redirectFrom": [],
     "relatedSlugs": [
       "ats-friendly-resume-checklist",
-      "multiple-resume-versions-different-roles",
+      "tailor-resume-to-job-description-iphone",
       "autofill-job-applications-iphone"
     ],
     "sections": [
@@ -329,7 +364,7 @@ export const guidePlans = [
       {
         "heading": "Find the document in Files",
         "paragraphs": [
-          "If the resume is in an email or another app, use that app’s save or share options to put a copy in Files. Then open Files and locate the copy you intend to send. Recents can help, but verify the filename and contents rather than choosing by position in the list.",
+          "If the resume is in an email or another app, look for a share or export control and, when offered, choose Save to Files. Select a folder and save the copy. The source app may use different labels. Open Files afterward and check the filename and contents rather than choosing a document only by its position in Recents.",
           "For a downloaded document, check the configured Downloads location, such as iCloud Drive → Downloads or a folder under On My iPhone. Open a cloud-stored document and let it finish loading before you return to the application. A filename visible in a cloud folder is not enough to confirm the document is available to open.",
           "If the resume is in a third-party cloud service, Apple documents how to enable that provider under Files → Browse → More → Edit. Set up the provider’s app first; available locations depend on the apps and accounts on your device."
         ],
@@ -357,6 +392,14 @@ export const guidePlans = [
           "Check that the displayed filename is the file you selected. If a preview or download link is provided, inspect that too.",
           "Review imported contact and employment fields separately. A successful upload does not establish that parsing was accurate."
         ]
+      },
+      {
+        "heading": "Practice choosing a file without sending it",
+        "paragraphs": [
+          "Use the practice picker below to rehearse locating a resume and checking its filename. It shows only the selected file’s name and size in this page. The exercise does not read the document’s contents, send the file, save it on this site or test an employer’s uploader. If the picker stays disabled, skip the exercise and follow the upload steps above.",
+          "On iPhone, use the document-browsing option if the system offers several sources. Select a harmless sample file if you prefer not to display a real resume name. Choosing a file here is a practice selection, not a job application."
+        ],
+        "practice": "file-picker"
       },
       {
         "heading": "A worked file-selection example",
@@ -427,8 +470,8 @@ export const guidePlans = [
         ],
         "links": [
           {
-            "label": "Organize multiple resume versions",
-            "href": "/guides/multiple-resume-versions-different-roles/"
+            "label": "Manage resume versions while tailoring",
+            "href": "/guides/tailor-resume-to-job-description-iphone/"
           },
           {
             "label": "Follow the complete iPhone application workflow",
@@ -451,7 +494,7 @@ export const guidePlans = [
         "answer": "No. It indicates the attachment currently shown by the form. Complete the remaining steps and retain the employer’s submission confirmation."
       }
     ],
-    "summary": "Find and open the correct file first. Select it from the employer’s upload control, check the displayed filename and review any imported information before submitting.",
+    "summary": "Locate and open the correct document, select it from the employer’s resume field, and verify its filename and imported details. The practice picker below lets you rehearse file selection locally.",
     "sources": [
       {
         "label": "Apple: locate downloads on iPhone",
@@ -466,189 +509,243 @@ export const guidePlans = [
         "href": "https://support.greenhouse.io/hc/en-us/articles/360052218132-Supported-formats-for-resumes-cover-letters-and-other-candidate-uploads"
       }
     ],
-    "screenshot": null
+    "screenshot": null,
+    "editorialNote": "Prepared with AI-assisted drafting and editorial review. Linked technical and career guidance was checked on October 29, 2026. Fictional examples are identified in the text."
   },
   {
     "slug": "ten-minute-job-application-workflow",
     "cluster": "job-autofill",
     "title": "How to Apply for Jobs on iPhone: A Practical Workflow",
     "h1": "How to Apply for Jobs on iPhone",
-    "description": "Review a role, prepare the right resume, complete the application, verify submission and keep a useful tracking record from your iPhone.",
-    "intro": "Start by checking that the role fits, then prepare the requested documents, complete the employer’s form and review it before submitting. Save the confirmation and the version you sent. You can do this with Safari, Files and a simple note or spreadsheet.",
+    "description": "Set up a useful search, review job fit, prepare documents, complete the form and track the exact application you sent from your iPhone.",
+    "intro": "Use Safari, Files and a simple note or spreadsheet to move from a promising job to a checked application. Start by deciding whether the role fits. Then prepare the documents, complete the employer’s form and keep a record of the result. A complex application may need another device or a longer session.",
     "datePublished": "2026-05-28",
-    "dateModified": "2026-10-19",
+    "dateModified": "2026-10-29",
     "redirectFrom": [
       "apply-to-matched-jobs-iphone",
-      "track-matched-jobs-after-applying"
+      "track-matched-jobs-after-applying",
+      "review-job-matches-faster",
+      "daily-job-match-routine",
+      "avoid-bad-job-matches",
+      "use-job-filters-without-missing-roles",
+      "salary-signals-in-job-matches",
+      "fresh-job-feed-application-strategy",
+      "set-up-job-matching-profile",
+      "best-skills-for-job-matches",
+      "find-tech-jobs-that-match-resume",
+      "job-matching-for-career-change"
     ],
     "relatedSlugs": [
-      "review-job-matches-faster",
+      "find-top-remote-jobs-iphone",
       "autofill-job-applications-iphone",
-      "job-application-autofill-vs-auto-apply"
+      "tailor-resume-to-job-description-iphone"
     ],
     "sections": [
       {
-        "heading": "Decide whether to apply, save or skip",
+        "heading": "Write a search brief you can reuse",
         "paragraphs": [
-          "Read the company, role, location, work arrangement and central requirements before opening the form. A recommendation or match score is a lead to investigate, not confirmation that you meet every requirement.",
-          "Apply when the core fit is clear. Save the role with a specific question when location, schedule or another important detail needs research. Skip a hard mismatch. If several roles come from one employer, compare them and focus on the opening for which you can make the clearest case."
-        ],
-        "links": [
-          {
-            "label": "Evaluate a job match before applying",
-            "href": "/guides/review-job-matches-faster/"
-          }
+          "Before opening a job feed, put five details in a note: target role families, work you can demonstrate, acceptable locations, required working hours and any essential conditions. Separate a hard requirement from a preference so your filters do not accidentally hide acceptable roles.",
+          "This fictional brief belongs to Alex Morgan: customer-support or support-operations work; experience answering booking and refund emails; a help-article update; and experience helping two colleagues learn a support queue. Alex records their own location and available hours separately. The brief is a search aid, not a prediction of matching scores.",
+          "When a job site has a profile, make its factual history agree with the resume. Add recognizable skills you actually use. If several results are irrelevant, change one search term or filter and inspect the result before narrowing again."
         ]
       },
       {
-        "heading": "Prepare the resume and a small evidence bank",
+        "heading": "Turn each promising listing into a decision",
         "paragraphs": [
-          "Keep the selected resume in a predictable Files folder and open it to confirm the version. Save the vacancy URL and note two requirements you can support with examples. That note gives you a reason for applying and a starting point for written answers.",
-          "Do the reusable preparation outside the application session: maintain accurate dates, contact details, portfolio links and a few short accomplishment notes. Use your own source facts rather than asking a tool to invent achievements."
-        ],
-        "links": [
-          {
-            "label": "Keep resume versions organized",
-            "href": "/guides/multiple-resume-versions-different-roles/"
-          },
-          {
-            "label": "Tailor a resume to the role",
-            "href": "/guides/tailor-resume-to-job-description-iphone/"
-          }
-        ]
-      },
-      {
-        "heading": "Complete the form one section at a time",
-        "paragraphs": [
-          "Open the actual employer application in Safari and scan it for required documents, long answers and account requirements. If a listing redirects, confirm that the destination still identifies the company and role you chose.",
-          "Use contact AutoFill where supported, then complete work history and custom controls using your resume as a reference. Answer eligibility questions yourself. Attach the requested documents and compare any imported fields with the source; a filename alone does not establish that every field is correct."
-        ],
-        "links": [
-          {
-            "label": "Set up native Safari contact AutoFill",
-            "href": "/guides/autofill-job-applications-iphone/"
-          },
-          {
-            "label": "Upload a resume from Safari",
-            "href": "/guides/attach-resume-from-iphone-safari/"
-          }
-        ]
-      },
-      {
-        "heading": "Make written answers specific to the role",
-        "paragraphs": [
-          "Use the requirement notes you made before opening the form. Connect one actual responsibility, project or result to what the employer needs. A job description’s wish list is not evidence that you have those qualifications.",
-          "If a cover letter is requested, write a focused draft and check it against the role and your resume. Save longer answers outside the form before navigating away. Follow the employer’s instructions about AI assistance and submitted materials."
-        ],
-        "links": [
-          {
-            "label": "Draft and review a cover letter with a worked example",
-            "href": "/guides/ai-cover-letter-generator-review-checklist/"
-          }
-        ]
-      },
-      {
-        "heading": "Review, submit and verify the result",
-        "paragraphs": [
-          "Read the final review and consent text. After choosing Submit, retain the confirmation shown by the employer. If you see an error, resolve it; if there is no clear confirmation, check the application status or official support route before sending a duplicate."
-        ],
-        "checklist": [
-          "The company, role and destination are the ones I intended.",
-          "My contact information and eligibility answers are accurate.",
-          "The correct resume and any requested cover letter are attached.",
-          "Imported employment and education fields agree with the documents.",
-          "Written answers contain no placeholders or unsupported claims.",
-          "I saved the employer’s submission confirmation or recorded that submission remains unconfirmed."
-        ]
-      },
-      {
-        "heading": "Record what you sent immediately",
-        "paragraphs": [
-          "A note, spreadsheet or tracker can hold the record. The useful part is the information you keep, not the particular tool. This fictional example shows enough context to recover the application later without storing unnecessary personal details in a shared document."
+          "Read the responsibilities and stated requirements, not just the title or remote badge. Verify the listing through the employer’s own careers site. A hard mismatch deserves a different decision from an unanswered question.",
+          "When pay is published, record the range, currency, time basis and stated hours. Compare those details with your needs rather than assuming the top of a range will be offered. If compensation is missing and the role otherwise fits, save a budget question; a senior-sounding title is not a reliable substitute for a stated range."
         ],
         "table": {
-          "caption": "Fictional application tracking record",
+          "caption": "Fictional shortlist decisions for Alex",
           "columns": [
-            "Field",
-            "Example"
+            "Listing detail",
+            "Evidence or constraint",
+            "Decision"
           ],
           "rows": [
             [
-              "Company and role",
-              "ClearDesk — Customer Support Specialist (fictional)"
+              "Customer support role asks for email replies and help articles.",
+              "Alex has examples of both; location and hours match the stated requirements.",
+              "Prepare an application after reading the full role."
             ],
             [
-              "Vacancy source",
-              "The official vacancy URL, saved with the role description"
+              "Similar role lists a permitted region but not the applicant’s country.",
+              "The wording does not establish whether Alex can be hired there.",
+              "Save the official link with a precise location question."
             ],
             [
-              "Application date",
-              "The actual date the employer confirmed submission"
+              "Support manager role requires direct management of a team.",
+              "Helping two colleagues learn a queue does not establish that experience.",
+              "Look for a closer role unless the employer clarifies that background is acceptable."
             ],
             [
-              "Resume version",
-              "Alex-Morgan-Support-Resume.pdf; retain the exact sent copy privately"
+              "Similar role says a second language is preferred, not required.",
+              "Alex lacks that preference but can support the listed core work.",
+              "Review the other requirements; do not treat a stated preference as an automatic rejection."
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "Check country and schedule restrictions on remote jobs",
+            "href": "/guides/find-top-remote-jobs-iphone/"
+          },
+          {
+            "label": "Compare different vacancies at the same company",
+            "href": "/guides/highest-hiring-companies-job-search/"
+          }
+        ]
+      },
+      {
+        "heading": "Save the vacancy before you start editing",
+        "paragraphs": [
+          "Record the company, exact role title, job reference and official application URL. Keep the relevant responsibilities and document instructions in your private application record so you can refer to the version you read if the advertisement changes.",
+          "Put an unresolved question beside the listing rather than creating an unexplained saved pile. Examples include “Does this role hire in my country?” or “Which days require office attendance?” Use a verified employer contact channel when clarification is needed."
+        ]
+      },
+      {
+        "heading": "Prepare documents and source facts in Files",
+        "paragraphs": [
+          "Open the resume you intend to use, then compare its strongest evidence with the vacancy. Tailor the summary and selected bullets where that makes the fit clearer. Keep dates and official titles consistent across versions.",
+          "Put the checked export in a predictable Files folder. Save any required letter alongside it, then open both files. A recognizable filename helps you choose the correct version in the upload picker; it does not verify the contents on its own."
+        ],
+        "links": [
+          {
+            "label": "Tailor a resume and manage role-family versions",
+            "href": "/guides/tailor-resume-to-job-description-iphone/"
+          },
+          {
+            "label": "Draft and review a focused cover letter",
+            "href": "/guides/ai-cover-letter-generator-review-checklist/"
+          },
+          {
+            "label": "Locate downloaded documents on iPhone",
+            "href": "https://support.apple.com/en-us/102440"
+          }
+        ]
+      },
+      {
+        "heading": "Complete the form in separate passes",
+        "paragraphs": [
+          "First fill contact details and review the result. Next complete employment, education and role-specific questions. Finally attach the requested documents and inspect any fields imported from them. Keeping those passes separate makes omissions easier to spot.",
+          "Keep long written answers in a private note while drafting. Save them before a session timeout, reload or device switch. Avoid copying sensitive details into a shared clipboard or third-party writing service without considering who can access them.",
+          "Answer work authorization, sponsorship, availability and consent questions from your actual circumstances. A previous answer or matching score cannot establish the correct response for a new role."
+        ],
+        "links": [
+          {
+            "label": "Reduce repeated typing with Safari contact AutoFill",
+            "href": "/guides/autofill-job-applications-iphone/"
+          },
+          {
+            "label": "Choose and verify a resume attachment",
+            "href": "/guides/attach-resume-from-iphone-safari/"
+          },
+          {
+            "label": "Understand the boundary between autofill and auto-apply",
+            "href": "/guides/job-application-autofill-vs-auto-apply/"
+          }
+        ]
+      },
+      {
+        "heading": "Do a final review, then look for confirmation",
+        "paragraphs": [
+          "Read the employer’s review screen and required declarations. Check the employer name, role reference, contact details, date fields and final filenames. If the website offers an attachment preview, inspect it. Clear any visible errors before submitting.",
+          "After choosing the final submission control, look for a confirmation page, email or application status. If the outcome is unclear, check the portal or official support route before creating a duplicate submission."
+        ],
+        "checklist": [
+          "The right employer and role are selected.",
+          "The resume and letter contain no details from another application.",
+          "Required questions are complete and accurate.",
+          "The intended documents are attached.",
+          "The employer’s confirmation or application status is recorded."
+        ]
+      },
+      {
+        "heading": "Keep a record you can use when someone replies",
+        "paragraphs": [
+          "Create one row per role. Mark a draft as a draft; change it to submitted only when you have the evidence. Keep the actual document or version identifier, not merely the latest file in your resume folder.",
+          "If you receive a reply, reopen this record before responding. If you follow up, use the employer’s stated timeline and contact method. No reply does not prove that the form failed or that a particular document format caused rejection.",
+          "A fictional draft record could read: “ClearDesk — Customer Support Specialist — CS-101 — Alex-Morgan-Support-v3.pdf — draft — waiting to resolve the location question.” It stays a draft until submission is confirmed. In a real record, add the official URL and preserve the exact file sent."
+        ],
+        "table": {
+          "caption": "A useful application record",
+          "columns": [
+            "Field",
+            "What to save"
+          ],
+          "rows": [
+            [
+              "Role",
+              "Employer, title, job reference and official URL."
             ],
             [
-              "Written materials",
-              "The reviewed cover letter and any role-specific answers"
+              "Materials",
+              "Resume filename/version and the letter or answers used."
             ],
             [
-              "Status and next step",
-              "Applied; use the employer’s published timeline before following up"
+              "Outcome",
+              "Draft, submission unconfirmed, submitted, withdrawn or another confirmed status; date and confirmation reference."
+            ],
+            [
+              "Next step",
+              "A specific unresolved question or the employer’s stated follow-up instruction."
             ]
           ]
         }
       },
       {
-        "heading": "Follow up with the original context",
+        "heading": "Use a short session without rushing a complex form",
         "paragraphs": [
-          "When a recruiter replies, reopen the vacancy notes and the materials you sent before responding. Update the record consistently, using statuses such as applied, interviewing, offer, rejected or closed. If the employer provides a timeline, follow it rather than sending repeated messages.",
-          "Check the record before another application to the same company. If you pursue more than one role, be able to explain why each fits your experience."
-        ]
-      },
-      {
-        "heading": "Allow the application the time it needs",
-        "paragraphs": [
-          "A ten-minute checklist can be a planning aid for a straightforward form, not a guarantee. Work samples, detailed questions, accessibility needs and major resume changes can require much longer. Save a draft when the site allows it and return with enough time to finish accurately.",
-          "Afterward, fix the source of repeated friction: a hard-to-find file, an outdated contact card or missing dates. Reusable preparation is more dependable than trying to tap faster."
+          "A short phone session can be useful even when you do not finish an application. Save the official listing, resolve one eligibility question or prepare a document. Stop at a clear checkpoint rather than submitting unchecked answers to meet a timer.",
+          "If a form cannot be completed reliably on the phone, save the work you can preserve and use an employer-supported browser or device. Report a specific problem—such as an upload error or an inaccessible required field—through its official help channel. Never pay for the promise of a job; the FTC warns that this is a scam signal."
+        ],
+        "links": [
+          {
+            "label": "FTC: recognize job scams",
+            "href": "https://consumer.ftc.gov/articles/job-scams"
+          }
         ]
       }
     ],
     "faqs": [
       {
-        "question": "Do I need a special application app?",
-        "answer": "No. You can use Safari, Files, your documents and a note or spreadsheet. Other tools can help, but they are optional."
+        "question": "Can I complete every job application on an iPhone?",
+        "answer": "Some forms or document tasks may work poorly on mobile. Use the employer’s supported method and switch devices when that is the practical way to finish accurately."
       },
       {
-        "question": "Can every application take ten minutes?",
-        "answer": "No. Treat a short checklist as a planning aid. Longer answers, work samples and careful tailoring deserve the time they need."
+        "question": "Should I apply if one requirement is unclear?",
+        "answer": "Record the exact uncertainty and seek clarification through a verified employer channel. Do not invent an answer about your qualifications or eligibility."
       },
       {
-        "question": "What should I keep after applying?",
-        "answer": "Keep the company and role, vacancy URL, confirmation date, exact resume version, written answers, status and any published next-step timeline."
+        "question": "How do I improve irrelevant job matches?",
+        "answer": "Check your target titles, truthful skills and location preferences. Change one search setting at a time so you can see which results it affects."
       },
       {
-        "question": "How do I avoid applying twice?",
-        "answer": "Check your record before submitting and update it as soon as the employer confirms the application. Record uncertain submissions as unconfirmed while you check their status."
+        "question": "Does an uploaded resume mean the application was submitted?",
+        "answer": "No. Complete the employer’s final submission step and retain its confirmation or check the portal status."
       }
     ],
-    "summary": "Review the role, choose the right documents, check the form and record the outcome. Use a checklist to avoid missed steps; allow more time when the application needs it.",
+    "summary": "Define your target, decide apply/save/skip, prepare the right documents, check the form and record the confirmation. The useful outcome is a complete, accurate application—not a time target.",
     "sources": [
       {
-        "label": "Apple: contact AutoFill in Safari",
+        "label": "Apple: contact AutoFill",
         "href": "https://support.apple.com/en-gb/guide/iphone/iphccfb450b7/ios"
       },
       {
-        "label": "Apple: find downloaded documents",
+        "label": "Apple: downloaded files",
         "href": "https://support.apple.com/en-us/102440"
       },
       {
-        "label": "MIT: prepare a focused cover letter",
-        "href": "https://capd.mit.edu/resources/how-to-write-an-effective-cover-letter/"
+        "label": "MIT: specific evidence in resume writing",
+        "href": "https://capd.mit.edu/resources/resumes-writing-about-your-skills/"
+      },
+      {
+        "label": "FTC: job-scam warning signs",
+        "href": "https://consumer.ftc.gov/articles/job-scams"
       }
     ],
-    "screenshot": null
+    "screenshot": null,
+    "editorialNote": "Prepared with AI-assisted drafting and editorial review. Linked technical and career guidance was checked on October 29, 2026. Fictional examples are identified in the text."
   },
   {
     "slug": "ats-friendly-resume-checklist",
@@ -658,7 +755,7 @@ export const guidePlans = [
     "description": "Check your resume’s file format, reading order, dates and relevant skills, then review imported fields. Includes a fictional parsing-review example.",
     "intro": "Follow the employer’s file instructions, use a readable text-based resume, and compare imported fields with the original after upload. This checklist helps you check formatting and accuracy; no template or keyword score guarantees an interview.",
     "datePublished": "2026-05-28",
-    "dateModified": "2026-10-22",
+    "dateModified": "2026-10-29",
     "redirectFrom": [
       "best-resume-format-job-application-forms",
       "pdf-resume-vs-online-form-fields",
@@ -666,15 +763,15 @@ export const guidePlans = [
     ],
     "relatedSlugs": [
       "tailor-resume-to-job-description-iphone",
-      "multiple-resume-versions-different-roles",
-      "attach-resume-from-iphone-safari"
+      "attach-resume-from-iphone-safari",
+      "ten-minute-job-application-workflow"
     ],
     "sections": [
       {
         "heading": "Separate uploading, parsing and hiring decisions",
         "paragraphs": [
           "Uploading stores a document. Parsing attempts to extract information such as names, titles and dates. Hiring decisions involve the employer’s requirements and process. Success at the first step does not establish success at the others.",
-          "Greenhouse’s published documentation explicitly describes resumes that attach but do not parse. Its guidance is useful evidence about that product, not a specification shared by every applicant tracking system."
+          "Greenhouse’s recruiter-side documentation describes files that attach while information extraction fails. That is evidence about one product’s processing; it does not tell you what every applicant-facing form will display."
         ],
         "links": [
           {
@@ -687,7 +784,7 @@ export const guidePlans = [
         "heading": "Check the employer’s format and size rules",
         "paragraphs": [
           "Use the formats accepted by the actual application. Export a text-based PDF or DOCX from your source document when those types are allowed. Do not send an image of the resume or change a filename extension to imitate another format.",
-          "Upload and parser limits can differ. For example, Greenhouse documents a 2.5 MB limit for parsing, separately from its candidate-upload allowance. Use the employer’s instructions and the current vendor documentation; do not assume a limit from one platform applies elsewhere."
+          "Upload and parser limits can differ. Greenhouse’s documentation lists a 2.5 MB parsing limit, separately from its candidate-upload allowance. Use the actual form’s instructions and current vendor guidance rather than applying one platform’s limit to every employer."
         ],
         "links": [
           {
@@ -700,20 +797,13 @@ export const guidePlans = [
         "heading": "Make the structure easy to follow",
         "paragraphs": [
           "Use recognizable headings such as Experience, Education and Skills. Keep each role’s title, employer and dates together, and use a consistent date style. Put your name and contact details in the main document body, where they do not depend on a decorative image.",
-          "A plain single-column version is a useful fallback when extraction goes wrong. Greenhouse lists columns, text boxes, graphics, and header/footer placement among potential parsing problems. This does not mean every two-column resume is rejected, or that a plain layout will parse perfectly.",
-          "If you need to rebuild the layout, the free browser resume maker below exports a single-column PDF. Use the export only when the employer accepts PDF, then check its reading order and any imported fields."
-        ],
-        "links": [
-          {
-            "label": "Build a single-column PDF with the free resume maker",
-            "href": "/tools/free-resume-maker/"
-          }
+          "A plain single-column version is a useful fallback when extraction goes wrong. Greenhouse lists columns, text boxes, graphics, and header/footer placement among potential parsing problems. This does not mean every two-column resume is rejected, or that a plain layout will parse perfectly."
         ]
       },
       {
         "heading": "Compare expected information with imported fields",
         "paragraphs": [
-          "The table below is a fictional review exercise, not a benchmark or a record of a real ATS test. Alex’s source resume lists a Support Specialist role at fictional Northline Services from January 2023 to May 2026. The purpose is to show how to spot and correct discrepancies."
+          "This fictional review exercise is not an ATS benchmark. Alex’s source resume lists a Support Specialist role at fictional Northline Services from January 2023 to May 2026. Compare the possible discrepancies with the source, then use the same review method on your actual application."
         ],
         "table": {
           "caption": "Fictional resume-to-form review exercise",
@@ -782,7 +872,7 @@ export const guidePlans = [
       {
         "heading": "Final resume and application checklist",
         "paragraphs": [
-          "Harvard’s career guidance recommends specific, active writing that reflects the skills and experience relevant to the target role. Once the document is readable, make the evidence easy to find rather than continuing to adjust formatting without a purpose."
+          "Once the document is readable, make the relevant evidence easy to find. MIT’s resume guidance explains how specific actions and context can show a skill more clearly than a generic label."
         ],
         "checklist": [
           "The file meets this application’s stated type and size requirements.",
@@ -816,269 +906,287 @@ export const guidePlans = [
     "summary": "Use the requested file type, keep important information in ordinary text, and inspect the fields after upload. Clear evidence matters as much as readable formatting.",
     "sources": [
       {
-        "label": "Greenhouse: unsuccessful resume parsing and layout issues",
+        "label": "Greenhouse: recruiter-side parsing failures and layout issues",
         "href": "https://support.greenhouse.io/hc/en-us/articles/200989175-Unsuccessful-resume-parse"
       },
       {
-        "label": "Greenhouse: supported candidate upload formats",
+        "label": "Greenhouse: supported candidate uploads",
         "href": "https://support.greenhouse.io/hc/en-us/articles/360052218132-Supported-formats-for-resumes-cover-letters-and-other-candidate-uploads"
       },
       {
-        "label": "Harvard: resume and cover-letter writing guidance",
-        "href": "https://careerservices.fas.harvard.edu/resources/hes-create-impactful-resumes-and-cover-letters/"
+        "label": "MIT: evidence-based resume writing",
+        "href": "https://capd.mit.edu/resources/resumes-writing-about-your-skills/"
       }
     ],
-    "screenshot": null
+    "screenshot": null,
+    "editorialNote": "Prepared with AI-assisted drafting and editorial review. Linked technical and career guidance was checked on October 29, 2026. Fictional examples are identified in the text.",
+    "optionalTools": [
+      {
+        "label": "Free browser resume maker",
+        "href": "/tools/free-resume-maker/",
+        "description": "Creates a single-column PDF. Keep your editable source and use PDF only when the employer accepts it."
+      }
+    ]
   },
   {
     "slug": "tailor-resume-to-job-description-iphone",
     "cluster": "resume",
-    "title": "How to Tailor a Resume to a Job Description on iPhone",
+    "title": "How to Tailor a Resume on iPhone: Examples and Version Control",
     "h1": "Tailor a Resume to a Job Description on iPhone",
-    "description": "A mobile-friendly process for tailoring your resume to a job description without rewriting everything from scratch.",
-    "intro": "You do not need to rewrite your entire resume for every role. On iPhone, the best approach is to adjust the parts that connect most directly to the job description.",
+    "description": "Map a job description to truthful evidence, rewrite relevant bullets, organize resume versions and check the export before applying from iPhone.",
+    "intro": "Tailoring means making relevant experience easy to find. Keep the facts of your employment history intact, choose evidence that fits the vacancy, and check the exported document. A requirement in an advertisement is something to assess—not a skill to add automatically.",
     "datePublished": "2026-05-28",
-    "dateModified": "2026-10-22",
+    "dateModified": "2026-10-29",
     "redirectFrom": [
       "resume-keywords-match-job-description",
-      "job-match-keywords-resume"
+      "job-match-keywords-resume",
+      "multiple-resume-versions-different-roles"
     ],
     "relatedSlugs": [
       "ats-friendly-resume-checklist",
-      "multiple-resume-versions-different-roles",
-      "set-up-job-matching-profile"
+      "attach-resume-from-iphone-safari",
+      "career-change-cover-letter-structure"
     ],
     "sections": [
       {
-        "heading": "Find the Role's Repeated Signals",
+        "heading": "Keep the vacancy and your source resume together",
         "paragraphs": [
-          "Read the job description for repeated skills, tools, responsibilities, and outcomes. These are the signals the employer cares about most.",
-          "Only use terms that match your real experience."
+          "Save the official role title, reference and the requirements you are responding to. Open an editable source document rather than trying to maintain separate PDFs as your only records. Your private master can hold more material than any one submitted resume.",
+          "On the phone, work from an editor that lets you inspect the document and export the requested format. Do not change the extension of a file to imitate a different format. Before editing, save a working copy so you can recover a useful version."
         ]
       },
       {
-        "heading": "Update the Summary and Top Bullets",
+        "heading": "One workable iPhone editing route: Pages",
         "paragraphs": [
-          "The top third of your resume gets the most attention. Adjust the summary and the first bullets under relevant roles so they align with the target job.",
-          "Small changes can make the resume feel much more relevant."
-        ]
-      },
-      {
-        "heading": "Keep Multiple Versions Organized",
-        "paragraphs": [
-          "Save role-specific resume versions with clear names. This helps when attaching a resume from your iPhone and prevents sending the wrong file."
-        ]
-      },
-      {
-        "heading": "Reopen the exported resume before applying",
-        "paragraphs": [
-          "Save the tailored version separately, open the export and check its page breaks, contact details and links. Attach the version you just reviewed, then compare any imported application fields with it.",
-          "For a plain starting layout, the free browser resume maker below lets you enter the tailored text and export a PDF. Keep your source text separately and use that export only when the employer accepts PDF."
+          "If you already use Pages, this is one concrete way to keep an editable source and a separate export. Other document editors have different controls. A PDF is an export to inspect; start from your editable resume when revising the text.",
+          "Apple documents both More → Export and Share → Export and Send in its Pages guidance. Labels depend on the app version. Use the available export command and choose the format the employer requests."
+        ],
+        "steps": [
+          "In the Pages document browser, locate the editable resume. Touch and hold its thumbnail and choose Duplicate to make a working copy.",
+          "Open the copy. Use the document’s Rename control to identify the role family; Apple’s current guide places it under More → Document Options. Tap Edit if the document opens in reading view.",
+          "Make the targeted text changes. Recheck titles, dates, qualifications and contact details before exporting.",
+          "Use the export command, choose Word or PDF as required, then Save to Files and select a predictable folder.",
+          "Open the exported file from Files and inspect it. Keep the editable copy for future corrections."
         ],
         "links": [
           {
-            "label": "Create a tailored PDF with the free resume maker",
-            "href": "/tools/free-resume-maker/"
+            "label": "Apple: duplicate and rename a Pages document",
+            "href": "https://support.apple.com/en-euro/guide/pages-iphone/tan95caaa4ff/ios"
+          },
+          {
+            "label": "Apple: exporting and converting document formats",
+            "href": "https://support.apple.com/en-gb/105050"
+          },
+          {
+            "label": "Apple: open and edit documents in Pages",
+            "href": "https://support.apple.com/en-ie/guide/pages-iphone/tancdeedb11c/ios"
           }
         ]
       },
       {
-        "heading": "Match Resume Keywords to a Job Description",
+        "heading": "Make a requirement-to-evidence map",
         "paragraphs": [
-          "Resume keywords help connect your experience to the job description. The goal is to reflect real experience in the employer's language, not to overload the document."
+          "The following job and applicant are fictional. ClearDesk’s Customer Support Specialist advertisement asks for email support, useful documentation, helping colleagues learn processes and Salesforce experience. Alex Morgan has answered booking and refund emails, updated a help article and helped two colleagues learn a queue. Alex has not used Salesforce.",
+          "If a requirement appears central and you cannot support it, decide whether to seek clarification or pursue another role. A matching percentage cannot resolve that judgment for you."
+        ],
+        "table": {
+          "caption": "Fictional tailoring worksheet",
+          "columns": [
+            "Requirement",
+            "Available evidence",
+            "Resume decision"
+          ],
+          "rows": [
+            [
+              "Clear customer email replies",
+              "Answered booking and refund questions by email.",
+              "Put this example near the top of the relevant role."
+            ],
+            [
+              "Maintain help documentation",
+              "Updated a help article after repeated questions.",
+              "Describe the action and its context."
+            ],
+            [
+              "Help colleagues learn processes",
+              "Helped two new colleagues learn the queue.",
+              "Include it if training is relevant; keep the scope accurate."
+            ],
+            [
+              "Salesforce experience",
+              "None supplied.",
+              "Leave it out of the skills list; assess whether the employer treats it as essential."
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "Rewrite the strongest bullets without inventing results",
+        "paragraphs": [
+          "Use an action, enough context to make the work understandable, and a result when you can verify one. MIT’s resume guidance describes this approach. A useful statement can still be specific when you do not have a reliable percentage.",
+          "Keep the employer’s useful terminology when it accurately describes your work. Do not repeat a keyword where it makes the sentence awkward, or rename an official title to resemble a more senior job. These revisions demonstrate editing, not a measured improvement in interview outcomes."
+        ],
+        "table": {
+          "caption": "Original examples using only Alex’s supplied facts",
+          "columns": [
+            "Generic or unsupported wording",
+            "A more useful revision"
+          ],
+          "rows": [
+            [
+              "Excellent communicator and team player.",
+              "Answered customer questions about bookings and refunds by email."
+            ],
+            [
+              "Improved documentation efficiency by 40%.",
+              "Updated a help article after noticing a recurring customer question."
+            ],
+            [
+              "Managed the support department.",
+              "Helped two new colleagues learn the support queue."
+            ],
+            [
+              "Expert in Salesforce.",
+              "Omit it: no Salesforce experience is supplied."
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "MIT: describe skills through actions and results",
+            "href": "https://capd.mit.edu/resources/resumes-writing-about-your-skills/"
+          }
         ]
       },
       {
-        "heading": "Look for Skills, Tools, and Responsibilities",
+        "heading": "Change the summary and order only when it helps",
         "paragraphs": [
-          "Highlight required tools, technical skills, certifications, responsibilities, and outcomes. Repeated terms usually matter more than one-off phrases.",
-          "Group the terms by what you can honestly support with experience."
+          "Put the most relevant skills, projects or experience where they are easy to find. A short summary can connect a career change, but it should not claim a job title or level you have not held. Leave factual dates and qualifications consistent across applications.",
+          "For Alex’s fictional application, a restrained summary could be: “Support professional with experience answering booking and refund emails, updating help documentation and helping colleagues learn queue processes.” The Salesforce requirement stays an unanswered fit question rather than becoming a claim.",
+          "A relevant project or volunteer responsibility can provide evidence. Label it accurately so a reader can distinguish paid work, a course exercise and independent practice."
         ]
       },
       {
-        "heading": "Place Keywords Where They Make Sense",
+        "heading": "Organize versions by role family",
         "paragraphs": [
-          "Use keywords in your summary, skills section, and work bullets. A keyword is stronger when attached to a result or project.",
-          "For example, mention the tool and what you achieved with it."
+          "Keep one verified master and only the versions that tell meaningfully different stories. A support-focused version can foreground customer replies; an operations-focused version can emphasize process and documentation work you actually did. Both should share the same factual employment history.",
+          "A clear system separates editable sources, checked exports and archived copies. For example, keep a dated source privately and place Alex-Morgan-Customer-Support-Resume.pdf in an Active folder. The name is an organizational example, not a requirement imposed by employers.",
+          "When a shared fact changes, correct the master and affected active versions. When a role-specific sentence changes, update the relevant version. Move obsolete exports out of the active picker folder rather than relying on “final-new-2” filenames."
+        ],
+        "table": {
+          "caption": "A small resume version log",
+          "columns": [
+            "Item",
+            "Example purpose"
+          ],
+          "rows": [
+            [
+              "Master source",
+              "All verified facts and reusable evidence; not the file attached by default."
+            ],
+            [
+              "Support source, version 3",
+              "The selected summary, skills and bullets for support roles."
+            ],
+            [
+              "Checked PDF export",
+              "The exact exported document opened and reviewed before upload."
+            ],
+            [
+              "Application record",
+              "The role reference and the version actually sent."
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "McMaster: tailoring evidence and keeping a career archive",
+            "href": "https://socialsciences.careers.mcmaster.ca/career-planning/job-search/applications/resumes/resume-bullets/"
+          }
         ]
       },
       {
-        "heading": "Avoid Keyword Stuffing",
+        "heading": "Inspect the export and any imported fields",
         "paragraphs": [
-          "A resume that lists keywords without context can look weak to recruiters. Use natural language and keep the resume readable.",
-          "If you do not have a skill, do not add it just because it appears in the description."
+          "Follow the employer’s format and size instructions, then reopen the exported document. Check page breaks, contact details, dates and links. Copying selectable text into a plain note can reveal confusing reading order, but it does not certify compatibility with an employer’s parser.",
+          "If an application imports information from the resume, compare the actual fields with your source. A correct filename does not prove that a date or employer was extracted correctly. Correct the fields before submitting and repair the source if the same problem keeps occurring."
+        ],
+        "links": [
+          {
+            "label": "Review resume structure and parsing checks",
+            "href": "/guides/ats-friendly-resume-checklist/"
+          },
+          {
+            "label": "Select the correct file from iPhone Safari",
+            "href": "/guides/attach-resume-from-iphone-safari/"
+          }
         ]
       },
       {
-        "heading": "Job Match Keywords and Your Resume",
+        "heading": "Record the version you actually send",
         "paragraphs": [
-          "Keywords help connect your resume to job descriptions, but keyword stuffing can make an application weaker. Use repeated terms to clarify your experience, not exaggerate it."
-        ]
-      },
-      {
-        "heading": "Collect Repeated Terms",
-        "paragraphs": [
-          "Review several matched jobs and note the skills, tools, and responsibilities that appear repeatedly. Repeated terms are stronger signals than one-off wording."
-        ]
-      },
-      {
-        "heading": "Add Keywords Where They Are True",
-        "paragraphs": [
-          "If a job asks for a tool you have used, include it in the relevant bullet or skills section. If you have not used it, do not add it just to match the posting."
-        ]
-      },
-      {
-        "heading": "Use Natural Resume Language",
-        "paragraphs": [
-          "A strong bullet explains what you did, how you did it, and what changed. The keyword should fit naturally inside that evidence."
-        ]
-      },
-      {
-        "heading": "Keep saved profiles consistent",
-        "paragraphs": [
-          "When you change a factual detail, update any saved application profile that contains it. Different role-family resumes can emphasize different evidence while keeping the same accurate titles, dates and qualifications."
-        ]
-      },
-      {
-        "heading": "Use a Requirement-to-Evidence Map",
-        "paragraphs": [
-          "Create two short columns before editing: what the employer repeatedly asks for and where your resume proves it. A requirement such as customer onboarding should point to a bullet showing the number or type of customers, the process you owned, and the result. A tool such as Salesforce should appear only when you have used it. This map prevents keyword copying without evidence.",
-          "On iPhone, keep the job description and resume accessible so you can compare one section at a time. Update the summary, skills order, and a small number of bullets rather than rewriting your work history. The tailored version must remain accurate and should still sound like the same person."
-        ]
-      },
-      {
-        "heading": "Prioritize Changes That Recruiters Notice",
-        "paragraphs": [
-          "First align the target title or professional summary. Next move the most relevant skills and accomplishments higher. Finally, adjust wording so the resume uses standard terms from the field. Do not change official job titles into something misleading; add a clarifying parenthetical or summary when necessary.",
-          "Save the result as a new, clearly named version and keep the original. Before attaching it, reopen the PDF and verify that the export did not introduce page breaks or missing text."
-        ]
-      },
-      {
-        "heading": "Example: Tailoring Without Inventing Experience",
-        "paragraphs": [
-          "A support specialist applying to customer success may already have onboarding calls, account follow-up, renewal-risk notes, and product feedback experience. The tailored resume can foreground those true responsibilities and reduce space spent on less relevant ticket-volume details. It should not claim ownership of renewals or revenue if the candidate only supported those activities."
-        ]
-      }
-    ],
-    "faqs": [
-      {
-        "question": "How much of a resume should change for each application?",
-        "answer": "Usually the summary, skills order, and a few bullets need adjustment. Keep factual history stable and make the strongest relevant evidence easier to find."
-      },
-      {
-        "question": "Can I change my job title to match the listing?",
-        "answer": "Do not replace an official title with a misleading one. Add a clear functional description when the original internal title is ambiguous."
-      },
-      {
-        "question": "How many keywords should I add?",
-        "answer": "There is no useful fixed number. Cover the important requirements you genuinely meet and support them with readable evidence."
-      }
-    ],
-    "sources": [
-      {
-        "label": "Harvard: tailor a resume using truthful, relevant evidence",
-        "href": "https://careerservices.fas.harvard.edu/resources/hes-create-impactful-resumes-and-cover-letters/"
-      }
-    ],
-    "screenshot": null
-  },
-  {
-    "slug": "multiple-resume-versions-different-roles",
-    "cluster": "resume",
-    "title": "How to Manage Multiple Resume Versions for Different Roles",
-    "h1": "Manage Multiple Resume Versions for Different Roles",
-    "description": "Organize resume versions for different job targets so you can attach the right file quickly and avoid sending the wrong resume.",
-    "intro": "If you apply to different kinds of roles, one resume may not be enough. The challenge is keeping versions organized so speed does not create mistakes.",
-    "datePublished": "2026-05-28",
-    "dateModified": "2026-10-19",
-    "redirectFrom": [],
-    "relatedSlugs": [
-      "tailor-resume-to-job-description-iphone",
-      "ats-friendly-resume-checklist",
-      "attach-resume-from-iphone-safari"
-    ],
-    "sections": [
-      {
-        "heading": "Use Clear File Names",
-        "paragraphs": [
-          "File names should make the target obvious in the iPhone file picker. Avoid vague names like final-resume-new.pdf.",
-          "Use names such as resume-data-analyst.pdf or resume-customer-success.pdf."
-        ]
-      },
-      {
-        "heading": "Keep One Master Resume",
-        "paragraphs": [
-          "A master resume stores all achievements and details. Role-specific versions should be shorter and targeted, but the master helps you avoid losing strong bullets."
-        ]
-      },
-      {
-        "heading": "Check the version at the upload step",
-        "paragraphs": [
-          "Keep active resume files in one predictable folder. Before choosing a document from your phone, check its role family and contents; after upload, verify that the form shows the intended filename."
-        ]
-      },
-      {
-        "heading": "Start With One Verified Master Resume",
-        "paragraphs": [
-          "Maintain a private master document containing every accurate role, date, project, certification, skill, and measurable result. It can be longer than the resume you submit because its purpose is to preserve source material. Verify names and dates once in the master so individual versions do not drift into contradictions.",
-          "Submitted resumes should be created from this source, not from whichever PDF happens to be in Downloads. The master prevents a useful bullet from disappearing when you move between role families."
-        ]
-      },
-      {
-        "heading": "Create Versions by Role Family",
-        "paragraphs": [
-          "Most job seekers need a small number of durable versions, not one document per listing. A customer-success version can emphasize onboarding, adoption, and account communication. A support-operations version can emphasize ticket systems, documentation, and process improvement. Both may use the same jobs while changing the summary, skills order, and selected bullets.",
-          "Create a new family only when the target roles require a meaningfully different story. Too many versions create maintenance work and make mobile attachment risky."
-        ]
-      },
-      {
-        "heading": "Use a Naming and Versioning Convention",
-        "paragraphs": [
-          "Choose filenames that remain clear in the iPhone file picker: Firstname-Lastname-Customer-Success-Resume.pdf, for example. Keep dates in your private source name or version history rather than in the recruiter-facing filename. Archive retired copies outside the active attachment folder.",
-          "When you improve a shared fact such as a job date or degree name, update every active family. When you improve a role-specific bullet, update only the versions that use that story."
-        ]
-      },
-      {
-        "heading": "Track Which Resume Was Sent",
-        "paragraphs": [
-          "Record the resume family with each application. If a recruiter responds, you should know exactly what they saw. This also produces useful feedback: if one version earns more relevant conversations, examine whether its positioning is clearer rather than assuming the design caused the difference."
-        ]
-      },
-      {
-        "heading": "Audit Versions Monthly",
-        "paragraphs": [
-          "Remove stale files, confirm current contact details, and compare active versions with the master resume. Check that every PDF still parses cleanly and that links work. A short monthly audit is safer than discovering an old phone number during an important application."
-        ]
-      },
-      {
-        "heading": "Keep Design Changes Separate From Content Changes",
-        "paragraphs": [
-          "Use the same reliable layout across role families unless a field genuinely expects a different presentation. When content and design both change at once, it becomes harder to identify why parsing broke or why a recruiter response improved. Keep fonts readable, section labels standard, and contact details in the document body. Test each active PDF after export, especially when a template update changes spacing or page breaks.",
-          "A controlled system also makes errors easier to repair. Update the master facts first, regenerate the affected versions, reopen every PDF, and replace only the active files. This is safer than editing several independent documents and hoping they remain consistent."
+          "Before choosing the final attachment, compare the displayed filename with your log and reopen a preview when the form provides one. After submitting, keep the checked export or a stable version identifier with the employer’s confirmation.",
+          "If a recruiter responds, you can then discuss the same evidence they saw. Use response patterns cautiously: a different outcome between two applications does not isolate the effect of the resume wording, layout or keywords."
+        ],
+        "checklist": [
+          "The selected evidence relates to the role’s actual responsibilities.",
+          "Every title, date, qualification and result is accurate.",
+          "Unsupported requirements have not become claimed skills.",
+          "The exported file opens and meets this application’s instructions.",
+          "The application record identifies the version sent."
         ]
       }
     ],
     "faqs": [
       {
-        "question": "How many resume versions should I keep?",
-        "answer": "Keep one verified master and only the few role-family versions needed to tell genuinely different professional stories."
+        "question": "Do I need a new resume for every job?",
+        "answer": "Start from the closest role-family version. Make changes where they clarify relevant evidence; a new file for every vacancy is not automatically useful."
       },
       {
-        "question": "Should every company receive a different resume?",
-        "answer": "Not necessarily. Start from the closest role-family version and make small evidence-based changes when the role deserves them."
+        "question": "Can I add a tool because the job description mentions it?",
+        "answer": "Only claim experience you actually have. Separate a learning project from professional use and leave unfamiliar tools out of your skills claims."
       },
       {
-        "question": "Where should I store active iPhone resume files?",
-        "answer": "Use a predictable Files folder, keep filenames clear, and move obsolete copies away from the active upload location."
+        "question": "What if I cannot quantify an achievement?",
+        "answer": "Describe the action and context accurately. Do not invent a number; a specific contribution can be useful without a percentage."
+      },
+      {
+        "question": "How should I name resume files on iPhone?",
+        "answer": "Use a name that identifies you and the role family, keep a private version history, and verify the contents before uploading. Follow any filename instruction from the employer."
       }
     ],
     "sources": [
       {
-        "label": "Apple: find downloaded documents on iPhone",
-        "href": "https://support.apple.com/en-us/102440"
+        "label": "MIT: writing about your skills",
+        "href": "https://capd.mit.edu/resources/resumes-writing-about-your-skills/"
+      },
+      {
+        "label": "McMaster: accomplishment statements and master records",
+        "href": "https://socialsciences.careers.mcmaster.ca/career-planning/job-search/applications/resumes/resume-bullets/"
+      },
+      {
+        "label": "Greenhouse: extraction can fail even when a resume attaches",
+        "href": "https://support.greenhouse.io/hc/en-us/articles/200989175-Unsuccessful-resume-parse"
+      },
+      {
+        "label": "Apple: keep a separate Pages copy",
+        "href": "https://support.apple.com/en-euro/guide/pages-iphone/tan95caaa4ff/ios"
+      },
+      {
+        "label": "Apple: export Word or PDF and save to Files",
+        "href": "https://support.apple.com/en-gb/105050"
       }
     ],
-    "screenshot": null
+    "screenshot": null,
+    "summary": "Map requirements to evidence, adjust the parts that matter, save an identifiable version and review its export. Keep one private master so tailoring does not create conflicting facts.",
+    "editorialNote": "Prepared with AI-assisted drafting and editorial review. Linked technical and career guidance was checked on October 29, 2026. Fictional examples are identified in the text.",
+    "optionalTools": [
+      {
+        "label": "Free browser resume maker",
+        "href": "/tools/free-resume-maker/",
+        "description": "Creates a single-column PDF. Keep your editable source and use PDF only when the employer accepts it."
+      }
+    ]
   },
   {
     "slug": "ai-cover-letter-generator-review-checklist",
@@ -1088,7 +1196,7 @@ export const guidePlans = [
     "description": "Write a cover-letter draft from your own evidence, compare a complete fictional example, and use a practical checklist to review AI-assisted wording.",
     "intro": "Name the role, choose one relevant example from your experience, and explain how it connects to the work. Draft the letter in your own words, then check the facts, employer details and format. AI assistance is optional and must follow the employer’s instructions.",
     "datePublished": "2026-05-28",
-    "dateModified": "2026-10-22",
+    "dateModified": "2026-10-29",
     "redirectFrom": [
       "write-cover-letter-fast",
       "entry-level-internship-cover-letter",
@@ -1118,17 +1226,12 @@ export const guidePlans = [
         "paragraphs": [
           "Start with the exact role and a genuine reason it interests you. Use the middle of the letter to explain one or two relevant examples, then close with the contribution you would like to discuss. Add detail the resume does not explain rather than repeating every role in paragraph form.",
           "For a first job or internship, the example can come from a course project, volunteer work or another responsibility. For a career change, explain the connection between the work you have done and the role you want. Keep titles, scope and results accurate.",
-          "Store a small evidence bank: what happened, what you did and what result you can verify. Reuse those facts when relevant, but choose the example and employer-specific reason for each application. You can write the draft in a note or document; no generator is required.",
-          "If a blank page is slowing you down, the free browser template below can give you a structure. Replace the sample details and review every sentence; it does not use AI or submit applications."
+          "Store a small evidence bank: what happened, what you did and what result you can verify. Reuse those facts when relevant, but choose the example and employer-specific reason for each application. You can write the draft in a note or document; no generator is required."
         ],
         "links": [
           {
             "label": "Explain a career change in a cover letter",
             "href": "/guides/career-change-cover-letter-structure/"
-          },
-          {
-            "label": "Start a draft with the free cover-letter template",
-            "href": "/tools/free-cover-letter-generator/"
           }
         ]
       },
@@ -1137,7 +1240,7 @@ export const guidePlans = [
         "paragraphs": [
           "Fictional example for demonstration only. ClearDesk and this vacancy are invented; this is not a real application or evidence of a hiring outcome.",
           "Dear Hiring Manager,",
-          "I am applying for the Customer Support Specialist role at ClearDesk. The combination of customer email support and help-article maintenance interests me because both are part of the work I would like to continue developing.",
+          "I am applying for the Customer Support Specialist role at ClearDesk. I would like to build on my experience answering customer emails and maintaining help articles.",
           "In my support work, I answered questions about bookings and refunds. When a recurring question appeared in the queue, I updated a help article so customers had a clearer explanation to refer to. I also helped two new colleagues learn how to work through the support queue.",
           "Those experiences are relevant to the clear replies and documentation described in your role. I would welcome the chance to discuss how I approach a customer question and turn repeated confusion into more useful guidance.",
           "Thank you for considering my application.",
@@ -1204,7 +1307,7 @@ export const guidePlans = [
         "heading": "Review the draft against the role and your resume",
         "paragraphs": [
           "Put the job description, resume and letter beside one another. Check job titles, dates, qualifications and any numbers. A requirement in the advertisement is not evidence that you have that skill; delete sentences that accidentally present the employer’s wish list as your background.",
-          "Choose a relevant example and explain its connection to the work. Avoid squeezing every keyword into the letter or retelling each job on your resume. Harvard and MIT career guidance both emphasize specific, relevant evidence and tailoring to the position; their guidance is linked below.",
+          "Choose a relevant example and explain its connection to the work. Avoid squeezing every keyword into the letter or retelling each job on your resume. MIT’s cover-letter guidance emphasizes specific examples that complement the resume and relate to the opportunity.",
           "If you cannot support a sentence, revise it before polishing its tone. Replace an invented percentage with the work you actually did. When an example depends on confidential customer or employer information, describe your contribution without identifying private details."
         ],
         "links": [
@@ -1219,7 +1322,7 @@ export const guidePlans = [
         "paragraphs": [
           "Check the employer’s rules before using AI assistance. If you use a tool, supply only information you are comfortable sharing with that service and review its handling of your data. Remove confidential customer details or internal employer information from the material you share.",
           "An editing instruction you can adapt is: “Improve clarity using only these facts. Do not add skills, numbers, qualifications or knowledge of the employer. Flag missing information instead of inventing it.” Compare the output with the source facts again; the instruction does not guarantee accuracy.",
-          "Read the final letter aloud. Replace phrases you would not normally use, generic praise and unsupported certainty with direct descriptions of your work. Harvard’s career guidance treats generative AI as an editing aid rather than a substitute for your own account of your experience."
+          "Read the final letter aloud. Replace phrases you would not normally use, generic praise and unsupported certainty with direct descriptions of your work. Treat an AI revision as another draft to check against the source facts."
         ]
       },
       {
@@ -1265,868 +1368,555 @@ export const guidePlans = [
         "href": "https://capd.mit.edu/resources/how-to-write-an-effective-cover-letter/"
       },
       {
-        "label": "Harvard: authentic resume and cover-letter writing, including AI guidance",
-        "href": "https://careerservices.fas.harvard.edu/resources/hes-create-impactful-resumes-and-cover-letters/"
+        "label": "MIT: describing skills through evidence",
+        "href": "https://capd.mit.edu/resources/resumes-writing-about-your-skills/"
       }
     ],
     "summary": "Build the draft from verified facts, keep the evidence specific and review every claim before sending. Use the example and checklist below with or without AI.",
-    "screenshot": null
+    "screenshot": null,
+    "editorialNote": "Prepared with AI-assisted drafting and editorial review. Linked technical and career guidance was checked on October 29, 2026. Fictional examples are identified in the text.",
+    "optionalTools": [
+      {
+        "label": "Free cover-letter template",
+        "href": "/tools/free-cover-letter-generator/",
+        "description": "A browser template, not an AI writer. Replace its sample details and check the finished text."
+      }
+    ]
   },
   {
     "slug": "career-change-cover-letter-structure",
     "cluster": "cover-letter",
-    "title": "Cover Letter Structure for a Career Change",
-    "h1": "Career Change Cover Letter Structure",
-    "description": "Write a career-change cover letter that explains your transition, transferable skills, and fit for the role clearly.",
-    "intro": "A career-change cover letter needs to connect your past experience to the new role. The goal is to reduce uncertainty for the recruiter.",
+    "title": "Career-Change Cover Letter: Complete Example and Writing Guide",
+    "h1": "Write a Cover Letter for a Career Change",
+    "description": "Explain a career change with transferable evidence, a complete fictional letter and a checklist that keeps the story accurate and relevant.",
+    "intro": "Name the role you want, show one credible connection from your previous work, and explain what you have done to prepare. Your letter should make the transition understandable without presenting adjacent experience as a job you have already held.",
     "datePublished": "2026-05-28",
-    "dateModified": "2026-10-19",
+    "dateModified": "2026-10-29",
     "redirectFrom": [],
     "relatedSlugs": [
       "ai-cover-letter-generator-review-checklist",
-      "set-up-job-matching-profile",
+      "tailor-resume-to-job-description-iphone",
       "ten-minute-job-application-workflow"
     ],
     "sections": [
       {
-        "heading": "Open With the Target Role",
+        "heading": "Decide whether the experience gap can be explained",
         "paragraphs": [
-          "Make it clear which role you are applying for and why the transition makes sense. Do not spend the first paragraph apologizing for a non-traditional background."
+          "Read the vacancy before drafting a persuasive story. Separate a required license, location or qualification from experience that the employer says can be equivalent or preferred. A good letter cannot turn an unmet hard requirement into eligibility.",
+          "If a requirement is ambiguous, ask through the employer’s verified contact route or choose a role with a clearer match. Keep your current title and qualifications accurate while explaining the work that transfers."
         ]
       },
       {
-        "heading": "Translate Transferable Skills",
+        "heading": "Build a fact sheet before writing the letter",
         "paragraphs": [
-          "Pick two or three skills from your previous work that match the new role. Explain them in the language of the job description.",
-          "For example, customer escalation work may translate into stakeholder management, communication, and problem solving."
+          "Here is the complete source material for the fictional example below. Jordan Lee, the applicant, and Cedar Works, the employer, are invented. This is a writing exercise, not a real application or a hiring success story."
+        ],
+        "bullets": [
+          "Jordan has worked as a retail shift supervisor.",
+          "Jordan prepared weekly shift schedules and maintained an inventory spreadsheet.",
+          "Jordan trained three colleagues in stock-check procedures.",
+          "Jordan completed an introductory spreadsheet course and made a personal stock-reconciliation practice sheet.",
+          "The fictional Operations Coordinator role involves scheduling, maintaining records and communicating discrepancies.",
+          "Jordan wants to move toward work centered on coordination and records rather than direct retail sales."
         ]
       },
       {
-        "heading": "Show Proof of Preparation",
+        "heading": "Translate the work without changing its level",
         "paragraphs": [
-          "Mention relevant coursework, projects, certifications, volunteer work, or independent practice. This shows the transition is intentional."
+          "Match the action in the vacancy to something you have actually done. Similar actions can connect different settings, but the scale, tools and responsibility still need an honest description."
+        ],
+        "table": {
+          "caption": "Mapping Jordan’s supplied experience",
+          "columns": [
+            "Target work",
+            "Evidence from retail",
+            "What the letter should not claim"
+          ],
+          "rows": [
+            [
+              "Scheduling",
+              "Prepared weekly shift schedules.",
+              "Company-wide workforce planning."
+            ],
+            [
+              "Accurate records",
+              "Maintained an inventory spreadsheet.",
+              "Ownership of an enterprise inventory system."
+            ],
+            [
+              "Explain a process",
+              "Trained three colleagues in stock checks.",
+              "Management of an operations department."
+            ],
+            [
+              "Develop spreadsheet skills",
+              "Completed an introductory course and a practice sheet.",
+              "Advanced analytics experience or a professional project outcome."
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "A complete fictional career-change letter",
+        "paragraphs": [
+          "The letter below uses only the supplied facts. Its purpose is to show a clear bridge and an appropriately limited learning claim.",
+          "Dear Hiring Manager,",
+          "I am applying for the Operations Coordinator role at Cedar Works. I would like to bring my retail scheduling and record-keeping experience to the coordination work described in your vacancy.",
+          "As a retail shift supervisor, I prepared weekly shift schedules and maintained an inventory spreadsheet. I also trained three colleagues in stock-check procedures. These responsibilities gave me practical examples of coordinating work, keeping information organized and explaining a process to others.",
+          "To prepare for the transition, I completed an introductory spreadsheet course and built a personal stock-reconciliation practice sheet. I would welcome the opportunity to discuss how my scheduling and record-keeping experience relates to this role.",
+          "Thank you for considering my application.",
+          "Jordan Lee"
         ]
       },
       {
-        "heading": "Lead With the Destination, Not an Apology",
+        "heading": "Make the opening specific to the actual employer",
         "paragraphs": [
-          "Name the role you are pursuing and the professional problem you want to solve. Do not spend the opening apologizing for a nonlinear background. The reader needs a clear destination before the explanation of how your previous work connects to it.",
-          "A useful opening identifies one bridge: customers, data, operations, writing, systems, leadership, or domain knowledge. For example, a teacher moving into customer education can lead with experience turning complex material into usable instruction for different audiences."
+          "Jordan’s example names the work described in a fictional vacancy. For your own application, add an accurate reason that the particular role or employer interests you. It might be the customer group, product, responsibilities or a problem described in the advertisement. Research it before claiming a connection.",
+          "Avoid invented familiarity such as saying you have used a product for years when you have not. A short, specific interest is more useful than unsupported praise. MIT’s cover-letter guidance recommends connecting relevant examples with the particular opportunity."
+        ],
+        "links": [
+          {
+            "label": "MIT: write a focused letter for a specific opportunity",
+            "href": "https://capd.mit.edu/resources/how-to-write-an-effective-cover-letter/"
+          }
         ]
       },
       {
-        "heading": "Translate Transferable Work Into the Employer's Language",
+        "heading": "Keep the resume and letter telling the same story",
         "paragraphs": [
-          "Read the job description for actions such as analyze, coordinate, persuade, document, troubleshoot, plan, or improve. Then choose evidence from your background that shows the same action in a different context. Translate the work without inflating the scope or pretending the industries are identical.",
-          "Results make the bridge credible. Use the audience size, process improvement, time saved, quality increase, revenue supported, or project outcome when you can verify it."
+          "Use the resume to make the relevant work easy to find, while keeping the official title and dates unchanged. The letter can explain the connection; it should not introduce an achievement that the rest of the application cannot support.",
+          "For Jordan, that means making schedules, inventory records and colleague training visible under the retail role. The course and practice sheet belong under learning or projects with labels that identify their scope."
+        ],
+        "links": [
+          {
+            "label": "Tailor a resume using a requirement-to-evidence map",
+            "href": "/guides/tailor-resume-to-job-description-iphone/"
+          }
         ]
       },
       {
-        "heading": "Address the Experience Gap With a Learning Signal",
+        "heading": "Review the transition story before sending",
         "paragraphs": [
-          "If the new field requires tools or knowledge you recently developed, mention the strongest concrete signal: a completed project, certification, portfolio sample, volunteer engagement, or relevant responsibility you added to your current job. Avoid listing courses without explaining what you can now do.",
-          "The goal is not to claim you have already held the target title. It is to show that the transition is deliberate and that you can contribute while continuing to learn."
-        ]
-      },
-      {
-        "heading": "Use a Four-Paragraph Career-Change Structure",
-        "paragraphs": [
-          "Paragraph one names the destination and motivation. Paragraph two proves a transferable capability with one result. Paragraph three adds new-field preparation or domain knowledge. Paragraph four closes with the contribution you hope to discuss. Keep unrelated history in the resume rather than forcing it into the letter.",
-          "Review the final draft for defensive wording. Replace phrases such as although I lack experience with direct evidence of what you bring. Honest confidence is more persuasive than either apology or exaggeration."
-        ]
-      },
-      {
-        "heading": "Career-Change Example",
-        "paragraphs": [
-          "A retail manager moving into operations might emphasize scheduling, inventory accuracy, training, vendor coordination, and process improvement. The letter can connect those results to the target company's operational needs, then mention a recent analytics project. It should not rename retail management as corporate operations or claim tools the candidate has only watched in tutorials."
-        ]
-      },
-      {
-        "heading": "Align the Resume With the Same Transition Story",
-        "paragraphs": [
-          "The cover letter should not carry the entire transition alone. Reorder the resume summary, skills, projects, and bullets so the transferable evidence is also visible there. Keep official titles and dates unchanged. When both documents point toward the same destination with the same truthful examples, the recruiter can understand the change without guessing."
+          "Read the letter against your fact sheet and the vacancy. If you use AI to edit it, ask for unsupported claims to be flagged, then compare the output with your facts yourself. Follow any employer rules about AI assistance.",
+          "Use the requested format and submission method. For a text box, check the pasted paragraph breaks and character limit. For a file, open the final export. Cut unrelated history before making the wording smaller or harder to read."
+        ],
+        "checklist": [
+          "The destination role and motivation are clear.",
+          "At least one transferable action has a concrete example.",
+          "Learning activities are distinguished from professional experience.",
+          "The letter does not disguise a missing hard requirement.",
+          "The resume, letter and form agree on titles, dates and scope.",
+          "No employer names, placeholders or claims remain from another application."
+        ],
+        "links": [
+          {
+            "label": "Use the general cover-letter drafting and review checklist",
+            "href": "/guides/ai-cover-letter-generator-review-checklist/"
+          }
         ]
       }
     ],
     "faqs": [
       {
-        "question": "Should a career-change cover letter explain why I am leaving?",
-        "answer": "Explain the direction you are moving toward and the evidence supporting it. Avoid criticizing a current employer or providing personal detail that does not help the application."
+        "question": "Should I apologize for changing careers?",
+        "answer": "A factual explanation of the direction you want and the evidence you bring is more useful than an apology. Address a relevant gap directly without disguising it."
       },
       {
-        "question": "How do I discuss missing direct experience?",
-        "answer": "Show transferable actions, verified results, and concrete preparation for the new field without pretending you already held the target role."
+        "question": "Can I use experience from another industry?",
+        "answer": "Yes when the action is relevant and you preserve its actual context and scope. Show what you did rather than relying on a transferable-skills label."
       },
       {
-        "question": "Can AI help draft a career-change letter?",
-        "answer": "It can organize source material, but you must verify the bridge between careers, remove invented claims, and make the motivation genuinely yours."
+        "question": "What if my only new-field experience is a course project?",
+        "answer": "Label it as a course project and explain your own contribution. Do not present it as a paid role or a workplace result."
+      },
+      {
+        "question": "Should I explain personal reasons for leaving my field?",
+        "answer": "Include only what helps explain the application and what you are comfortable sharing. You can focus on the work you want next without disclosing private circumstances."
       }
     ],
     "sources": [
       {
-        "label": "MIT: connect your experience to the target role",
+        "label": "MIT: cover-letter structure and specific examples",
         "href": "https://capd.mit.edu/resources/how-to-write-an-effective-cover-letter/"
+      },
+      {
+        "label": "MIT: showing skills through evidence",
+        "href": "https://capd.mit.edu/resources/resumes-writing-about-your-skills/"
       }
     ],
-    "screenshot": null
+    "screenshot": null,
+    "summary": "Build the letter around a demonstrated transferable action and concrete preparation. Use the example to understand the structure, then replace its details with your own facts.",
+    "editorialNote": "Prepared with AI-assisted drafting and editorial review. Linked technical and career guidance was checked on October 29, 2026. Fictional examples are identified in the text."
   },
   {
     "slug": "find-top-remote-jobs-iphone",
     "cluster": "job-matching",
-    "title": "How to Find Top Remote Jobs on iPhone",
-    "h1": "How to Find Top Remote Jobs on iPhone",
-    "description": "Use a practical iPhone workflow to find remote jobs, compare fit, review company details, and apply without losing track of your applications.",
-    "intro": "The best remote job is not just the newest listing. It should match your skills, location rules, schedule needs, and application quality. A focused mobile workflow helps you review remote roles quickly without applying blindly.",
+    "title": "How to Find Remote Jobs on iPhone: Location and Fit Checks",
+    "h1": "How to Find Remote Jobs on iPhone",
+    "description": "Search for remote roles, check country and working-hour restrictions, verify the employer and build a shortlist you can act on from iPhone.",
+    "intro": "Start with the work you can demonstrate and the places an employer can hire you. A remote label does not establish that a job is open worldwide, has flexible hours or matches your experience. Use your phone to narrow the search before spending time on an application.",
     "datePublished": "2026-05-28",
-    "dateModified": "2026-10-19",
+    "dateModified": "2026-10-29",
     "redirectFrom": [
       "remote-hybrid-onsite-job-filters",
       "find-entry-level-remote-jobs",
       "remote-job-region-tags"
     ],
     "relatedSlugs": [
-      "review-job-matches-faster",
-      "set-up-job-matching-profile",
-      "ten-minute-job-application-workflow"
+      "ten-minute-job-application-workflow",
+      "highest-hiring-companies-job-search",
+      "tailor-resume-to-job-description-iphone"
     ],
     "sections": [
       {
-        "heading": "Start With Remote Fit, Not Just Remote Labels",
+        "heading": "Choose a role family and a few useful search terms",
         "paragraphs": [
-          "Remote listings can still have country, time zone, travel, or legal employment limits. Before you apply, check whether the role is truly available where you live and whether the working hours match your life.",
-          "Use the remote label as a starting point, then read the location text and requirements before spending time tailoring an application."
+          "Start from responsibilities you can support with examples. For customer-support work, useful terms might include customer support, customer service and help-center documentation. Inspect what the results actually involve rather than assuming those titles are interchangeable.",
+          "Use the job site’s remote or work-mode filter if one is available, then add location and level filters one at a time. If useful roles disappear, remove the most restrictive setting and inspect the wording in individual vacancies. A broad filter result is an invitation to review, not confirmation of eligibility."
+        ]
+      },
+      {
+        "heading": "Run the search and save the official role on your phone",
+        "paragraphs": [
+          "Open Safari and try a search that combines work, location and a useful alternative title. For example, “customer support remote Canada”, “customer operations remote Europe”, or a known employer’s name plus “careers support”. These are query examples, not keywords with measured market-wide search volume.",
+          "Follow a promising result to the employer’s official site. Within its careers page, inspect the available department and location filters and open the individual role. Search-engine results and board filters can be stale or broader than the actual listing."
         ],
-        "bullets": [
-          "Check country, region, and time zone requirements.",
-          "Look for travel, office visit, or hybrid language.",
-          "Confirm whether the role is full-time, contract, internship, or part-time."
-        ]
-      },
-      {
-        "heading": "Compare the Role to Your Saved Profile",
-        "paragraphs": [
-          "Remote jobs often attract many applicants, so relevance matters. Match the job title, responsibilities, tools, and seniority level against your saved profile before applying.",
-          "If the role is close but not exact, decide what you will emphasize in your resume and cover letter before opening the application."
-        ]
-      },
-      {
-        "heading": "Keep a Shortlist",
-        "paragraphs": [
-          "When several remote jobs look good, shortlist the strongest ones first. Apply to the closest matches while your context is fresh, then return to secondary roles later.",
-          "This prevents a remote search from becoming a long scroll of interesting but unfinished applications."
-        ]
-      },
-      {
-        "heading": "Remote vs Hybrid vs Onsite Job Filters",
-        "paragraphs": [
-          "Work mode filters help you focus, but they are not a substitute for reading the listing. Remote, hybrid, and onsite roles can each include location rules that affect whether you should apply."
-        ]
-      },
-      {
-        "heading": "Remote Jobs Still Have Boundaries",
-        "paragraphs": [
-          "Some remote jobs require a specific country, state, time zone, or tax setup. Check the listing for regional language before you assume you are eligible.",
-          "A good remote search combines the remote filter with location text review."
-        ]
-      },
-      {
-        "heading": "Hybrid Means Different Things",
-        "paragraphs": [
-          "Hybrid can mean one office day a month, three days a week, or occasional team travel. If commuting matters, read the office expectations before applying.",
-          "Do not rely on the label alone when the location affects your decision."
-        ]
-      },
-      {
-        "heading": "Onsite Roles Can Still Be Worth It",
-        "paragraphs": [
-          "If onsite work fits your circumstances, compare the company, commute, schedule and role with your priorities before ruling it out.",
-          "If your search is not remote-only, compare the strength of the match rather than filtering onsite jobs out by habit."
-        ]
-      },
-      {
-        "heading": "Use work-mode filters as a first pass",
-        "paragraphs": [
-          "A remote filter narrows a search, but the listing’s full location and schedule requirements still need review. Keep a note of the region, required hours and any travel before tailoring documents."
-        ]
-      },
-      {
-        "heading": "How to Find Entry-Level Remote Jobs",
-        "paragraphs": [
-          "Entry-level remote jobs can be hard to sort because many listings use vague titles. A better workflow checks seniority, required experience, training expectations, and remote location rules before applying."
-        ]
-      },
-      {
-        "heading": "Search for Seniority Signals",
-        "paragraphs": [
-          "Look for words like entry-level, junior, associate, coordinator, assistant, trainee, internship, or new grad. Also check whether the listing asks for years of experience that exceed your background.",
-          "Some roles say entry-level but describe mid-level responsibilities. Read beyond the title."
-        ]
-      },
-      {
-        "heading": "Check Remote Support",
-        "paragraphs": [
-          "A remote entry-level role should explain onboarding, collaboration, tools, or manager support. If the role is remote but expects independent senior-level execution, it may not be the right fit."
-        ]
-      },
-      {
-        "heading": "Use Projects and Transferable Work",
-        "paragraphs": [
-          "For early-career applications, your resume should make relevant projects, internships, coursework, volunteer work, or customer-facing experience easy to understand.",
-          "Tailor the top of your resume to the job's required skills before applying."
-        ]
-      },
-      {
-        "heading": "How Region Tags Help With Remote Jobs",
-        "paragraphs": [
-          "Remote does not always mean anywhere. Region tags help you understand where a remote role is likely available, but you should still confirm the details in the listing."
-        ]
-      },
-      {
-        "heading": "Remote Regions Reduce Guesswork",
-        "paragraphs": [
-          "Companies use region requirements for payroll, legal, time zone, team overlap, and customer coverage reasons. Region tags make those constraints easier to scan.",
-          "A role can be remote and still limited to a country or region."
-        ]
-      },
-      {
-        "heading": "Read the Full Location Text",
-        "paragraphs": [
-          "A tag is a shortcut, not the whole rule. Look for phrases like remote within, based in, eligible to work in, or must be located in.",
-          "These phrases can determine whether you should apply."
-        ]
-      },
-      {
-        "heading": "Match Region to Your Profile",
-        "paragraphs": [
-          "Make sure your saved location and work preference are accurate. Better profile details help you focus on roles that are actually reachable."
-        ]
-      },
-      {
-        "heading": "Verify Remote Eligibility Before Tailoring",
-        "paragraphs": [
-          "Remote is a work arrangement, not a promise that anyone can work from anywhere. Check country, state, tax residence, time zone, working hours, travel, and occasional office requirements. Look for phrases such as remote within the United States, EMEA hours, or quarterly onsite. This sixty-second check prevents spending twenty minutes on an application that cannot progress.",
-          "When the listing is unclear, save the role with a note rather than inventing an answer. If the application directly asks whether you live in an eligible region, answer accurately."
-        ]
-      },
-      {
-        "heading": "Evaluate Whether the Team Supports Remote Work",
-        "paragraphs": [
-          "Strong remote listings often describe communication rhythms, documentation, onboarding, equipment, collaboration hours, or manager expectations. Entry-level candidates should look for training and feedback signals. Experienced candidates should check whether the autonomy and meeting schedule fit how they work.",
-          "Remote quality is not guaranteed by the label. A vague listing with constant availability expectations may be a worse fit than a clearly organized hybrid role."
-        ]
-      }
-    ],
-    "faqs": [
-      {
-        "question": "Why does a remote job have a location restriction?",
-        "answer": "Employers may limit hiring because of payroll, tax, legal entity, client, licensing, security, or working-hour requirements."
-      },
-      {
-        "question": "How can entry-level applicants judge remote support?",
-        "answer": "Look for structured onboarding, manager access, documentation, collaboration tools, feedback cycles, and responsibilities appropriate for the stated level."
-      },
-      {
-        "question": "Should I apply when the region is unclear?",
-        "answer": "Save the role and look for clarification in the company careers page or application. Never misstate your location or work authorization."
-      }
-    ],
-    "sources": [
-      {
-        "label": "FTC: recognize and avoid job scams",
-        "href": "https://consumer.ftc.gov/articles/job-scams"
-      }
-    ],
-    "screenshot": null
-  },
-  {
-    "slug": "set-up-job-matching-profile",
-    "cluster": "job-matching",
-    "title": "How to Set Up Your Profile for Better Job Matches",
-    "h1": "Set Up Your Profile for Better Job Matches",
-    "description": "Improve job matches by setting clear role targets, skills, work mode preferences, location preferences, and resume details before browsing jobs.",
-    "intro": "Job matching works best when your profile is specific. A vague profile creates vague matches, while clear role targets and skills make it easier to spot jobs worth applying to.",
-    "datePublished": "2026-05-28",
-    "dateModified": "2026-10-19",
-    "redirectFrom": [
-      "best-skills-for-job-matches",
-      "find-tech-jobs-that-match-resume",
-      "job-matching-for-career-change"
-    ],
-    "relatedSlugs": [
-      "review-job-matches-faster",
-      "tailor-resume-to-job-description-iphone",
-      "find-top-remote-jobs-iphone"
-    ],
-    "sections": [
-      {
-        "heading": "Choose a Clear Target Role",
-        "paragraphs": [
-          "Start with the job titles you actually want. If you are open to several paths, group them by similarity instead of mixing unrelated roles into one search.",
-          "For example, customer success and account management can share a profile angle. Data analyst and product designer usually need separate positioning."
-        ]
-      },
-      {
-        "heading": "Add Skills Recruiters Search For",
-        "paragraphs": [
-          "Include tools, methods, certifications, languages, and domain knowledge that appear in real job descriptions. Use plain wording rather than clever labels.",
-          "Your profile should reflect what you can honestly do and what you want to do next."
-        ],
-        "bullets": [
-          "Use recognizable tool names.",
-          "Include industry terms only when they match your experience.",
-          "Remove skills you do not want to use in your next role."
-        ]
-      },
-      {
-        "heading": "Set Work Mode and Location Preferences",
-        "paragraphs": [
-          "Remote, hybrid, and onsite jobs can require different application decisions. Set the mode you prefer, then review location details on each role before applying.",
-          "If you are flexible, keep the search broader but use filters when you need to focus."
-        ]
-      },
-      {
-        "heading": "Refresh as your search changes",
-        "paragraphs": [
-          "After a week of browsing, note repeated reasons you save or skip a role. Update your target titles, truthful skills or preferences when those patterns reveal an outdated profile. Recommendation systems differ; changing a profile is not a guarantee of a particular match."
-        ]
-      },
-      {
-        "heading": "Best Skills to Add for Better Job Matches",
-        "paragraphs": [
-          "The best skills for job matching are specific, truthful, and connected to the roles you want. A long list of random keywords can make your search noisier instead of better."
-        ]
-      },
-      {
-        "heading": "Use Skills From Real Job Descriptions",
-        "paragraphs": [
-          "Review several roles you would actually apply to and note repeated tools, responsibilities, and methods. Those repeated terms are stronger than guesses.",
-          "If the same skill appears across many target roles and you can support it with experience, add it to your profile and resume."
-        ]
-      },
-      {
-        "heading": "Separate Core Skills From Nice-to-Haves",
-        "paragraphs": [
-          "Core skills describe the work you can do on day one. Nice-to-haves can support your profile, but they should not drown out the main story.",
-          "For example, a frontend developer profile should make React, JavaScript, accessibility, and product UI work easy to find before listing unrelated tools."
-        ]
-      },
-      {
-        "heading": "Remove Skills That Pull Bad Matches",
-        "paragraphs": [
-          "If a skill keeps attracting roles you do not want, remove it or move it lower in your resume. Your profile should guide the search toward your next job, not every job you have ever touched."
-        ]
-      },
-      {
-        "heading": "Keep profile and resume aligned",
-        "paragraphs": [
-          "A profile and its resume should agree on factual history. When you add a skill, identify where your work, projects or training support it. Separate what you have done from what you hope to learn."
-        ]
-      },
-      {
-        "heading": "Find Tech Jobs That Match Your Resume",
-        "paragraphs": [
-          "A strong tech job search starts by matching real experience to real requirements. Your resume should help you decide which jobs deserve a tailored application."
-        ]
-      },
-      {
-        "heading": "Identify Your Strongest Resume Signals",
-        "paragraphs": [
-          "Look at the top third of your resume and list the skills, tools, projects, and outcomes that stand out. Those signals should guide the roles you prioritize.",
-          "If a job does not connect to those signals, it may require a different resume version or may not be worth applying to."
-        ]
-      },
-      {
-        "heading": "Match Responsibilities, Not Just Titles",
-        "paragraphs": [
-          "Tech titles vary across companies. A product operations role at one company may look like a business operations role somewhere else. Compare the actual responsibilities and tools.",
-          "Search by skill and company as well as title when reviewing matched jobs."
-        ]
-      },
-      {
-        "heading": "Tailor Before Applying",
-        "paragraphs": [
-          "If a role is a close match, adjust your resume summary, selected bullets, or project order so the fit is obvious. Do not rewrite everything; emphasize the parts already supported by your experience."
-        ]
-      },
-      {
-        "heading": "Job Matching for Career Changers",
-        "paragraphs": [
-          "Career changes work best when you can explain the bridge from your past work to the role you want next. Job matching can help you find roles where that bridge is strongest."
-        ]
-      },
-      {
-        "heading": "Target Adjacent Roles First",
-        "paragraphs": [
-          "Look for roles that use skills you already have in a new context. Customer support to customer success, operations to product operations, or teaching to training roles can be easier transitions than unrelated jumps.",
-          "Adjacent roles give your resume a clearer story."
-        ]
-      },
-      {
-        "heading": "Use Transferable Skills Carefully",
-        "paragraphs": [
-          "Communication, analysis, project coordination, customer empathy, and process improvement can transfer, but they need evidence. Add examples, not just labels."
-        ]
-      },
-      {
-        "heading": "Filter for Roles That Explain the Work",
-        "paragraphs": [
-          "Some listings are clear about responsibilities, tools, and training. Those are better for career changers than vague listings with unclear expectations."
-        ]
-      },
-      {
-        "heading": "Carry the same evidence into the application",
-        "paragraphs": [
-          "Once you choose a role, use the relevant resume version and write a short explanation of how your background connects to its requirements. A recommendation is a starting point for that review, not evidence of eligibility."
-        ]
-      },
-      {
-        "heading": "Use Search Feedback to Improve the Profile",
-        "paragraphs": [
-          "Review a week of strong and weak matches. If irrelevant roles share a skill or old title that dominates the profile, reduce that signal. If desirable roles repeatedly use a truthful term missing from your profile, add it with supporting experience. Matching improves when the profile reflects both what you can do and what you want next.",
-          "Do not chase every listing by constantly rewriting the profile. Make changes only when a repeated pattern appears across several credible roles."
-        ]
-      },
-      {
-        "heading": "Keep the Profile, Resume, and Application Consistent",
-        "paragraphs": [
-          "Titles, dates, locations, education, and core skills should agree across the saved profile and active resume versions. Differences create extra form corrections and can confuse recruiters. Role-family resumes can emphasize different evidence while preserving the same factual history.",
-          "After updating the profile, open one application draft and verify that the new values map to the expected fields before relying on them during a busy application session."
-        ]
-      }
-    ],
-    "faqs": [
-      {
-        "question": "Should I add every skill I have used?",
-        "answer": "No. Prioritize specific, truthful skills that appear in the roles you want and that your resume can support with evidence."
-      },
-      {
-        "question": "How often should I update my matching profile?",
-        "answer": "Review it when your target changes or when several days of matches reveal a repeated gap or irrelevant signal."
-      },
-      {
-        "question": "Can one profile cover a career change?",
-        "answer": "Yes when it clearly names the destination and emphasizes transferable evidence. Keep separate resume versions when different role families require distinct positioning."
-      }
-    ],
-    "sources": [
-      {
-        "label": "Harvard: describe your skills and experience accurately",
-        "href": "https://careerservices.fas.harvard.edu/resources/hes-create-impactful-resumes-and-cover-letters/"
-      }
-    ],
-    "screenshot": null
-  },
-  {
-    "slug": "review-job-matches-faster",
-    "cluster": "job-matching",
-    "title": "How to Review Job Matches Faster",
-    "h1": "How to Review Job Matches Faster",
-    "description": "Use a fast review checklist for matched jobs so you can identify strong roles without spending all day reading listings.",
-    "intro": "A job match is only useful if you can review it quickly. A simple checklist helps you decide whether to apply, save, or skip without overthinking every listing.",
-    "datePublished": "2026-05-28",
-    "dateModified": "2026-10-19",
-    "redirectFrom": [
-      "daily-job-match-routine",
-      "avoid-bad-job-matches",
-      "use-job-filters-without-missing-roles",
-      "salary-signals-in-job-matches",
-      "fresh-job-feed-application-strategy"
-    ],
-    "relatedSlugs": [
-      "find-top-remote-jobs-iphone",
-      "set-up-job-matching-profile",
-      "ten-minute-job-application-workflow"
-    ],
-    "sections": [
-      {
-        "heading": "Use a Five-Signal Scan",
-        "paragraphs": [
-          "Review title, company, work mode, location details, and the first few responsibilities. If any dealbreaker is obvious, skip the role and keep moving.",
-          "This scan protects your time before you read the full description."
-        ]
-      },
-      {
-        "heading": "Open Only the Roles With a Real Path",
-        "paragraphs": [
-          "A role is worth opening when you can explain why your background fits it. If you cannot connect your resume to the job after a quick scan, it may not deserve a full application."
-        ]
-      },
-      {
-        "heading": "Look for Hidden Dealbreakers",
-        "paragraphs": [
-          "Before applying, check travel, seniority, compensation clues, required certifications, work authorization, and schedule requirements.",
-          "These details often appear lower in the listing, so review them before you spend time tailoring."
-        ]
-      },
-      {
-        "heading": "Keep a note of why the role fits",
-        "paragraphs": [
-          "Before leaving the listing, record the strongest connection to your experience and any unresolved question. Use those notes when choosing a resume or writing an answer, even if you finish the application later."
-        ]
-      },
-      {
-        "heading": "A Daily Job Match Routine That Takes 15 Minutes",
-        "paragraphs": [
-          "A job search gets messy when every session starts from zero. A short daily routine helps you review new matches, apply to the best roles, and avoid losing track of what happened."
-        ]
-      },
-      {
-        "heading": "Minute 1-3: Scan New Matches",
-        "paragraphs": [
-          "Start by scanning titles, companies, location modes, and the first few requirement signals. Skip roles that are clearly wrong for your level, location, or work authorization.",
-          "Do not open every listing. Use the scan to decide where your attention belongs."
-        ]
-      },
-      {
-        "heading": "Minute 4-7: Read the Best Roles",
-        "paragraphs": [
-          "Open the strongest matches and compare responsibilities against your profile. Look for roles where your recent work, skills, and resume can tell a clear story.",
-          "If the role needs a completely different resume angle, decide whether it is worth the extra time before applying."
-        ]
-      },
-      {
-        "heading": "Use the remaining session for the strongest role",
-        "paragraphs": [
-          "Choose one well-matched role and prepare the requested documents. Complete the application only if you have enough time to review it. A short search session does not require finishing a complex form.",
-          "Quality matters more than the number of tabs you open."
-        ]
-      },
-      {
-        "heading": "Minute 14-15: Update Your Tracker",
-        "paragraphs": [
-          "Mark the roles you applied to and remove roles you know you do not want. A clean feed makes tomorrow's search faster."
-        ]
-      },
-      {
-        "heading": "How to Avoid Bad Job Matches",
-        "paragraphs": [
-          "Not every matched job deserves an application. Learning to spot weak matches protects your time and helps you focus on roles where you can make a strong case."
-        ]
-      },
-      {
-        "heading": "Check Seniority First",
-        "paragraphs": [
-          "If a role asks for leadership, ownership, or years of experience far beyond your background, applying may not be the best use of time. The same is true when a role is too junior for your goals.",
-          "The right match should be ambitious but explainable."
-        ]
-      },
-      {
-        "heading": "Watch for Location Mismatch",
-        "paragraphs": [
-          "A listing can appear in a broad search even when the location details are narrow. Read remote, hybrid, onsite, country, and time zone requirements before applying."
-        ]
-      },
-      {
-        "heading": "Compare Required Skills to Evidence",
-        "paragraphs": [
-          "If a required skill appears throughout the listing, your resume should show evidence for it. If the skill is missing from your background, decide whether another role is a better fit."
-        ]
-      },
-      {
-        "heading": "Use skip decisions productively",
-        "paragraphs": [
-          "Skipping a hard mismatch protects your time. Record repeated reasons, such as ineligible locations or the wrong level, so you can adjust a search rather than reviewing the same unsuitable roles again."
-        ]
-      },
-      {
-        "heading": "Use Job Filters Without Missing Good Roles",
-        "paragraphs": [
-          "Filters make a job feed manageable, but narrow filters can also hide good roles. The best approach is to start broad, learn the market, then focus your search."
-        ]
-      },
-      {
-        "heading": "Start Broad for a Few Minutes",
-        "paragraphs": [
-          "Before applying strict filters, scan a broader feed to learn which titles, companies, and location patterns are appearing. This gives you context for narrowing the search.",
-          "A broad scan also helps you find alternate titles you might not have searched for."
-        ]
-      },
-      {
-        "heading": "Add One Filter at a Time",
-        "paragraphs": [
-          "Apply one filter, review the results, then add another if needed. If the feed becomes empty or repetitive, loosen the most restrictive filter.",
-          "This is especially useful for remote roles because location language can vary by company."
-        ]
-      },
-      {
-        "heading": "Use Search Terms Carefully",
-        "paragraphs": [
-          "Searching for one exact title can miss related jobs. Try skill terms, company names, and alternate title words when your first search is too narrow."
-        ]
-      },
-      {
-        "heading": "Save the useful search routine",
-        "paragraphs": [
-          "Keep a note of the titles, locations and filters that produce relevant listings. Reuse that starting point and revise it when the results change."
-        ]
-      },
-      {
-        "heading": "Read Salary Signals in Job Matches",
-        "paragraphs": [
-          "Salary information is not always complete, but job descriptions often include signals that help you decide whether a role is worth your time."
-        ]
-      },
-      {
-        "heading": "Look for Published Ranges",
-        "paragraphs": [
-          "If a listing includes a salary range, compare it with the location, seniority, and responsibilities. A wide range can mean the company is hiring at multiple levels or adjusting for location.",
-          "Do not rely on the top number alone when deciding fit."
-        ]
-      },
-      {
-        "heading": "Read Seniority and Scope",
-        "paragraphs": [
-          "Compensation usually follows responsibility. Words like lead, principal, manager, staff, or director can signal a higher scope than the title first suggests.",
-          "If the scope is much higher than your experience, the salary may not make the role a realistic match."
-        ]
-      },
-      {
-        "heading": "Check Remote Location Rules",
-        "paragraphs": [
-          "Remote roles can pay differently by region. Read whether the company mentions location-based compensation, time zones, or country-specific employment."
-        ]
-      },
-      {
-        "heading": "Decide Before Applying",
-        "paragraphs": [
-          "If compensation is clearly below your needs, skip the role. If it is unclear but the match is strong, apply with notes so you can ask informed questions later."
-        ]
-      },
-      {
-        "heading": "Use a Fresh Job Feed Without Getting Overwhelmed",
-        "paragraphs": [
-          "A fresh job feed can be useful, but it can also create endless scrolling. The solution is to use a repeatable review system and limit decisions to apply, save, or skip."
-        ]
-      },
-      {
-        "heading": "Decide Before You Scroll",
-        "paragraphs": [
-          "Set a goal for the session: find remote roles, review one company, apply to two strong matches, or clear bad matches. A goal keeps the feed from taking over your day."
-        ]
-      },
-      {
-        "heading": "Use Apply, Save, or Skip",
-        "paragraphs": [
-          "Every job should move into one of three buckets. Apply when the fit is strong, save when you need more time, and skip when the mismatch is clear."
-        ]
-      },
-      {
-        "heading": "Avoid Endless Research",
-        "paragraphs": [
-          "Research matters, but not every listing deserves deep research. Save that time for jobs where your resume and goals already line up."
-        ]
-      },
-      {
-        "heading": "Use Three Outcomes: Apply, Save With a Question, or Skip",
-        "paragraphs": [
-          "Every review should end with a decision. Apply when the core fit and eligibility are clear. Save with a specific note when one answer—such as region, salary, or schedule—needs research. Skip when a hard requirement conflicts with your background or goals. Avoid an unstructured saved pile that simply moves decisions into the future.",
-          "A written reason also improves your search. After several sessions, common skip reasons reveal which filters or profile signals need adjustment.",
-          "When several matches come from one employer, compare them with the company's careers page and focus on the role that best fits your experience. Multiple vacancies alone do not show that every listing is current."
+        "steps": [
+          "Read the official role title, reference, hiring locations and required hours.",
+          "Open Safari’s Share menu; depending on the layout, it may be inside the Page Menu. Choose Notes, select or create an application note, then save the link.",
+          "In that note, add your reason for considering the role and a specific unresolved question. Keep required locations and hours beside the link.",
+          "Return to the official vacancy when you are ready to apply and check that the instructions are still current."
         ],
         "links": [
           {
-            "label": "Evaluate companies with several open roles",
-            "href": "/guides/highest-hiring-companies-job-search/"
+            "label": "Apple: save a website to a note from another app",
+            "href": "https://support.apple.com/en-au/118442"
+          }
+        ]
+      },
+      {
+        "heading": "Read the employer’s official listing",
+        "paragraphs": [
+          "Find the company’s careers page from its official website and locate the same title or job reference. Follow the application link supplied there, including a third-party hiring platform when that is the employer’s documented route.",
+          "An employer name and logo on a job board do not independently verify a listing. If a role is missing from the official site, check the employer’s stated recruiting channels or seek clarification before sharing documents or identity information."
+        ]
+      },
+      {
+        "heading": "Check geography and hours as separate requirements",
+        "paragraphs": [
+          "Country, region, time-zone overlap, travel and office attendance can each constrain a role. Read the full description for these conditions; a remote badge may omit them.",
+          "Do not change your stated location to pass a form or assume a regional label answers a work-authorization question. Follow the employer’s eligibility instructions and clarify uncertainty directly."
+        ],
+        "table": {
+          "caption": "Illustrative location wording—not live vacancies",
+          "columns": [
+            "Listing wording",
+            "What remains to check",
+            "Next step"
+          ],
+          "rows": [
+            [
+              "Remote—United States",
+              "Whether the role hires in your actual location and any state restrictions.",
+              "Read the stated conditions; do not treat remote as worldwide."
+            ],
+            [
+              "Remote—Europe",
+              "Which countries the employer includes and can hire in.",
+              "Ask about your specific country when the listing is unclear."
+            ],
+            [
+              "Remote, with required overlap during 13:00–17:00 UTC",
+              "Whether you can work those hours in your local time, including seasonal clock changes.",
+              "Compare the required interval with your actual availability."
+            ],
+            [
+              "Hybrid, two office days",
+              "Which office, which days and any attendance expectations.",
+              "Resolve the practical commute and schedule before applying."
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "A researched example: all-remote still needs a location check",
+        "paragraphs": [
+          "GitLab describes itself as an all-remote company. Its public country-hiring guidance also says that some roles have location-specific eligibility requirements. This pair of primary sources, checked on October 29, 2026, illustrates why company-wide remote culture and a vacancy’s hiring locations need separate checks.",
+          "Use the current listing for the role you are considering. This example is not a list of available jobs or an endorsement, and the employer’s policy may change."
+        ],
+        "links": [
+          {
+            "label": "GitLab: company careers page",
+            "href": "https://about.gitlab.com/jobs/"
+          },
+          {
+            "label": "GitLab: country-hiring guidance",
+            "href": "https://handbook.gitlab.com/handbook/people-group/employment-solutions/"
+          }
+        ]
+      },
+      {
+        "heading": "Review the role’s level and support needs",
+        "paragraphs": [
+          "For entry-level searches, inspect the actual experience requirements and the work expected in the first months. A junior title alone does not explain supervision, training, working hours or the tools you must already know.",
+          "For an asynchronous role, look for how the team documents decisions and handles urgent work. For customer-facing shifts, check the roster and coverage requirements. Turn an uncertainty into a specific question, such as “What training is provided before I handle the queue independently?”",
+          "Keep an unfamiliar required skill as a fit question. Do not add it to your profile just because the search result matches your preferred title."
+        ]
+      },
+      {
+        "heading": "Use a shortlist with a reason and an unanswered question",
+        "paragraphs": [
+          "Save the official URL, job reference, permitted locations, required hours and strongest evidence of fit. Give the role one outcome: apply, save for a named clarification or skip for a clear mismatch.",
+          "In a fictional example, a support applicant finds three remote listings. One permits their location and asks for work they can demonstrate; they prepare that application. Another has ambiguous country wording; they save a location question. The third requires hours they cannot work; they skip it rather than changing their availability.",
+          "A remote search still needs a normal application record. Keep the resume version, materials and confirmation once you submit."
+        ],
+        "links": [
+          {
+            "label": "Move from a shortlist to a checked iPhone application",
+            "href": "/guides/ten-minute-job-application-workflow/"
+          },
+          {
+            "label": "Tailor the resume to the actual responsibilities",
+            "href": "/guides/tailor-resume-to-job-description-iphone/"
+          }
+        ]
+      },
+      {
+        "heading": "Stop when the recruiting process becomes suspicious",
+        "paragraphs": [
+          "The FTC warns about paying for the promise of a job and fake-check arrangements that require you to send money onward. Verify unexpected messages through a contact route found independently on the company’s official site.",
+          "Before providing identity or payment details, check who is requesting them, at what stage and through which verified process. A polished website or a lack of online complaints is not a guarantee of legitimacy."
+        ],
+        "links": [
+          {
+            "label": "FTC: job scams and warning signs",
+            "href": "https://consumer.ftc.gov/articles/job-scams"
           }
         ]
       }
     ],
     "faqs": [
       {
-        "question": "How long should the first job-match scan take?",
-        "answer": "Usually less than a minute. Check title, company, level, location, work mode, and central requirements before reading deeply."
+        "question": "Does remote mean work from anywhere?",
+        "answer": "No. Check the role’s permitted locations, hours and other eligibility requirements. An employer can be remote-first while restricting where a particular role is hired."
       },
       {
-        "question": "Should salary determine whether I apply?",
-        "answer": "Use a published range with role scope and location. Skip when it clearly cannot meet your needs; save a strong unclear role with a compensation question."
+        "question": "Why does a remote role ask for my location?",
+        "answer": "Location may matter to the employer’s hiring arrangements, schedule or role requirements. Read its instructions and answer accurately."
       },
       {
-        "question": "How do I stop a fresh feed from becoming overwhelming?",
-        "answer": "Review on a short schedule, use apply/save/skip decisions, and stop after the strongest qualified applications rather than opening every listing."
+        "question": "How do I search for entry-level remote work?",
+        "answer": "Use related role titles and inspect the actual duties, required skills, training and supervision. A title or remote filter does not establish that the role is suitable."
+      },
+      {
+        "question": "Should I apply when my country is not mentioned?",
+        "answer": "Check the full listing and employer’s hiring guidance. When the wording is genuinely unclear, ask about your specific location through a verified channel."
       }
     ],
     "sources": [
       {
-        "label": "FTC: verify job opportunities and recognize scams",
+        "label": "GitLab: remote company context",
+        "href": "https://about.gitlab.com/jobs/"
+      },
+      {
+        "label": "GitLab: location-specific hiring requirements",
+        "href": "https://handbook.gitlab.com/handbook/people-group/employment-solutions/"
+      },
+      {
+        "label": "FTC: recognize job scams",
         "href": "https://consumer.ftc.gov/articles/job-scams"
+      },
+      {
+        "label": "Apple: save a website in Notes",
+        "href": "https://support.apple.com/en-au/118442"
       }
     ],
-    "screenshot": null
+    "screenshot": null,
+    "summary": "Search by role and location, read the official vacancy, verify country and schedule requirements, and save each promising role with a clear next step.",
+    "editorialNote": "Prepared with AI-assisted drafting and editorial review. Linked technical and career guidance was checked on October 29, 2026. Fictional examples are identified in the text."
   },
   {
     "slug": "highest-hiring-companies-job-search",
     "cluster": "job-matching",
-    "title": "How to Find Companies Hiring for Many Roles",
-    "h1": "How to Find Companies Hiring for Many Roles",
-    "description": "Learn how to evaluate companies with many open jobs, spot relevant teams, and prioritize applications without chasing every listing.",
-    "intro": "A company with many open roles can be a strong signal, but it does not mean every job is a good match. The better workflow is to use hiring volume as a discovery signal, then narrow down to roles that fit your profile.",
+    "title": "How to Find Companies With Multiple Job Openings",
+    "h1": "Find Companies Hiring for Several Roles",
+    "description": "Verify openings on company careers pages, distinguish duplicate advertisements from separate roles and choose applications supported by your experience.",
+    "intro": "Repeated company names in a job feed can help you discover employers, but a count of advertisements does not tell you how many people will be hired. Verify the official openings, separate role references and choose the vacancies whose work you can actually support.",
     "datePublished": "2026-05-28",
-    "dateModified": "2026-10-19",
+    "dateModified": "2026-10-29",
     "redirectFrom": [
       "find-companies-with-many-open-roles",
       "find-startup-jobs-hiring-now"
     ],
     "relatedSlugs": [
-      "review-job-matches-faster",
-      "set-up-job-matching-profile",
-      "find-top-remote-jobs-iphone"
+      "find-top-remote-jobs-iphone",
+      "ten-minute-job-application-workflow",
+      "tailor-resume-to-job-description-iphone"
     ],
     "sections": [
       {
-        "heading": "Use Company Volume as a Signal",
+        "heading": "Build the list from official careers pages",
         "paragraphs": [
-          "When a company appears repeatedly in a job feed, it may be growing, backfilling teams, or hiring across multiple functions. That makes it worth checking whether there are several roles that match your background.",
-          "Avoid applying to unrelated roles at the same company just because the company is active. Relevance still matters."
+          "Use a job board or search result to find a possible employer, then reach its careers page from the company’s official website. Search by the function, title or location you want and save the official role link and reference.",
+          "Look for related titles rather than applying the same title assumption to every company. Customer support, customer operations and customer education may describe different responsibilities. The vacancy text should tell you which work is actually being hired."
         ]
       },
       {
-        "heading": "Look for Clusters of Similar Roles",
+        "heading": "Count distinct job references rather than cards in a feed",
         "paragraphs": [
-          "If a company has several jobs in the same function, compare the titles and requirements. A senior role, mid-level role, and specialist role may look similar but require different positioning.",
-          "Choose the closest match and tailor your resume around that role instead of sending the same application everywhere."
+          "The following example is fictional. It demonstrates a review method, not a current employer’s hiring activity. A vacancy may appear in several locations or on several boards, and a single requisition may cover more than one hire.",
+          "The worksheet contains three distinct references. It does not establish three hires, current recruiting budgets or your chances of being selected. When references are absent, compare the full description and official application link before treating two entries as duplicates."
         ],
-        "bullets": [
-          "Compare seniority words like associate, senior, staff, lead, or manager.",
-          "Check whether roles belong to different locations or teams.",
-          "Look for repeated required skills across listings."
-        ]
+        "table": {
+          "caption": "Five fictional advertisements, three job references",
+          "columns": [
+            "Advertisement",
+            "Reference",
+            "What to record"
+          ],
+          "rows": [
+            [
+              "Support Specialist—location A",
+              "CS-101",
+              "First copy of reference CS-101."
+            ],
+            [
+              "Support Specialist—location B",
+              "CS-101",
+              "Same reference; inspect permitted locations rather than counting another distinct requisition."
+            ],
+            [
+              "Senior Support Specialist",
+              "CS-102",
+              "A different reference and seniority level."
+            ],
+            [
+              "Help-Center Writer on the company site",
+              "CW-103",
+              "A third reference with different work."
+            ],
+            [
+              "Help-Center Writer on an external board",
+              "CW-103",
+              "Another advertisement for the same recorded reference."
+            ]
+          ]
+        }
       },
       {
-        "heading": "Verify openings on the company’s careers page",
+        "heading": "Check whether each listing is relevant and usable now",
         "paragraphs": [
-          "Use the employer’s official website to find its careers page and compare relevant titles, locations and reference numbers. Several copies of the same vacancy are not necessarily several different openings.",
-          "Choose the role whose requirements you can support, save its official URL and retain the vacancy details with your application record."
-        ]
-      },
-      {
-        "heading": "Track What You Applied To",
-        "paragraphs": [
-          "If you apply to more than one role at a company, keep notes. Recruiters may see multiple applications, so your choices should tell a coherent story about the kind of work you want."
-        ]
-      },
-      {
-        "heading": "Find Companies With Many Open Roles",
-        "paragraphs": [
-          "Companies with many open roles can help you discover teams, functions, and locations that are actively hiring. The key is to turn volume into focus."
-        ]
-      },
-      {
-        "heading": "Do Not Treat Volume as Fit",
-        "paragraphs": [
-          "Many openings can mean the company is active, but fit still depends on the specific role. Start with the company signal, then compare individual listings."
-        ]
-      },
-      {
-        "heading": "Search Within the Company",
-        "paragraphs": [
-          "Look for related titles, teams, and locations. A company may have several roles with similar names but very different expectations."
-        ]
-      },
-      {
-        "heading": "Pick the Strongest Application",
-        "paragraphs": [
-          "If three roles look possible, apply to the one where your resume is strongest first. A focused application usually beats multiple weak ones."
-        ]
-      },
-      {
-        "heading": "Find Startup Jobs Hiring Now",
-        "paragraphs": [
-          "Startup jobs can move quickly and vary widely in scope. A good search checks whether the role, company stage, and expectations match how you want to work."
-        ]
-      },
-      {
-        "heading": "Look for Ownership Signals",
-        "paragraphs": [
-          "Startup listings often emphasize building, launching, owning, creating processes, or working cross-functionally. If that matches your experience, highlight it in your resume.",
-          "If you prefer narrow responsibilities, read the role carefully before applying."
-        ]
-      },
-      {
-        "heading": "Check the Function and Stage",
-        "paragraphs": [
-          "A startup may hire one generalist or several specialists depending on its stage. Compare the job description to your preferred scope before applying."
-        ]
-      },
-      {
-        "heading": "Use Company Search",
-        "paragraphs": [
-          "When you see a startup with one relevant role, search the company name to see whether there are related openings. A better-fitting role may be listed nearby."
-        ]
-      },
-      {
-        "heading": "Review the application before sending it",
-        "paragraphs": [
-          "For a promising startup role, check that the opportunity appears on a verifiable company channel. Tailor your evidence to its actual scope, review the requested materials and record what you send."
-        ]
-      },
-      {
-        "heading": "Distinguish Growth From Permanent Vacancy",
-        "paragraphs": [
-          "A company with many openings can be expanding, replacing turnover, staffing seasonal work, or leaving old listings online. Check whether roles have recent dates, specific teams, named locations, and consistent descriptions. Compare the careers page with company announcements or product activity when the application deserves deeper research.",
-          "Repeated copies of the same vague role across many cities are a weaker signal than several distinct positions tied to visible teams and current business needs."
-        ]
-      },
-      {
-        "heading": "Build a Company-Level Application Strategy",
-        "paragraphs": [
-          "Choose the one or two openings with the clearest fit rather than applying to every role. Keep the resume story consistent and explain the appropriate team or problem in each tailored response. Track all applications under the same company so you can discuss them honestly if one recruiter contacts you.",
-          "For startups, confirm the role exists on the official careers page, understand the likely breadth of responsibility, and look for evidence of an active product and team. Avoid paying fees, purchasing equipment through an unknown contact, or moving the conversation away from verifiable company channels."
+          "Inspect the responsibilities, hiring locations, level and application instructions. Check whether the official role page still accepts applications. A displayed date is one clue, not proof that a position is active or that it has just been created.",
+          "Many advertisements can reflect different teams, replacement hiring, a talent pool or duplicate distribution. Treat company growth as a separate research question. Avoid turning the number of cards in a search result into a claim about business health."
         ],
         "links": [
           {
-            "label": "Move from a matched role to a reviewed application",
+            "label": "Check remote roles for location and schedule restrictions",
+            "href": "/guides/find-top-remote-jobs-iphone/"
+          }
+        ]
+      },
+      {
+        "heading": "Compare the actual work before choosing a role",
+        "paragraphs": [
+          "Return to the fictional references above. An applicant with experience answering customer emails and updating a help article may have relevant evidence for CS-101. For CS-102, check what senior responsibilities the listing requires. For CW-103, check whether the employer asks for a writing portfolio; customer-support experience alone does not establish that evidence.",
+          "Read each role independently. Highlight what you can demonstrate and what remains uncertain. When several roles are credible, explain the appropriate connection in each application while keeping your employment history consistent.",
+          "Employer rules about multiple applications differ. GitLab’s candidate handbook explicitly discusses applying for more than one role; use it as an example of an employer publishing its policy, not a rule for other companies."
+        ],
+        "links": [
+          {
+            "label": "GitLab: candidate handbook and multiple-role applications",
+            "href": "https://handbook.gitlab.com/handbook/hiring/candidate-faq/"
+          },
+          {
+            "label": "Map a vacancy’s requirements to resume evidence",
+            "href": "/guides/tailor-resume-to-job-description-iphone/"
+          }
+        ]
+      },
+      {
+        "heading": "For startups, clarify scope before writing a broad pitch",
+        "paragraphs": [
+          "A small company may describe work that spans several functions. Ask which outcomes and responsibilities matter most, who you would work with and what skills are expected at the start. A broad title is not evidence that you must claim expertise across every listed tool.",
+          "Use company research to form specific questions: “Which of the listed responsibilities is the priority for this hire?” or “Who owns the work this role will take over?” Keep your resume and letter focused on the evidence relevant to the answer."
+        ]
+      },
+      {
+        "heading": "Track applications under both company and role",
+        "paragraphs": [
+          "Keep one company note for shared research, then one application row per role reference. Save the exact resume and letter used, the date and the employer’s confirmation. This prevents a reply about one vacancy from being confused with another application.",
+          "If a recruiter discusses several openings, use that record to explain what interests you about each. Follow the company’s instructions about additional applications or routing a candidate to another team."
+        ],
+        "links": [
+          {
+            "label": "Use the complete iPhone application workflow",
             "href": "/guides/ten-minute-job-application-workflow/"
           },
           {
-            "label": "Set up Safari contact AutoFill and check the fields it fills",
+            "label": "Set up Safari contact AutoFill",
             "href": "/guides/autofill-job-applications-iphone/"
           },
           {
-            "label": "Choose and upload the correct resume from iPhone Safari",
+            "label": "Upload the correct resume from iPhone Safari",
             "href": "/guides/attach-resume-from-iphone-safari/"
+          }
+        ]
+      },
+      {
+        "heading": "Verify unexpected recruiting messages independently",
+        "paragraphs": [
+          "Use an official company contact route to check an unexpected request. Do not rely only on a logo, a familiar employee name or the conversation’s original email link. The FTC warns against paying for the promise of employment and forwarding money from a supposed employer’s check.",
+          "Research can help you decide whether to proceed, but it cannot guarantee that an opportunity is legitimate. Stop and seek clarification when the recruiting channel or request does not match the company’s published process."
+        ],
+        "links": [
+          {
+            "label": "FTC: job-scam advice",
+            "href": "https://consumer.ftc.gov/articles/job-scams"
           }
         ]
       }
     ],
     "faqs": [
       {
-        "question": "Does a large number of openings mean a company is healthy?",
-        "answer": "Not by itself. Check listing freshness, team specificity, company activity, and whether the roles appear on the official careers page."
+        "question": "Does a high vacancy count mean a company is growing?",
+        "answer": "Not necessarily. Check the official roles and investigate any growth claim separately; advertisement counts do not establish hiring budgets or business health."
       },
       {
-        "question": "Should I apply to several roles at one company?",
-        "answer": "Apply to one or two roles with a credible fit. Too many unrelated applications can make your direction look unclear."
+        "question": "Can one job reference represent several hires?",
+        "answer": "Yes, it can. A distinct-reference count is a way to organize advertisements, not a verified headcount forecast."
       },
       {
-        "question": "How can I verify a startup job?",
-        "answer": "Use the official domain and careers page and verify the contact. Do not pay for the promise of a job or deposit a check and forward money or buy gift cards. Verify any equipment-purchase instructions through an official company channel."
+        "question": "How many jobs should I apply for at the same company?",
+        "answer": "Follow the employer’s instructions and apply where you have a credible fit. There is no universal numerical limit appropriate to every employer."
+      },
+      {
+        "question": "What if the official vacancy has disappeared?",
+        "answer": "Check the employer’s stated recruiting channels or contact route before sharing more information or assuming that an external copy remains current."
       }
     ],
     "sources": [
       {
-        "label": "FTC: check an employer and recognize job scams",
+        "label": "GitLab: candidate handbook and role-specific recruiting process",
+        "href": "https://handbook.gitlab.com/handbook/hiring/candidate-faq/"
+      },
+      {
+        "label": "FTC: verify opportunities and recognize scams",
         "href": "https://consumer.ftc.gov/articles/job-scams"
       }
     ],
-    "screenshot": null
+    "screenshot": null,
+    "summary": "Use hiring activity to find employers, then inspect individual vacancies. Deduplicate advertisements, check the requirements and keep a separate record for each application.",
+    "editorialNote": "Prepared with AI-assisted drafting and editorial review. Linked technical and career guidance was checked on October 29, 2026. Fictional examples are identified in the text."
   }
 ];
 
 export const retainedGuideSlugs = guidePlans.map((guide) => guide.slug);
 
 export const guideRedirects = Object.fromEntries(
-  guidePlans.flatMap((guide) =>
-    guide.redirectFrom.map((source) => [
-      `/guides/${source}/`,
-      `/guides/${guide.slug}/`
-    ])
-  )
+  guidePlans.flatMap((guide) => guide.redirectFrom.map((source) => [
+    `/guides/${source}/`, `/guides/${guide.slug}/`
+  ]))
 );
 
-if (guidePlans.length !== 13) {
-  throw new Error(`Expected 13 retained guides, found ${guidePlans.length}`);
-}
-
-if (Object.keys(guideRedirects).length !== 27) {
-  throw new Error(`Expected 27 guide redirects, found ${Object.keys(guideRedirects).length}`);
-}
+if (guidePlans.length !== 10) throw new Error("Expected 10 retained guides, found " + guidePlans.length);
+if (Object.keys(guideRedirects).length !== 30) throw new Error("Expected 30 guide redirects, found " + Object.keys(guideRedirects).length);

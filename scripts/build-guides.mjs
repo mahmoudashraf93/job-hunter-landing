@@ -3,7 +3,7 @@ import path from "node:path";
 import { articles as baseArticles, clusterLabels } from "../content/articles.mjs";
 import { jobMatchingArticles } from "../content/job-matching-articles.mjs";
 import { guidePlans, SITE_MODIFIED, PAGE_MODIFIED } from "../content/seo-plan.mjs";
-import { articleDates, escapeHtml, outlineSections, readingMinutes, renderFigure, renderLinks, renderSection } from "./guide-rendering.mjs";
+import { articleDates, escapeHtml, outlineSections, readingMinutes, renderFigure, renderLinks, renderSection, safeHref } from "./guide-rendering.mjs";
 
 const SITE_URL = "https://appjobhunter.com";
 const APP_NAME = "JobHunter";
@@ -50,7 +50,7 @@ const pageFilePath = (pathname) => {
 const jsonLd = (data) =>
   `<script type="application/ld+json">${JSON.stringify(data)}</script>`;
 
-const renderHead = ({ title, description, pathname, schema }) => {
+const renderHead = ({ title, description, pathname, schema, practice = false }) => {
   const canonical = absoluteUrl(pathname);
   return `<!doctype html>
 <html lang="en">
@@ -74,6 +74,7 @@ const renderHead = ({ title, description, pathname, schema }) => {
   <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/guides/guide.css">
   <script src="/guides/guide.js" defer></script>
+  ${practice ? '<script type="module" src="/guides/practice.js"></script>' : ""}
   ${jsonLd(schema)}
 </head>`;
 };
@@ -87,7 +88,6 @@ const siteHeader = `<a class="skip-link" href="#main-content">Skip to content</a
   <nav aria-label="Primary">
     <a href="/guides/">Guides</a>
     <a href="/tools/">Free tools</a>
-    <a class="download-link" href="${APP_STORE_URL}"><img src="/images/ui/apple.svg" alt="" width="20" height="20"><span>Get JobHunter</span></a>
   </nav>
 </div></header>`;
 
@@ -203,7 +203,8 @@ const renderArticle = (article) => {
     title: `${article.title} | JobHunter Guides`,
     description: article.description,
     pathname,
-    schema: articleSchema(article, pathname)
+    schema: articleSchema(article, pathname),
+    practice: article.sections.some((section) => section.practice)
   })}
 <body>
 ${siteHeader}
@@ -236,10 +237,12 @@ ${siteHeader}
         .join("\n")}
     </section>
         ${article.sources?.length ? `<section class="sources" id="sources" tabindex="-1"><h2>Sources and further reading</h2>${renderLinks(article.sources)}</section>` : ""}
+        ${article.editorialNote ? `<details class="editorial-note"><summary>How this guide was prepared</summary><p>${escapeHtml(article.editorialNote)}</p></details>` : ""}
         <aside class="cta" aria-label="Optional application tool">
           <p class="eyebrow">Optional tool</p>
           <h2>JobHunter for repeated applications</h2>
           <p>JobHunter offers saved profiles, supported-field autofill and AI cover-letter drafts on iPhone. The steps above work without it. If you use it, review the filled fields and generated text, then submit the application yourself.</p>
+          ${article.optionalTools?.length ? `<p>Optional browser tools:</p><ul>${article.optionalTools.map((tool) => `<li><a href="${safeHref(tool.href)}">${escapeHtml(tool.label)}</a> — ${escapeHtml(tool.description)}</li>`).join("")}</ul>` : ""}
           <a href="${APP_STORE_URL}">View JobHunter on the App Store</a>
         </aside>
       </div>
@@ -273,13 +276,13 @@ const renderGuideIndex = () => {
     "@type": "CollectionPage",
     name: "JobHunter Job Application Guides",
     description:
-      "Practical guides for matched jobs, remote jobs, autofilling applications, building resumes, and writing cover letters faster from iPhone.",
+      "Practical advice for finding jobs, applying from iPhone, uploading resumes, checking ATS formatting, and writing cover letters.",
     url: absoluteUrl(pathname)
   };
   return `${renderHead({
     title: "Job Matching, Resume, and Application Guides | JobHunter",
     description:
-      "Practical guides for JobHunter job matching, remote jobs, application autofill, iPhone resume workflows, ATS-friendly resumes, and AI cover letters.",
+      "Practical advice for finding jobs, applying from iPhone, uploading resumes, checking ATS formatting, and writing cover letters.",
     pathname,
     schema
   }).replace('property="og:type" content="article"', 'property="og:type" content="website"')}
@@ -288,9 +291,9 @@ ${siteHeader}
 <main id="main-content" class="index-shell" tabindex="-1">
   <section class="article-hero index-hero"><div class="container">
     <p class="eyebrow">JobHunter Guides</p>
-    <h1>Find better jobs and apply faster from iPhone</h1>
-    <p>Use these guides to review matched jobs, find remote roles, compare hiring companies, autofill applications, prepare ATS-friendly resumes, and draft cover letters without losing control of the final submission.</p>
-    <p class="index-meta">${articles.length} practical guides · Written by the JobHunter team</p>
+    <h1>Find jobs and prepare applications from iPhone</h1>
+    <p>Find remote roles, compare job openings, prepare resumes and cover letters, and check each application before you submit it. Each guide includes practical steps, examples and sources.</p>
+    <p class="index-meta">${articles.length} practical guides · AI-assisted drafting and editorial review</p>
   </div></section>
   <div class="container index-body">
   <nav class="category-nav" aria-label="Guide topics">${grouped.map((group) => `<a href="/guides/#${group.cluster}">${escapeHtml(group.label)} <span>${group.items.length}</span></a>`).join("")}</nav>
@@ -323,6 +326,7 @@ ${siteFooter}
 
 const css = await readFile(new URL("../content/guides.css", import.meta.url), "utf8");
 const interactions = await readFile(new URL("./guide-interactions.js", import.meta.url), "utf8");
+const practiceInteractions = await readFile(new URL("./guide-practice.mjs", import.meta.url), "utf8");
 
 const write = async (pathname, html) => {
   const filePath = pageFilePath(pathname);
@@ -351,6 +355,7 @@ for (const article of articles) {
 
 await writeFile(path.join(OUTPUT_DIR, "guides", "guide.css"), css);
 await writeFile(path.join(OUTPUT_DIR, "guides", "guide.js"), interactions);
+await writeFile(path.join(OUTPUT_DIR, "guides", "practice.js"), practiceInteractions);
 await writeFile(
   path.join(OUTPUT_DIR, "sitemap.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>

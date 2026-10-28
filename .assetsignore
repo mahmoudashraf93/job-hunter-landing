@@ -9,3 +9,5 @@ src/
 .assetsignore
 wrangler.jsonc
 design-qa.md
+.DS_Store
+**/.DS_Store
