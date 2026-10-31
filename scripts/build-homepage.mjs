@@ -67,430 +67,50 @@ const html = `<!doctype html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>JobHunter | Autofill Job Applications, Resumes, and AI Cover Letters</title>
-  <meta name="description" content="JobHunter helps iPhone job seekers autofill applications, attach resumes, build reusable profile details, and draft AI cover letters faster.">
+  <meta name="description" content="JobHunter helps iPhone job seekers find jobs, autofill applications, prepare resumes, and track their progress.">
   <link rel="canonical" href="${SITE_URL}/">
   <meta name="apple-itunes-app" content="app-id=6645735955">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="JobHunter | Autofill Job Applications Faster">
-  <meta property="og:description" content="Autofill job applications from your iPhone, attach resumes, and draft AI cover letters with JobHunter.">
-  <meta property="og:url" content="${SITE_URL}/">
-  <meta property="og:image" content="${APP_ICON}">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="JobHunter | Autofill Job Applications Faster">
-  <meta name="twitter:description" content="Autofill job applications from your iPhone, attach resumes, and draft AI cover letters with JobHunter.">
-  <meta name="twitter:image" content="${APP_ICON}">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <meta property="og:type" content="website"><meta property="og:title" content="JobHunter | Autofill Job Applications Faster"><meta property="og:description" content="Find jobs, prepare resumes, and autofill applications from your iPhone."><meta property="og:url" content="${SITE_URL}/"><meta property="og:image" content="${APP_ICON}">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="JobHunter | Autofill Job Applications Faster"><meta name="twitter:description" content="Find jobs, prepare resumes, and autofill applications from your iPhone."><meta name="twitter:image" content="${APP_ICON}">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/home.css">
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
-  <style>
-    :root {
-      color-scheme: light;
-      --ink: #102033;
-      --muted: #526173;
-      --blue: #0b1c49;
-      --bright-blue: #2364aa;
-      --teal: #2a9d8f;
-      --gold: #f0b429;
-      --paper: #ffffff;
-      --soft: #f6f8fb;
-      --line: #d9e1ea;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--ink);
-      background: var(--paper);
-      line-height: 1.6;
-    }
-    a { color: inherit; }
-    .hero {
-      position: relative;
-      min-height: 88vh;
-      overflow: hidden;
-      background: #0b1c49;
-      color: white;
-      display: flex;
-      align-items: center;
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(11, 28, 73, 0.96) 0%, rgba(11, 28, 73, 0.86) 46%, rgba(11, 28, 73, 0.58) 100%),
-        url("${HERO_SCREENSHOT}") right 8% center / min(34vw, 380px) auto no-repeat;
-    }
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      width: min(1120px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 82px 0 76px;
-    }
-    .topbar {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      width: min(1120px, calc(100% - 40px));
-      padding: 22px 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      font-weight: 800;
-    }
-    .brand img { border-radius: 10px; }
-    .topbar nav {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-    .topbar nav a {
-      color: rgba(255, 255, 255, 0.82);
-      font-weight: 700;
-      text-decoration: none;
-    }
-    .download-pill {
-      background: white;
-      color: var(--blue) !important;
-      border-radius: 8px;
-      padding: 9px 14px;
-    }
-    .hero-copy {
-      max-width: 650px;
-      padding-top: 58px;
-    }
-    .eyebrow {
-      color: #9de2d9;
-      font-size: 0.82rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin: 0 0 12px;
-    }
-    h1 {
-      font-size: clamp(3rem, 8vw, 6.6rem);
-      line-height: 0.95;
-      letter-spacing: 0;
-      margin: 0 0 22px;
-    }
-    .hero-copy p {
-      color: rgba(255, 255, 255, 0.78);
-      font-size: clamp(1.05rem, 2vw, 1.35rem);
-      max-width: 590px;
-      margin: 0 0 30px;
-    }
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      align-items: center;
-    }
-    .primary-button,
-    .secondary-button {
-      display: inline-flex;
-      align-items: center;
-      min-height: 46px;
-      border-radius: 8px;
-      padding: 0 18px;
-      font-weight: 800;
-      text-decoration: none;
-    }
-    .primary-button {
-      background: white;
-      color: var(--blue);
-    }
-    .secondary-button {
-      border: 1px solid rgba(255, 255, 255, 0.34);
-      color: white;
-    }
-    .section {
-      padding: 68px 24px;
-    }
-    .inner {
-      max-width: 1120px;
-      margin: 0 auto;
-    }
-    .section h2 {
-      font-size: clamp(2rem, 4vw, 3.6rem);
-      line-height: 1.03;
-      letter-spacing: 0;
-      margin: 0 0 18px;
-    }
-    .section-intro {
-      color: var(--muted);
-      max-width: 720px;
-      font-size: 1.1rem;
-      margin: 0 0 30px;
-    }
-    .feature-grid,
-    .guide-grid,
-    .review-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-    }
-    .feature,
-    .guide-card,
-    .review {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--paper);
-      padding: 22px;
-    }
-    .feature { display: block; color: inherit; text-decoration: none; }
-    .feature strong,
-    .guide-card strong {
-      display: block;
-      font-size: 1.1rem;
-      line-height: 1.25;
-      margin-bottom: 10px;
-    }
-    .feature p,
-    .guide-card p,
-    .review p {
-      color: var(--muted);
-      margin: 0;
-    }
-    .guide-section {
-      background: var(--soft);
-    }
-    .guide-card {
-      min-height: 178px;
-      text-decoration: none;
-    }
-    .guide-card span {
-      display: block;
-      color: var(--teal);
-      font-size: 0.78rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .screens {
-      background: #12285d;
-      color: white;
-    }
-    .screens .section-intro { color: rgba(255, 255, 255, 0.72); }
-    .screen-row {
-      display: flex;
-      gap: 18px;
-      overflow-x: auto;
-      padding-bottom: 10px;
-    }
-    .screen-row img {
-      width: min(44vw, 250px);
-      min-width: 180px;
-      border-radius: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
-    }
-    .review {
-      background: #fffaf0;
-      border-color: #f4d98a;
-    }
-    .faq {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
-    }
-    .faq h3 {
-      margin: 0 0 8px;
-      font-size: 1.08rem;
-    }
-    .faq p { color: var(--muted); margin: 0; }
-    .final-cta {
-      background: linear-gradient(135deg, var(--bright-blue), var(--teal));
-      color: white;
-      text-align: center;
-    }
-    .final-cta p {
-      color: rgba(255, 255, 255, 0.82);
-      max-width: 650px;
-      margin: 0 auto 24px;
-    }
-    footer {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 28px 24px 40px;
-      color: var(--muted);
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-      border-top: 1px solid var(--line);
-    }
-    footer nav {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    footer a { text-decoration: none; font-weight: 700; }
-    @media (max-width: 760px) {
-      .hero { min-height: auto; }
-      .hero::before {
-        background:
-          linear-gradient(180deg, rgba(11, 28, 73, 0.96) 0%, rgba(11, 28, 73, 0.86) 58%, rgba(11, 28, 73, 0.72) 100%),
-          url("${HERO_SCREENSHOT}") right 24px bottom 18px / 156px auto no-repeat;
-      }
-      .topbar {
-        position: relative;
-        left: auto;
-        transform: none;
-        width: auto;
-        margin: 0 20px;
-      }
-      .topbar nav { gap: 12px; }
-      .hero {
-        display: block;
-      }
-      .hero-inner {
-        width: auto;
-        margin: 0 20px;
-        padding: 38px 0 210px;
-      }
-      .hero-copy { padding-top: 12px; }
-      .section { padding: 52px 20px; }
-    }
-  </style>
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="/" aria-label="JobHunter home">
-      <img src="/images/app-icon.png" width="40" height="40" alt="">
-      <span>JobHunter</span>
-    </a>
-    <nav aria-label="Primary">
-      <a href="/tools/">Tools</a>
-      <a href="/guides/">Guides</a>
-      <a href="#features">Features</a>
-      <a href="#faq">FAQ</a>
-      <a class="download-pill" href="${APP_STORE_URL}">Download</a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="hero-copy">
-          <p class="eyebrow">iPhone job application autofill</p>
-          <h1>JobHunter</h1>
-          <p>Autofill job applications from your iPhone, attach the right resume, and draft AI cover letters while keeping final review in your hands.</p>
-          <div class="actions">
-            <a class="primary-button" href="${APP_STORE_URL}">Download on the App Store</a>
-            <a class="secondary-button" href="/guides/">Read job search guides</a>
-          </div>
-        </div>
+<a class="skip" href="#main">Skip to content</a>
+<header class="header wrap">
+  <a class="brand" href="/" aria-label="JobHunter home"><img src="/images/app-icon.png" width="40" height="40" alt=""><span>JobHunter</span></a>
+  <nav aria-label="Primary"><a href="/guides/">Guides</a><a href="/tools/">Free tools</a><a class="button button-small" href="${APP_STORE_URL}"><img src="/images/ui/apple.svg" alt=""> Get the app</a></nav>
+</header>
+<main id="main">
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <p class="eyebrow">The application journey</p>
+    <h1 id="hero-title">Find better jobs<br>and apply faster<br>from iPhone.</h1>
+    <p class="hero-copy">Search for jobs, prepare applications, and keep track of your progress, all from your iPhone. Spend less time on repeat work and more time on what matters.</p>
+    <a class="button hero-button" href="${APP_STORE_URL}"><img src="/images/ui/apple.svg" alt=""> Get JobHunter on the App Store <img class="arrow" src="/images/home/arrow-right.svg" alt=""></a>
+    <img class="hero-image" src="/images/home/hero.webp" width="1536" height="1024" alt="Illustration of JobHunter's job search, autofill and application tracker on iPhone">
+  </section>
+  <section class="journey wrap" aria-label="Your application journey">
+    <a class="step" href="/guides/find-top-remote-jobs-iphone/"><span class="icon"><img src="/images/home/search.svg" alt=""></span><strong>Search</strong><span>Find relevant jobs by title, company, or location.</span></a>
+    <a class="step" href="/tools/free-resume-maker/"><span class="icon"><img src="/images/home/file-text.svg" alt=""></span><strong>Prepare</strong><span>Get your resume and details ready to apply.</span></a>
+    <a class="step" href="/guides/autofill-job-applications-iphone/"><span class="icon"><img src="/images/home/send.svg" alt=""></span><strong>Apply</strong><span>Fill forms faster, then review and submit yourself.</span></a>
+    <a class="step" href="/guides/ten-minute-job-application-workflow/"><span class="icon"><img src="/images/home/chart-bar.svg" alt=""></span><strong>Track</strong><span>Keep tabs on your progress from application to offer.</span></a>
+  </section>
+  <section class="section guide-section wrap" id="guides" aria-labelledby="guides-title">
+    <div class="guide-heading"><div><p class="eyebrow">JobHunter guides</p><h2 id="guides-title">Practical guides for<br> every step of the journey.</h2><p>Find the right opportunities, prepare stronger applications, and stay organized from your iPhone.</p></div><a class="outline-button" href="/guides/">View all guides <img src="/images/home/arrow-right.svg" alt=""></a></div>
+    <div class="stories">
+      <a class="story featured" href="/guides/autofill-job-applications-iphone/"><img class="story-image" src="/images/home/autofill.webp" alt="" width="1600" height="900"><div class="story-body"><span class="story-type">Featured guide · Autofill</span><h3>How to Autofill Job Applications on iPhone</h3><p>Set up Safari AutoFill, understand which fields it supports, and fix missing or incorrect suggestions.</p><span class="read-link">Read guide <img src="/images/home/arrow-right.svg" alt=""></span></div></a>
+      <div class="story-stack">
+        <a class="story" href="/guides/ats-friendly-resume-checklist/"><img class="story-image" src="/images/home/resume.webp" alt="" width="1600" height="900" loading="lazy"><div class="story-body"><span class="story-type">Resume builder</span><h3>ATS-Friendly Resume Checklist: Format and Parsing Checks</h3><p>Check your resume's format, reading order, dates, and relevant skills.</p><span class="read-link">Read guide <img src="/images/home/arrow-right.svg" alt=""></span></div></a>
+        <a class="story" href="/guides/find-top-remote-jobs-iphone/"><img class="story-image" src="/images/home/remote.webp" alt="" width="1600" height="900" loading="lazy"><div class="story-body"><span class="story-type">Job matching</span><h3>How to Find Remote Jobs on iPhone: Location and Fit Checks</h3><p>Find remote roles and check location, working hours, and employer details.</p><span class="read-link">Read guide <img src="/images/home/arrow-right.svg" alt=""></span></div></a>
       </div>
-    </section>
-
-    <section class="section" id="features">
-      <div class="inner">
-        <p class="eyebrow">Built for repeated applications</p>
-        <h2>Spend less time typing the same profile.</h2>
-        <p class="section-intro">JobHunter focuses on the repeat work that slows down job seekers: matched job discovery, profile fields, resume attachment, and cover letter drafts.</p>
-        <div class="feature-grid">
-          <a class="feature" href="/guides/ten-minute-job-application-workflow/"><strong>Review and apply for jobs</strong><p>Review active roles by title, company, work mode, and fit before you apply.</p></a>
-          <a class="feature" href="/guides/autofill-job-applications-iphone/"><strong>Autofill application fields</strong><p>Save profile details once and use them to complete repetitive application forms faster.</p></a>
-          <a class="feature" href="/guides/attach-resume-from-iphone-safari/"><strong>Attach resumes from iPhone</strong><p>Keep resume versions ready so you can choose the right file while applying on mobile.</p></a>
-          <a class="feature" href="/guides/ai-cover-letter-generator-review-checklist/"><strong>Draft AI cover letters</strong><p>Create a quick draft, then review and tailor it before adding it to an application.</p></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="inner">
-        <p class="eyebrow">Free tools</p>
-        <h2>Make a resume or cover letter in your browser.</h2>
-        <p class="section-intro">Start with a free classic resume template or a practical cover letter draft, then use the app for AI, more templates, matched jobs, and iPhone autofill.</p>
-        <div class="guide-grid">
-          <a class="guide-card" href="/tools/free-resume-maker/"><span>Resume tool</span><strong>Free Resume Maker</strong><p>Create a clean classic resume and save it as a PDF from your browser.</p></a>
-          <a class="guide-card" href="/tools/free-cover-letter-generator/"><span>Cover letter tool</span><strong>Free Cover Letter Generator</strong><p>Generate a template-based cover letter and copy it into an application.</p></a>
-          <a class="guide-card" href="/tools/"><span>All tools</span><strong>View free JobHunter tools</strong><p>Use browser tools, then download the app for more workflows.</p></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section screens">
-      <div class="inner">
-        <p class="eyebrow">Screenshots</p>
-        <h2>Made for the mobile job search.</h2>
-        <p class="section-intro">Use JobHunter where applications often start: on your phone, in Safari, while the role is still fresh.</p>
-        <div class="screen-row" aria-label="JobHunter app screenshots">
-          ${SCREENSHOTS.map((screenshot) => `<img src="${screenshot.src}" alt="${screenshot.alt}" loading="lazy">`).join("\n          ")}
-        </div>
-      </div>
-    </section>
-
-    <section class="section guide-section" id="guides">
-      <div class="inner">
-        <p class="eyebrow">JobHunter Guides</p>
-        <h2>Practical guides for better job matches and faster applications.</h2>
-        <p class="section-intro">Learn how to find matched jobs, review remote roles, compare hiring companies, autofill applications on iPhone, prepare ATS-friendly resumes, and review AI cover letters before submitting.</p>
-        <div class="guide-grid">
-          <a class="guide-card" href="/guides/find-top-remote-jobs-iphone/"><span>Job matching</span><strong>How to Find Top Remote Jobs on iPhone</strong><p>Review remote roles by fit, location rules, and application readiness.</p></a>
-          <a class="guide-card" href="/guides/highest-hiring-companies-job-search/"><span>Job matching</span><strong>How to Find Companies Hiring for Many Roles</strong><p>Use company hiring volume as a discovery signal without applying blindly.</p></a>
-          <a class="guide-card" href="/guides/autofill-job-applications-iphone/"><span>Autofill</span><strong>How to Autofill Job Applications on iPhone</strong><p>Save repeat typing and review every field before submitting.</p></a>
-          <a class="guide-card" href="/guides/ats-friendly-resume-checklist/"><span>Resume</span><strong>ATS-Friendly Resume Checklist</strong><p>Prepare resumes that parse cleanly in online forms.</p></a>
-          <a class="guide-card" href="/guides/ai-cover-letter-generator-review-checklist/"><span>Cover letters</span><strong>Draft and Review a Cover Letter</strong><p>Build a draft from your own evidence and check it before sending.</p></a>
-          <a class="guide-card" href="/guides/"><span>All guides</span><strong>View ${guidePlans.length} practical job search guides</strong><p>Browse job matching, autofill, resume, and cover letter resources.</p></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="inner">
-        <p class="eyebrow">Reviews</p>
-        <h2>Job seekers are already saving time.</h2>
-        <div class="review-grid">
-          <div class="review"><p>"Great extension, has saved me tons of hours. Thank you so much"</p><strong>Belwariars</strong></div>
-          <div class="review"><p>"Really helped me apply to many jobs, very helpful"</p><strong>Lowanmarie</strong></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="faq">
-      <div class="inner">
-        <p class="eyebrow">FAQ</p>
-        <h2>Common questions</h2>
-        <div class="faq">
-          <div><h3>Is JobHunter free?</h3><p>The app is free to download, with optional in-app purchases for premium features.</p></div>
-          <div><h3>Does JobHunter auto-submit applications?</h3><p>No. Use it to move faster through repeat work, then review the application before submitting.</p></div>
-          <div><h3>Can it help with cover letters?</h3><p>Yes. JobHunter can draft AI cover letters that you can edit for the specific role.</p></div>
-          <div><h3>Is it only for iPhone?</h3><p>JobHunter is focused on iPhone and Safari job application workflows.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section final-cta">
-      <div class="inner">
-        <h2>Apply faster today.</h2>
-        <p>Save your profile once, autofill repeat fields, attach resumes, and draft cover letters from your iPhone.</p>
-        <a class="primary-button" href="${APP_STORE_URL}">Download JobHunter</a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2026 JobHunter. All rights reserved.</p>
-    <nav aria-label="Footer">
-      <a href="/tools/">Tools</a>
-      <a href="/guides/">Guides</a>
-      <a href="/privacy/">Privacy</a>
-      <a href="/terms/">Terms</a>
-      <a href="${APP_STORE_URL}">App Store</a>
-    </nav>
-  </footer>
+    </div>
+  </section>
+  <section class="extras wrap" aria-labelledby="tools-title"><div><p class="eyebrow">Free tools</p><h2 id="tools-title">Make your next application easier.</h2><p>Create a resume or draft a cover letter right in your browser.</p></div><div class="tool-links"><a href="/tools/free-resume-maker/">Free Resume Maker <img src="/images/home/arrow-right.svg" alt=""></a><a href="/tools/free-cover-letter-generator/">Free Cover Letter Generator <img src="/images/home/arrow-right.svg" alt=""></a><a href="/tools/">Explore all free tools <img src="/images/home/arrow-right.svg" alt=""></a></div></section>
+  <section class="final-cta"><div class="wrap"><p class="eyebrow">Your next step starts here</p><h2>Ready to find your next opportunity?</h2><p>Get JobHunter on your iPhone and put the application journey in your hands.</p><a class="button" href="${APP_STORE_URL}"><img src="/images/ui/apple.svg" alt=""> Get JobHunter on the App Store <img class="arrow" src="/images/home/arrow-right.svg" alt=""></a><p class="cta-note">Free to download · Optional in-app purchases</p></div></section>
+</main>
+<footer class="footer wrap"><div><a class="brand" href="/"><img src="/images/app-icon.png" width="36" height="36" alt=""><span>JobHunter</span></a><p>A better job search, in your pocket.</p></div><nav aria-label="Footer"><a href="/guides/">Guides</a><a href="/tools/">Free tools</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="${APP_STORE_URL}">App Store</a></nav><p>© 2026 JobHunter</p></footer>
 </body>
 </html>
 `;

@@ -64,7 +64,7 @@ const homepageSchema = {
   }
 };
 
-const guideStrip = `<section id="seo-guide-strip" style="background:#f6f8fb;color:#14213d;padding:56px 24px;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+const guideStrip = `<section id="seo-guide-strip" style="background:#ffffff;color:#14213d;padding:56px 24px;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
   <div style="max-width:1120px;margin:0 auto">
     <p style="margin:0 0 10px;color:#2364aa;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase">JobHunter Guides</p>
     <h2 style="margin:0 0 14px;font-size:clamp(28px,4vw,44px);line-height:1.08;letter-spacing:0">Practical guides for faster job applications</h2>
@@ -132,7 +132,7 @@ const patchHomepage = (input) => {
   html = html.replace(new RegExp(`<script>\\(function\\(\\)\\{function ${["update", "Hero"].join("")}\\(\\).*?<\\/script>`), "");
   if (
     !html.includes('id="seo-guide-strip"') &&
-    !html.includes('class="section guide-section"')
+    !/<section\b[^>]*\bclass="[^"]*\bguide-section\b/.test(html)
   ) {
     html = html.replace("<footer", `${guideStrip}<footer`);
   }
@@ -161,7 +161,7 @@ const legalPage = ({ title, description, pathname, body }) => {
   <meta name="twitter:image" content="${APP_ICON}">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-  <link rel="stylesheet" href="/guides/guide.css">
+  <link rel="stylesheet" href="/guides/guide.css?v=20261031">
 </head>
 <body>
   <header class="site-header">

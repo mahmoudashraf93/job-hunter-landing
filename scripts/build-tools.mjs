@@ -84,7 +84,7 @@ const renderHead = ({ title, description, pathname, schema }) => {
   <meta name="twitter:image" content="${APP_ICON}">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-  <link rel="stylesheet" href="/tools/tool.css">
+  <link rel="stylesheet" href="/tools/tool.css?v=20261031">
   ${jsonLd(schema)}
 </head>`;
 };
@@ -397,7 +397,7 @@ const css = `:root {
   --muted: #526173;
   --line: #d9e1ea;
   --paper: #ffffff;
-  --soft: #f6f8fb;
+  --soft: #ffffff;
   --blue: #2364aa;
   --green: #2a9d8f;
   --gold: #f0b429;

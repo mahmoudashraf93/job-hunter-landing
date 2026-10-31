@@ -72,7 +72,7 @@ const renderHead = ({ title, description, pathname, schema, practice = false }) 
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/guides/guide.css">
+  <link rel="stylesheet" href="/guides/guide.css?v=20261031">
   <script src="/guides/guide.js" defer></script>
   ${practice ? '<script type="module" src="/guides/practice.js"></script>' : ""}
   ${jsonLd(schema)}
