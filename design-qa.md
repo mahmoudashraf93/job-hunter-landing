@@ -70,3 +70,27 @@ No blocking questions. The mock is an illustrative desktop design, so it does no
 - [x] Keep QA evidence outside public assets and the preview running.
 
 final result: passed
+
+# Landing page option 3 — design QA (2026-10-31)
+
+Source: `/Users/mahmoud/.codex/generated_images/01a1917b-ae83-7f93-a1c6-36ed3c354194/exec-1e767caf-502f-40df-8696-b113a73cd495.png`. Implementation: `http://127.0.0.1:8877/`. Full-page comparison: `/Users/mahmoud/.codex/visualizations/2026/10/31/01a1917b-ae83-7f93-a1c6-36ed3c354194/comparison-final.jpg`, source left; both normalized to 720 pixels wide. Desktop implementation was captured at 1440 CSS pixels, 1x; source is a generated long-page concept rather than a fixed viewport. Mobile capture at 390px: `mobile-final.jpg` in the same evidence directory. A further 320px screenshot was inspected in the browser.
+
+## Findings and fixes
+
+- P2: First browser pass showed the SEO patch adding a redundant guides section. Updated the patch to recognize the new guide-section class regardless of additional classes; verified the duplicate is gone.
+- P2: At 390px the header links wrapped and a hidden line break joined words in the guides heading. Shortened the CTA and preserved whitespace. At 320px adjusted the hero heading and CTA so they fit without overflow.
+- P2: The first desktop capture showed a disproportionately small phone group and excess whitespace in the featured guide. Increased the product image and featured image. Compared the subsequent full-page capture against the reference and checked the hero and guide areas at readable size.
+- P2: Initial button teal had 4.29:1 contrast against white. Darkened it to #007f95 (4.70:1).
+
+## Fidelity and validation
+
+- Typography: self-hosted Inter matches the existing site; large, tightly spaced navy display type and readable body copy follow the reference. Exact generated font metrics differ.
+- Layout: centered hero, three-phone image, four-step journey, featured guide plus two stacked guides and final CTA follow the chosen direction. A free-tools section is retained because it is an existing user journey. The page uses the existing canonical guide titles and descriptions rather than invented dates from the mock.
+- Color: white, pale blue, navy and accessible teal follow the reference. The mock's decorative background curves are omitted; the three-phone illustration has a white background.
+- Images: generated guide illustrations and a generated product illustration based on actual JobHunter screenshots replace the mock's illustrative assets. The product image is explicitly described as an illustration; exact screen text may differ from the app.
+- Interaction: featured guide opened the intended article in the in-app browser. Navigation, App Store and tool destinations are ordinary links. At 320px the document had no horizontal overflow and all images loaded; desktop browser console had no warnings/errors. Real-device and assistive-technology testing were not performed.
+- Site SEO validation passed (15 canonical URLs, 10 guides, 30 redirects; all pages reachable), and all 19 Node tests passed. `git diff --check` passed.
+
+Checklist: [x] selected reference compared to implementation; [x] mobile fit checked; [x] guide links retained; [x] build and validation passed. No remaining P0/P1/P2 findings in the reviewed scope.
+
+final result: passed
